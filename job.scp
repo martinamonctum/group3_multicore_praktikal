@@ -1,0 +1,17 @@
+#!/bin/bash
+# Job Name and Files (also --job-name)
+#SBATCH -J heat
+#Output and error (also --output, --error):
+#SBATCH -o job.out
+#SBATCH -e job.out
+# Wall clock limit:
+#SBATCH --time=00:05:00
+#SBATCH --account=h039v
+#SBATCH --partition=test
+#SBATCH --ear=off
+
+srun sh -c 'if [ $SLURM_LOCALID == 0 ]; then /lrz/sys/tools/dcdb/bin/perfstop.sh; fi'
+for (( c=1; c <=25; c++ ))
+do
+   ./heat test.dat
+done

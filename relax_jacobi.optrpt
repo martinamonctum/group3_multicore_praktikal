@@ -1,0 +1,74 @@
+Intel(R) Advisor can now assist with vectorization and show optimization
+  report messages with your source code.
+See "https://software.intel.com/en-us/intel-advisor-xe" for details.
+
+
+Begin optimization report for: residual_jacobi(double *, unsigned int, unsigned int)
+
+    Report from: Loop nest & Vector optimizations [loop, vec]
+
+
+LOOP BEGIN at relax_jacobi.c(18,2)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at relax_jacobi.c(19,3)
+      remark #15300: LOOP WAS VECTORIZED
+   LOOP END
+
+   LOOP BEGIN at relax_jacobi.c(19,3)
+   <Remainder loop for vectorization>
+      remark #15301: REMAINDER LOOP WAS VECTORIZED
+   LOOP END
+
+   LOOP BEGIN at relax_jacobi.c(19,3)
+   <Remainder loop for vectorization>
+   LOOP END
+LOOP END
+===========================================================================
+
+Begin optimization report for: relax_jacobi(double *, double *, unsigned int, unsigned int)
+
+    Report from: Loop nest & Vector optimizations [loop, vec]
+
+
+LOOP BEGIN at relax_jacobi.c(39,2)
+   remark #15301: OUTER LOOP WAS VECTORIZED
+
+   LOOP BEGIN at relax_jacobi.c(40,3)
+      remark #15344: loop was not vectorized: vector dependence prevents vectorization. First dependence is shown below. Use level 5 report for details
+      remark #15346: vector dependence: assumed FLOW dependence between utmp[i*sizex+j] (41:4) and u[i*sizex+j-1] (41:4)
+   LOOP END
+LOOP END
+
+LOOP BEGIN at relax_jacobi.c(39,2)
+<Remainder loop for vectorization>
+
+   LOOP BEGIN at relax_jacobi.c(40,3)
+      remark #25460: No loop optimizations reported
+   LOOP END
+LOOP END
+
+LOOP BEGIN at relax_jacobi.c(50,2)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at relax_jacobi.c(51,3)
+   <Multiversioned v1>
+      remark #25228: Loop multiversioned for Data Dependence
+      remark #15300: LOOP WAS VECTORIZED
+   LOOP END
+
+   LOOP BEGIN at relax_jacobi.c(51,3)
+   <Remainder loop for vectorization, Multiversioned v1>
+   LOOP END
+
+   LOOP BEGIN at relax_jacobi.c(51,3)
+   <Multiversioned v2>
+      remark #15304: loop was not vectorized: non-vectorizable loop instance from multiversioning
+      remark #25439: unrolled with remainder by 2  
+   LOOP END
+
+   LOOP BEGIN at relax_jacobi.c(51,3)
+   <Remainder, Multiversioned v2>
+   LOOP END
+LOOP END
+===========================================================================

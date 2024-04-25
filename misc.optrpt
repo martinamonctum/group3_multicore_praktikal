@@ -1,0 +1,152 @@
+Intel(R) Advisor can now assist with vectorization and show optimization
+  report messages with your source code.
+See "https://software.intel.com/en-us/intel-advisor-xe" for details.
+
+
+Begin optimization report for: write_image(FILE *, double *, unsigned int, unsigned int)
+
+    Report from: Loop nest & Vector optimizations [loop, vec]
+
+
+LOOP BEGIN at misc.c(156,5)
+   remark #15335: loop was not vectorized: vectorization possible but seems inefficient. Use vector always directive or -vec-threshold0 to override 
+   remark #25438: unrolled without remainder by 2  
+   remark #25456: Number of Array Refs Scalar Replaced In Loop: 1
+LOOP END
+
+LOOP BEGIN at misc.c(161,5)
+   remark #15335: loop was not vectorized: vectorization possible but seems inefficient. Use vector always directive or -vec-threshold0 to override 
+   remark #25438: unrolled without remainder by 2  
+   remark #25456: Number of Array Refs Scalar Replaced In Loop: 1
+LOOP END
+
+LOOP BEGIN at misc.c(166,5)
+   remark #15335: loop was not vectorized: vectorization possible but seems inefficient. Use vector always directive or -vec-threshold0 to override 
+   remark #25438: unrolled without remainder by 2  
+   remark #25456: Number of Array Refs Scalar Replaced In Loop: 1
+LOOP END
+
+LOOP BEGIN at misc.c(171,5)
+<Peeled loop for vectorization>
+LOOP END
+
+LOOP BEGIN at misc.c(171,5)
+   remark #25453: Loop Reversed
+   remark #15301: REVERSED LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at misc.c(171,5)
+<Remainder loop for vectorization>
+   remark #15301: REMAINDER LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at misc.c(171,5)
+<Remainder loop for vectorization>
+LOOP END
+
+LOOP BEGIN at misc.c(182,5)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at misc.c(184,2)
+   <Peeled loop for vectorization>
+   LOOP END
+
+   LOOP BEGIN at misc.c(184,2)
+      remark #15300: LOOP WAS VECTORIZED
+   LOOP END
+
+   LOOP BEGIN at misc.c(184,2)
+   <Remainder loop for vectorization>
+   LOOP END
+LOOP END
+
+LOOP BEGIN at misc.c(198,5)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization. First dependence is shown below. Use level 5 report for details
+   remark #15346: vector dependence: assumed OUTPUT dependence between call:fprintf(FILE *__restrict__, const char *__restrict__, ...) (205:6) and call:fprintf(FILE *__restrict__, const char *__restrict__, ...) (207:2)
+
+   LOOP BEGIN at misc.c(200,2)
+      remark #15527: loop was not vectorized: function call to fprintf(FILE *__restrict__, const char *__restrict__, ...) cannot be vectorized   [ misc.c(205,6) ]
+   LOOP END
+LOOP END
+===========================================================================
+
+Begin optimization report for: coarsen(double *, unsigned int, unsigned int, double *, unsigned int, unsigned int)
+
+    Report from: Loop nest & Vector optimizations [loop, vec]
+
+
+LOOP BEGIN at misc.c(238,5)
+<Multiversioned v1>
+   remark #25228: Loop multiversioned for Data Dependence
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at misc.c(240,2)
+   <Peeled loop for vectorization>
+   LOOP END
+
+   LOOP BEGIN at misc.c(240,2)
+      remark #15300: LOOP WAS VECTORIZED
+   LOOP END
+
+   LOOP BEGIN at misc.c(240,2)
+   <Remainder loop for vectorization>
+   LOOP END
+LOOP END
+
+LOOP BEGIN at misc.c(238,5)
+<Multiversioned v2>
+   remark #15304: loop was not vectorized: non-vectorizable loop instance from multiversioning
+
+   LOOP BEGIN at misc.c(240,2)
+      remark #15344: loop was not vectorized: vector dependence prevents vectorization. First dependence is shown below. Use level 5 report for details
+      remark #15346: vector dependence: assumed FLOW dependence between unew[i*newx+j] (242:6) and uold[(i*oldx)*stepy+j*stepx] (242:6)
+      remark #25439: unrolled with remainder by 2  
+   LOOP END
+
+   LOOP BEGIN at misc.c(240,2)
+   <Remainder>
+   LOOP END
+LOOP END
+===========================================================================
+
+Begin optimization report for: initialize(algoparam_t *)
+
+    Report from: Loop nest & Vector optimizations [loop, vec]
+
+
+LOOP BEGIN at misc.c(46,5)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at misc.c(49,2)
+      remark #15300: LOOP WAS VECTORIZED
+   LOOP END
+
+   LOOP BEGIN at misc.c(49,2)
+   <Remainder loop for vectorization>
+   LOOP END
+
+   LOOP BEGIN at misc.c(65,2)
+      remark #15300: LOOP WAS VECTORIZED
+   LOOP END
+
+   LOOP BEGIN at misc.c(65,2)
+   <Remainder loop for vectorization>
+   LOOP END
+
+   LOOP BEGIN at misc.c(81,2)
+      remark #15300: LOOP WAS VECTORIZED
+   LOOP END
+
+   LOOP BEGIN at misc.c(81,2)
+   <Remainder loop for vectorization>
+   LOOP END
+
+   LOOP BEGIN at misc.c(97,2)
+      remark #15300: LOOP WAS VECTORIZED
+   LOOP END
+
+   LOOP BEGIN at misc.c(97,2)
+   <Remainder loop for vectorization>
+   LOOP END
+LOOP END
+===========================================================================

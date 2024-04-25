@@ -1,0 +1,583 @@
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    34  100    34    0     0   8500      0 --:--:-- --:--:-- --:--:--  8500
+Plugin perfevent: Sensors stopped
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    28  100    28    0     0  14000      0 --:--:-- --:--:-- --:--:-- 14000
+Plugin msr: Sensors stopped
+Resolutions       : (500, 1500, ... 4800)
+Iterations        : 40
+Algorithm         : 0 (Jacobi)
+Num. Heat sources : 2
+   1: (0.00, 0.00) 1.00 1.00 
+   2: (1.00, 1.00) 1.00 0.50 
+Resolution:   500Resolution:   500, Time: 0.262 (0.110 GFlop => 419.19 MFlop/s, residual 0.079613, 40 iterations)
+Resolution:  1500Resolution:  1500, Time: 0.235 (0.990 GFlop => 4221.30 MFlop/s, residual 0.238673, 40 iterations)
+Resolution:  2500Resolution:  2500, Time: 0.876 (2.750 GFlop => 3140.73 MFlop/s, residual 0.397703, 40 iterations)
+Resolution:  3500Resolution:  3500, Time: 1.882 (5.390 GFlop => 2863.88 MFlop/s, residual 0.556728, 40 iterations)
+Resolution:  4500Resolution:  4500, Time: 3.133 (8.910 GFlop => 2843.75 MFlop/s, residual 0.715752, 40 iterations)
+PAPI-HL Info: PAPI has been initiated!
+PAPI-HL Info: Using the following events:
+  PAPI_TOT_INS
+  PAPI_TOT_CYC
+  PAPI_L2_DCM
+  PAPI_L3_TCM
+  500; 0.262; 419.187
+ 1500; 0.235; 4221.299
+ 2500; 0.876; 3140.728
+ 3500; 1.882; 2863.882
+ 4500; 3.133; 2843.752
+PAPI-HL Info: Print results...
+Resolutions       : (500, 1500, ... 4800)
+Iterations        : 40
+Algorithm         : 0 (Jacobi)
+Num. Heat sources : 2
+   1: (0.00, 0.00) 1.00 1.00 
+   2: (1.00, 1.00) 1.00 0.50 
+Resolution:   500Resolution:   500, Time: 0.237 (0.110 GFlop => 463.93 MFlop/s, residual 0.079613, 40 iterations)
+Resolution:  1500Resolution:  1500, Time: 0.232 (0.990 GFlop => 4274.50 MFlop/s, residual 0.238673, 40 iterations)
+Resolution:  2500Resolution:  2500, Time: 0.877 (2.750 GFlop => 3136.29 MFlop/s, residual 0.397703, 40 iterations)
+Resolution:  3500Resolution:  3500, Time: 1.874 (5.390 GFlop => 2875.93 MFlop/s, residual 0.556728, 40 iterations)
+Resolution:  4500Resolution:  4500, Time: 3.139 (8.910 GFlop => 2838.29 MFlop/s, residual 0.715752, 40 iterations)
+PAPI-HL Info: PAPI has been initiated!
+PAPI-HL Info: Using the following events:
+  PAPI_TOT_INS
+  PAPI_TOT_CYC
+  PAPI_L2_DCM
+  PAPI_L3_TCM
+  500; 0.237; 463.932
+ 1500; 0.232; 4274.501
+ 2500; 0.877; 3136.294
+ 3500; 1.874; 2875.934
+ 4500; 3.139; 2838.287
+PAPI-HL Info: Print results...
+Resolutions       : (500, 1500, ... 4800)
+Iterations        : 40
+Algorithm         : 0 (Jacobi)
+Num. Heat sources : 2
+   1: (0.00, 0.00) 1.00 1.00 
+   2: (1.00, 1.00) 1.00 0.50 
+Resolution:   500Resolution:   500, Time: 0.230 (0.110 GFlop => 477.95 MFlop/s, residual 0.079613, 40 iterations)
+Resolution:  1500Resolution:  1500, Time: 0.242 (0.990 GFlop => 4086.72 MFlop/s, residual 0.238673, 40 iterations)
+Resolution:  2500Resolution:  2500, Time: 0.890 (2.750 GFlop => 3088.60 MFlop/s, residual 0.397703, 40 iterations)
+Resolution:  3500Resolution:  3500, Time: 1.878 (5.390 GFlop => 2870.73 MFlop/s, residual 0.556728, 40 iterations)
+Resolution:  4500Resolution:  4500, Time: 3.145 (8.910 GFlop => 2833.20 MFlop/s, residual 0.715752, 40 iterations)
+PAPI-HL Info: PAPI has been initiated!
+PAPI-HL Info: Using the following events:
+  PAPI_TOT_INS
+  PAPI_TOT_CYC
+  PAPI_L2_DCM
+  PAPI_L3_TCM
+  500; 0.230; 477.953
+ 1500; 0.242; 4086.720
+ 2500; 0.890; 3088.597
+ 3500; 1.878; 2870.735
+ 4500; 3.145; 2833.200
+PAPI-HL Info: Print results...
+Resolutions       : (500, 1500, ... 4800)
+Iterations        : 40
+Algorithm         : 0 (Jacobi)
+Num. Heat sources : 2
+   1: (0.00, 0.00) 1.00 1.00 
+   2: (1.00, 1.00) 1.00 0.50 
+Resolution:   500Resolution:   500, Time: 0.233 (0.110 GFlop => 471.87 MFlop/s, residual 0.079613, 40 iterations)
+Resolution:  1500Resolution:  1500, Time: 0.247 (0.990 GFlop => 4015.49 MFlop/s, residual 0.238673, 40 iterations)
+Resolution:  2500Resolution:  2500, Time: 0.894 (2.750 GFlop => 3076.73 MFlop/s, residual 0.397703, 40 iterations)
+Resolution:  3500Resolution:  3500, Time: 1.874 (5.390 GFlop => 2876.06 MFlop/s, residual 0.556728, 40 iterations)
+Resolution:  4500Resolution:  4500, Time: 3.143 (8.910 GFlop => 2835.08 MFlop/s, residual 0.715752, 40 iterations)
+PAPI-HL Info: PAPI has been initiated!
+PAPI-HL Info: Using the following events:
+  PAPI_TOT_INS
+  PAPI_TOT_CYC
+  PAPI_L2_DCM
+  PAPI_L3_TCM
+  500; 0.233; 471.874
+ 1500; 0.247; 4015.493
+ 2500; 0.894; 3076.734
+ 3500; 1.874; 2876.063
+ 4500; 3.143; 2835.079
+PAPI-HL Info: Print results...
+Resolutions       : (500, 1500, ... 4800)
+Iterations        : 40
+Algorithm         : 0 (Jacobi)
+Num. Heat sources : 2
+   1: (0.00, 0.00) 1.00 1.00 
+   2: (1.00, 1.00) 1.00 0.50 
+Resolution:   500Resolution:   500, Time: 0.233 (0.110 GFlop => 472.46 MFlop/s, residual 0.079613, 40 iterations)
+Resolution:  1500Resolution:  1500, Time: 0.223 (0.990 GFlop => 4443.33 MFlop/s, residual 0.238673, 40 iterations)
+Resolution:  2500Resolution:  2500, Time: 0.872 (2.750 GFlop => 3152.53 MFlop/s, residual 0.397703, 40 iterations)
+Resolution:  3500Resolution:  3500, Time: 1.880 (5.390 GFlop => 2866.32 MFlop/s, residual 0.556728, 40 iterations)
+Resolution:  4500Resolution:  4500, Time: 3.142 (8.910 GFlop => 2836.14 MFlop/s, residual 0.715752, 40 iterations)
+PAPI-HL Info: PAPI has been initiated!
+PAPI-HL Info: Using the following events:
+  PAPI_TOT_INS
+  PAPI_TOT_CYC
+  PAPI_L2_DCM
+  PAPI_L3_TCM
+  500; 0.233; 472.462
+ 1500; 0.223; 4443.328
+ 2500; 0.872; 3152.531
+ 3500; 1.880; 2866.323
+ 4500; 3.142; 2836.137
+PAPI-HL Info: Print results...
+Resolutions       : (500, 1500, ... 4800)
+Iterations        : 40
+Algorithm         : 0 (Jacobi)
+Num. Heat sources : 2
+   1: (0.00, 0.00) 1.00 1.00 
+   2: (1.00, 1.00) 1.00 0.50 
+Resolution:   500Resolution:   500, Time: 0.234 (0.110 GFlop => 469.69 MFlop/s, residual 0.079613, 40 iterations)
+Resolution:  1500Resolution:  1500, Time: 0.217 (0.990 GFlop => 4562.05 MFlop/s, residual 0.238673, 40 iterations)
+Resolution:  2500Resolution:  2500, Time: 0.875 (2.750 GFlop => 3144.12 MFlop/s, residual 0.397703, 40 iterations)
+Resolution:  3500Resolution:  3500, Time: 1.884 (5.390 GFlop => 2860.66 MFlop/s, residual 0.556728, 40 iterations)
+Resolution:  4500Resolution:  4500, Time: 3.140 (8.910 GFlop => 2837.23 MFlop/s, residual 0.715752, 40 iterations)
+PAPI-HL Info: PAPI has been initiated!
+PAPI-HL Info: Using the following events:
+  PAPI_TOT_INS
+  PAPI_TOT_CYC
+  PAPI_L2_DCM
+  PAPI_L3_TCM
+  500; 0.234; 469.694
+ 1500; 0.217; 4562.046
+ 2500; 0.875; 3144.118
+ 3500; 1.884; 2860.664
+ 4500; 3.140; 2837.227
+PAPI-HL Info: Print results...
+Resolutions       : (500, 1500, ... 4800)
+Iterations        : 40
+Algorithm         : 0 (Jacobi)
+Num. Heat sources : 2
+   1: (0.00, 0.00) 1.00 1.00 
+   2: (1.00, 1.00) 1.00 0.50 
+Resolution:   500Resolution:   500, Time: 0.235 (0.110 GFlop => 467.38 MFlop/s, residual 0.079613, 40 iterations)
+Resolution:  1500Resolution:  1500, Time: 0.233 (0.990 GFlop => 4253.67 MFlop/s, residual 0.238673, 40 iterations)
+Resolution:  2500Resolution:  2500, Time: 0.880 (2.750 GFlop => 3126.44 MFlop/s, residual 0.397703, 40 iterations)
+Resolution:  3500Resolution:  3500, Time: 1.881 (5.390 GFlop => 2866.09 MFlop/s, residual 0.556728, 40 iterations)
+Resolution:  4500Resolution:  4500, Time: 3.142 (8.910 GFlop => 2835.66 MFlop/s, residual 0.715752, 40 iterations)
+PAPI-HL Info: PAPI has been initiated!
+PAPI-HL Info: Using the following events:
+  PAPI_TOT_INS
+  PAPI_TOT_CYC
+  PAPI_L2_DCM
+  PAPI_L3_TCM
+  500; 0.235; 467.375
+ 1500; 0.233; 4253.675
+ 2500; 0.880; 3126.440
+ 3500; 1.881; 2866.093
+ 4500; 3.142; 2835.661
+PAPI-HL Info: Print results...
+Resolutions       : (500, 1500, ... 4800)
+Iterations        : 40
+Algorithm         : 0 (Jacobi)
+Num. Heat sources : 2
+   1: (0.00, 0.00) 1.00 1.00 
+   2: (1.00, 1.00) 1.00 0.50 
+Resolution:   500Resolution:   500, Time: 0.233 (0.110 GFlop => 471.40 MFlop/s, residual 0.079613, 40 iterations)
+Resolution:  1500Resolution:  1500, Time: 0.238 (0.990 GFlop => 4155.40 MFlop/s, residual 0.238673, 40 iterations)
+Resolution:  2500Resolution:  2500, Time: 0.882 (2.750 GFlop => 3117.61 MFlop/s, residual 0.397703, 40 iterations)
+Resolution:  3500Resolution:  3500, Time: 1.875 (5.390 GFlop => 2874.95 MFlop/s, residual 0.556728, 40 iterations)
+Resolution:  4500Resolution:  4500, Time: 3.132 (8.910 GFlop => 2844.54 MFlop/s, residual 0.715752, 40 iterations)
+PAPI-HL Info: PAPI has been initiated!
+PAPI-HL Info: Using the following events:
+  PAPI_TOT_INS
+  PAPI_TOT_CYC
+  PAPI_L2_DCM
+  PAPI_L3_TCM
+  500; 0.233; 471.397
+ 1500; 0.238; 4155.403
+ 2500; 0.882; 3117.610
+ 3500; 1.875; 2874.955
+ 4500; 3.132; 2844.541
+PAPI-HL Info: Print results...
+Resolutions       : (500, 1500, ... 4800)
+Iterations        : 40
+Algorithm         : 0 (Jacobi)
+Num. Heat sources : 2
+   1: (0.00, 0.00) 1.00 1.00 
+   2: (1.00, 1.00) 1.00 0.50 
+Resolution:   500Resolution:   500, Time: 0.228 (0.110 GFlop => 481.78 MFlop/s, residual 0.079613, 40 iterations)
+Resolution:  1500Resolution:  1500, Time: 0.217 (0.990 GFlop => 4556.04 MFlop/s, residual 0.238673, 40 iterations)
+Resolution:  2500Resolution:  2500, Time: 0.874 (2.750 GFlop => 3145.17 MFlop/s, residual 0.397703, 40 iterations)
+Resolution:  3500Resolution:  3500, Time: 1.878 (5.390 GFlop => 2869.34 MFlop/s, residual 0.556728, 40 iterations)
+Resolution:  4500Resolution:  4500, Time: 3.137 (8.910 GFlop => 2840.29 MFlop/s, residual 0.715752, 40 iterations)
+PAPI-HL Info: PAPI has been initiated!
+PAPI-HL Info: Using the following events:
+  PAPI_TOT_INS
+  PAPI_TOT_CYC
+  PAPI_L2_DCM
+  PAPI_L3_TCM
+  500; 0.228; 481.782
+ 1500; 0.217; 4556.040
+ 2500; 0.874; 3145.165
+ 3500; 1.878; 2869.344
+ 4500; 3.137; 2840.293
+PAPI-HL Info: Print results...
+Resolutions       : (500, 1500, ... 4800)
+Iterations        : 40
+Algorithm         : 0 (Jacobi)
+Num. Heat sources : 2
+   1: (0.00, 0.00) 1.00 1.00 
+   2: (1.00, 1.00) 1.00 0.50 
+Resolution:   500Resolution:   500, Time: 0.232 (0.110 GFlop => 475.13 MFlop/s, residual 0.079613, 40 iterations)
+Resolution:  1500Resolution:  1500, Time: 0.228 (0.990 GFlop => 4335.37 MFlop/s, residual 0.238673, 40 iterations)
+Resolution:  2500Resolution:  2500, Time: 0.867 (2.750 GFlop => 3170.62 MFlop/s, residual 0.397703, 40 iterations)
+Resolution:  3500Resolution:  3500, Time: 1.877 (5.390 GFlop => 2871.51 MFlop/s, residual 0.556728, 40 iterations)
+Resolution:  4500Resolution:  4500, Time: 3.145 (8.910 GFlop => 2833.13 MFlop/s, residual 0.715752, 40 iterations)
+PAPI-HL Info: PAPI has been initiated!
+PAPI-HL Info: Using the following events:
+  PAPI_TOT_INS
+  PAPI_TOT_CYC
+  PAPI_L2_DCM
+  PAPI_L3_TCM
+  500; 0.232; 475.127
+ 1500; 0.228; 4335.374
+ 2500; 0.867; 3170.625
+ 3500; 1.877; 2871.510
+ 4500; 3.145; 2833.128
+PAPI-HL Info: Print results...
+Resolutions       : (500, 1500, ... 4800)
+Iterations        : 40
+Algorithm         : 0 (Jacobi)
+Num. Heat sources : 2
+   1: (0.00, 0.00) 1.00 1.00 
+   2: (1.00, 1.00) 1.00 0.50 
+Resolution:   500Resolution:   500, Time: 0.233 (0.110 GFlop => 471.28 MFlop/s, residual 0.079613, 40 iterations)
+Resolution:  1500Resolution:  1500, Time: 0.238 (0.990 GFlop => 4157.81 MFlop/s, residual 0.238673, 40 iterations)
+Resolution:  2500Resolution:  2500, Time: 0.870 (2.750 GFlop => 3159.79 MFlop/s, residual 0.397703, 40 iterations)
+Resolution:  3500Resolution:  3500, Time: 1.882 (5.390 GFlop => 2863.38 MFlop/s, residual 0.556728, 40 iterations)
+Resolution:  4500Resolution:  4500, Time: 3.144 (8.910 GFlop => 2833.91 MFlop/s, residual 0.715752, 40 iterations)
+PAPI-HL Info: PAPI has been initiated!
+PAPI-HL Info: Using the following events:
+  PAPI_TOT_INS
+  PAPI_TOT_CYC
+  PAPI_L2_DCM
+  PAPI_L3_TCM
+  500; 0.233; 471.280
+ 1500; 0.238; 4157.812
+ 2500; 0.870; 3159.790
+ 3500; 1.882; 2863.376
+ 4500; 3.144; 2833.905
+PAPI-HL Info: Print results...
+Resolutions       : (500, 1500, ... 4800)
+Iterations        : 40
+Algorithm         : 0 (Jacobi)
+Num. Heat sources : 2
+   1: (0.00, 0.00) 1.00 1.00 
+   2: (1.00, 1.00) 1.00 0.50 
+Resolution:   500Resolution:   500, Time: 0.230 (0.110 GFlop => 477.88 MFlop/s, residual 0.079613, 40 iterations)
+Resolution:  1500Resolution:  1500, Time: 0.231 (0.990 GFlop => 4286.06 MFlop/s, residual 0.238673, 40 iterations)
+Resolution:  2500Resolution:  2500, Time: 0.870 (2.750 GFlop => 3161.12 MFlop/s, residual 0.397703, 40 iterations)
+Resolution:  3500Resolution:  3500, Time: 1.880 (5.390 GFlop => 2867.73 MFlop/s, residual 0.556728, 40 iterations)
+Resolution:  4500Resolution:  4500, Time: 3.137 (8.910 GFlop => 2840.07 MFlop/s, residual 0.715752, 40 iterations)
+PAPI-HL Info: PAPI has been initiated!
+PAPI-HL Info: Using the following events:
+  PAPI_TOT_INS
+  PAPI_TOT_CYC
+  PAPI_L2_DCM
+  PAPI_L3_TCM
+  500; 0.230; 477.876
+ 1500; 0.231; 4286.065
+ 2500; 0.870; 3161.116
+ 3500; 1.880; 2867.732
+ 4500; 3.137; 2840.074
+PAPI-HL Info: Print results...
+Resolutions       : (500, 1500, ... 4800)
+Iterations        : 40
+Algorithm         : 0 (Jacobi)
+Num. Heat sources : 2
+   1: (0.00, 0.00) 1.00 1.00 
+   2: (1.00, 1.00) 1.00 0.50 
+Resolution:   500Resolution:   500, Time: 0.234 (0.110 GFlop => 469.67 MFlop/s, residual 0.079613, 40 iterations)
+Resolution:  1500Resolution:  1500, Time: 0.247 (0.990 GFlop => 4000.32 MFlop/s, residual 0.238673, 40 iterations)
+Resolution:  2500Resolution:  2500, Time: 0.869 (2.750 GFlop => 3163.24 MFlop/s, residual 0.397703, 40 iterations)
+Resolution:  3500Resolution:  3500, Time: 1.883 (5.390 GFlop => 2861.93 MFlop/s, residual 0.556728, 40 iterations)
+Resolution:  4500Resolution:  4500, Time: 3.139 (8.910 GFlop => 2838.65 MFlop/s, residual 0.715752, 40 iterations)
+PAPI-HL Info: PAPI has been initiated!
+PAPI-HL Info: Using the following events:
+  PAPI_TOT_INS
+  PAPI_TOT_CYC
+  PAPI_L2_DCM
+  PAPI_L3_TCM
+  500; 0.234; 469.668
+ 1500; 0.247; 4000.325
+ 2500; 0.869; 3163.240
+ 3500; 1.883; 2861.930
+ 4500; 3.139; 2838.646
+PAPI-HL Info: Print results...
+Resolutions       : (500, 1500, ... 4800)
+Iterations        : 40
+Algorithm         : 0 (Jacobi)
+Num. Heat sources : 2
+   1: (0.00, 0.00) 1.00 1.00 
+   2: (1.00, 1.00) 1.00 0.50 
+Resolution:   500Resolution:   500, Time: 0.232 (0.110 GFlop => 473.74 MFlop/s, residual 0.079613, 40 iterations)
+Resolution:  1500Resolution:  1500, Time: 0.224 (0.990 GFlop => 4420.71 MFlop/s, residual 0.238673, 40 iterations)
+Resolution:  2500Resolution:  2500, Time: 0.871 (2.750 GFlop => 3158.70 MFlop/s, residual 0.397703, 40 iterations)
+Resolution:  3500Resolution:  3500, Time: 1.880 (5.390 GFlop => 2866.90 MFlop/s, residual 0.556728, 40 iterations)
+Resolution:  4500Resolution:  4500, Time: 3.133 (8.910 GFlop => 2844.16 MFlop/s, residual 0.715752, 40 iterations)
+PAPI-HL Info: PAPI has been initiated!
+PAPI-HL Info: Using the following events:
+  PAPI_TOT_INS
+  PAPI_TOT_CYC
+  PAPI_L2_DCM
+  PAPI_L3_TCM
+  500; 0.232; 473.744
+ 1500; 0.224; 4420.711
+ 2500; 0.871; 3158.698
+ 3500; 1.880; 2866.901
+ 4500; 3.133; 2844.161
+PAPI-HL Info: Print results...
+Resolutions       : (500, 1500, ... 4800)
+Iterations        : 40
+Algorithm         : 0 (Jacobi)
+Num. Heat sources : 2
+   1: (0.00, 0.00) 1.00 1.00 
+   2: (1.00, 1.00) 1.00 0.50 
+Resolution:   500Resolution:   500, Time: 0.233 (0.110 GFlop => 471.12 MFlop/s, residual 0.079613, 40 iterations)
+Resolution:  1500Resolution:  1500, Time: 0.228 (0.990 GFlop => 4333.95 MFlop/s, residual 0.238673, 40 iterations)
+Resolution:  2500Resolution:  2500, Time: 0.874 (2.750 GFlop => 3146.64 MFlop/s, residual 0.397703, 40 iterations)
+Resolution:  3500Resolution:  3500, Time: 1.880 (5.390 GFlop => 2866.59 MFlop/s, residual 0.556728, 40 iterations)
+Resolution:  4500Resolution:  4500, Time: 3.142 (8.910 GFlop => 2836.17 MFlop/s, residual 0.715752, 40 iterations)
+PAPI-HL Info: PAPI has been initiated!
+PAPI-HL Info: Using the following events:
+  PAPI_TOT_INS
+  PAPI_TOT_CYC
+  PAPI_L2_DCM
+  PAPI_L3_TCM
+  500; 0.233; 471.124
+ 1500; 0.228; 4333.949
+ 2500; 0.874; 3146.644
+ 3500; 1.880; 2866.593
+ 4500; 3.142; 2836.173
+PAPI-HL Info: Print results...
+Resolutions       : (500, 1500, ... 4800)
+Iterations        : 40
+Algorithm         : 0 (Jacobi)
+Num. Heat sources : 2
+   1: (0.00, 0.00) 1.00 1.00 
+   2: (1.00, 1.00) 1.00 0.50 
+Resolution:   500Resolution:   500, Time: 0.232 (0.110 GFlop => 473.39 MFlop/s, residual 0.079613, 40 iterations)
+Resolution:  1500Resolution:  1500, Time: 0.232 (0.990 GFlop => 4260.23 MFlop/s, residual 0.238673, 40 iterations)
+Resolution:  2500Resolution:  2500, Time: 0.873 (2.750 GFlop => 3149.90 MFlop/s, residual 0.397703, 40 iterations)
+Resolution:  3500Resolution:  3500, Time: 1.878 (5.390 GFlop => 2869.55 MFlop/s, residual 0.556728, 40 iterations)
+Resolution:  4500Resolution:  4500, Time: 3.136 (8.910 GFlop => 2841.63 MFlop/s, residual 0.715752, 40 iterations)
+PAPI-HL Info: PAPI has been initiated!
+PAPI-HL Info: Using the following events:
+  PAPI_TOT_INS
+  PAPI_TOT_CYC
+  PAPI_L2_DCM
+  PAPI_L3_TCM
+  500; 0.232; 473.393
+ 1500; 0.232; 4260.226
+ 2500; 0.873; 3149.895
+ 3500; 1.878; 2869.547
+ 4500; 3.136; 2841.629
+PAPI-HL Info: Print results...
+Resolutions       : (500, 1500, ... 4800)
+Iterations        : 40
+Algorithm         : 0 (Jacobi)
+Num. Heat sources : 2
+   1: (0.00, 0.00) 1.00 1.00 
+   2: (1.00, 1.00) 1.00 0.50 
+Resolution:   500Resolution:   500, Time: 0.231 (0.110 GFlop => 475.75 MFlop/s, residual 0.079613, 40 iterations)
+Resolution:  1500Resolution:  1500, Time: 0.225 (0.990 GFlop => 4402.37 MFlop/s, residual 0.238673, 40 iterations)
+Resolution:  2500Resolution:  2500, Time: 0.872 (2.750 GFlop => 3152.21 MFlop/s, residual 0.397703, 40 iterations)
+Resolution:  3500Resolution:  3500, Time: 1.875 (5.390 GFlop => 2874.64 MFlop/s, residual 0.556728, 40 iterations)
+Resolution:  4500Resolution:  4500, Time: 3.139 (8.910 GFlop => 2838.12 MFlop/s, residual 0.715752, 40 iterations)
+PAPI-HL Info: PAPI has been initiated!
+PAPI-HL Info: Using the following events:
+  PAPI_TOT_INS
+  PAPI_TOT_CYC
+  PAPI_L2_DCM
+  PAPI_L3_TCM
+  500; 0.231; 475.754
+ 1500; 0.225; 4402.367
+ 2500; 0.872; 3152.209
+ 3500; 1.875; 2874.644
+ 4500; 3.139; 2838.123
+PAPI-HL Info: Print results...
+Resolutions       : (500, 1500, ... 4800)
+Iterations        : 40
+Algorithm         : 0 (Jacobi)
+Num. Heat sources : 2
+   1: (0.00, 0.00) 1.00 1.00 
+   2: (1.00, 1.00) 1.00 0.50 
+Resolution:   500Resolution:   500, Time: 0.232 (0.110 GFlop => 473.24 MFlop/s, residual 0.079613, 40 iterations)
+Resolution:  1500Resolution:  1500, Time: 0.236 (0.990 GFlop => 4201.28 MFlop/s, residual 0.238673, 40 iterations)
+Resolution:  2500Resolution:  2500, Time: 0.878 (2.750 GFlop => 3132.05 MFlop/s, residual 0.397703, 40 iterations)
+Resolution:  3500Resolution:  3500, Time: 1.882 (5.390 GFlop => 2864.45 MFlop/s, residual 0.556728, 40 iterations)
+Resolution:  4500Resolution:  4500, Time: 3.135 (8.910 GFlop => 2841.91 MFlop/s, residual 0.715752, 40 iterations)
+PAPI-HL Info: PAPI has been initiated!
+PAPI-HL Info: Using the following events:
+  PAPI_TOT_INS
+  PAPI_TOT_CYC
+  PAPI_L2_DCM
+  PAPI_L3_TCM
+  500; 0.232; 473.240
+ 1500; 0.236; 4201.285
+ 2500; 0.878; 3132.055
+ 3500; 1.882; 2864.450
+ 4500; 3.135; 2841.907
+PAPI-HL Info: Print results...
+Resolutions       : (500, 1500, ... 4800)
+Iterations        : 40
+Algorithm         : 0 (Jacobi)
+Num. Heat sources : 2
+   1: (0.00, 0.00) 1.00 1.00 
+   2: (1.00, 1.00) 1.00 0.50 
+Resolution:   500Resolution:   500, Time: 0.233 (0.110 GFlop => 472.78 MFlop/s, residual 0.079613, 40 iterations)
+Resolution:  1500Resolution:  1500, Time: 0.228 (0.990 GFlop => 4334.75 MFlop/s, residual 0.238673, 40 iterations)
+Resolution:  2500Resolution:  2500, Time: 0.871 (2.750 GFlop => 3159.03 MFlop/s, residual 0.397703, 40 iterations)
+Resolution:  3500Resolution:  3500, Time: 1.881 (5.390 GFlop => 2865.58 MFlop/s, residual 0.556728, 40 iterations)
+Resolution:  4500Resolution:  4500, Time: 3.148 (8.910 GFlop => 2830.59 MFlop/s, residual 0.715752, 40 iterations)
+PAPI-HL Info: PAPI has been initiated!
+PAPI-HL Info: Using the following events:
+  PAPI_TOT_INS
+  PAPI_TOT_CYC
+  PAPI_L2_DCM
+  PAPI_L3_TCM
+  500; 0.233; 472.776
+ 1500; 0.228; 4334.745
+ 2500; 0.871; 3159.028
+ 3500; 1.881; 2865.582
+ 4500; 3.148; 2830.591
+PAPI-HL Info: Print results...
+Resolutions       : (500, 1500, ... 4800)
+Iterations        : 40
+Algorithm         : 0 (Jacobi)
+Num. Heat sources : 2
+   1: (0.00, 0.00) 1.00 1.00 
+   2: (1.00, 1.00) 1.00 0.50 
+Resolution:   500Resolution:   500, Time: 0.229 (0.110 GFlop => 480.04 MFlop/s, residual 0.079613, 40 iterations)
+Resolution:  1500Resolution:  1500, Time: 0.227 (0.990 GFlop => 4363.36 MFlop/s, residual 0.238673, 40 iterations)
+Resolution:  2500Resolution:  2500, Time: 0.874 (2.750 GFlop => 3145.22 MFlop/s, residual 0.397703, 40 iterations)
+Resolution:  3500Resolution:  3500, Time: 1.880 (5.390 GFlop => 2867.72 MFlop/s, residual 0.556728, 40 iterations)
+Resolution:  4500Resolution:  4500, Time: 3.137 (8.910 GFlop => 2839.96 MFlop/s, residual 0.715752, 40 iterations)
+PAPI-HL Info: PAPI has been initiated!
+PAPI-HL Info: Using the following events:
+  PAPI_TOT_INS
+  PAPI_TOT_CYC
+  PAPI_L2_DCM
+  PAPI_L3_TCM
+  500; 0.229; 480.035
+ 1500; 0.227; 4363.365
+ 2500; 0.874; 3145.222
+ 3500; 1.880; 2867.723
+ 4500; 3.137; 2839.962
+PAPI-HL Info: Print results...
+Resolutions       : (500, 1500, ... 4800)
+Iterations        : 40
+Algorithm         : 0 (Jacobi)
+Num. Heat sources : 2
+   1: (0.00, 0.00) 1.00 1.00 
+   2: (1.00, 1.00) 1.00 0.50 
+Resolution:   500Resolution:   500, Time: 0.235 (0.110 GFlop => 467.22 MFlop/s, residual 0.079613, 40 iterations)
+Resolution:  1500Resolution:  1500, Time: 0.230 (0.990 GFlop => 4302.57 MFlop/s, residual 0.238673, 40 iterations)
+Resolution:  2500Resolution:  2500, Time: 0.876 (2.750 GFlop => 3139.60 MFlop/s, residual 0.397703, 40 iterations)
+Resolution:  3500Resolution:  3500, Time: 1.880 (5.390 GFlop => 2867.44 MFlop/s, residual 0.556728, 40 iterations)
+Resolution:  4500Resolution:  4500, Time: 3.139 (8.910 GFlop => 2838.70 MFlop/s, residual 0.715752, 40 iterations)
+PAPI-HL Info: PAPI has been initiated!
+PAPI-HL Info: Using the following events:
+  PAPI_TOT_INS
+  PAPI_TOT_CYC
+  PAPI_L2_DCM
+  PAPI_L3_TCM
+  500; 0.235; 467.224
+ 1500; 0.230; 4302.572
+ 2500; 0.876; 3139.599
+ 3500; 1.880; 2867.441
+ 4500; 3.139; 2838.699
+PAPI-HL Info: Print results...
+Resolutions       : (500, 1500, ... 4800)
+Iterations        : 40
+Algorithm         : 0 (Jacobi)
+Num. Heat sources : 2
+   1: (0.00, 0.00) 1.00 1.00 
+   2: (1.00, 1.00) 1.00 0.50 
+Resolution:   500Resolution:   500, Time: 0.232 (0.110 GFlop => 474.11 MFlop/s, residual 0.079613, 40 iterations)
+Resolution:  1500Resolution:  1500, Time: 0.247 (0.990 GFlop => 4007.04 MFlop/s, residual 0.238673, 40 iterations)
+Resolution:  2500Resolution:  2500, Time: 0.871 (2.750 GFlop => 3155.88 MFlop/s, residual 0.397703, 40 iterations)
+Resolution:  3500Resolution:  3500, Time: 1.876 (5.390 GFlop => 2873.08 MFlop/s, residual 0.556728, 40 iterations)
+Resolution:  4500Resolution:  4500, Time: 3.134 (8.910 GFlop => 2843.38 MFlop/s, residual 0.715752, 40 iterations)
+PAPI-HL Info: PAPI has been initiated!
+PAPI-HL Info: Using the following events:
+  PAPI_TOT_INS
+  PAPI_TOT_CYC
+  PAPI_L2_DCM
+  PAPI_L3_TCM
+  500; 0.232; 474.113
+ 1500; 0.247; 4007.042
+ 2500; 0.871; 3155.877
+ 3500; 1.876; 2873.082
+ 4500; 3.134; 2843.375
+PAPI-HL Info: Print results...
+Resolutions       : (500, 1500, ... 4800)
+Iterations        : 40
+Algorithm         : 0 (Jacobi)
+Num. Heat sources : 2
+   1: (0.00, 0.00) 1.00 1.00 
+   2: (1.00, 1.00) 1.00 0.50 
+Resolution:   500Resolution:   500, Time: 0.228 (0.110 GFlop => 482.33 MFlop/s, residual 0.079613, 40 iterations)
+Resolution:  1500Resolution:  1500, Time: 0.240 (0.990 GFlop => 4118.19 MFlop/s, residual 0.238673, 40 iterations)
+Resolution:  2500Resolution:  2500, Time: 0.883 (2.750 GFlop => 3113.16 MFlop/s, residual 0.397703, 40 iterations)
+Resolution:  3500Resolution:  3500, Time: 1.880 (5.390 GFlop => 2866.47 MFlop/s, residual 0.556728, 40 iterations)
+Resolution:  4500Resolution:  4500, Time: 3.132 (8.910 GFlop => 2844.96 MFlop/s, residual 0.715752, 40 iterations)
+PAPI-HL Info: PAPI has been initiated!
+PAPI-HL Info: Using the following events:
+  PAPI_TOT_INS
+  PAPI_TOT_CYC
+  PAPI_L2_DCM
+  PAPI_L3_TCM
+  500; 0.228; 482.327
+ 1500; 0.240; 4118.188
+ 2500; 0.883; 3113.163
+ 3500; 1.880; 2866.466
+ 4500; 3.132; 2844.957
+PAPI-HL Info: Print results...
+Resolutions       : (500, 1500, ... 4800)
+Iterations        : 40
+Algorithm         : 0 (Jacobi)
+Num. Heat sources : 2
+   1: (0.00, 0.00) 1.00 1.00 
+   2: (1.00, 1.00) 1.00 0.50 
+Resolution:   500Resolution:   500, Time: 0.235 (0.110 GFlop => 468.13 MFlop/s, residual 0.079613, 40 iterations)
+Resolution:  1500Resolution:  1500, Time: 0.254 (0.990 GFlop => 3897.04 MFlop/s, residual 0.238673, 40 iterations)
+Resolution:  2500Resolution:  2500, Time: 0.871 (2.750 GFlop => 3156.02 MFlop/s, residual 0.397703, 40 iterations)
+Resolution:  3500Resolution:  3500, Time: 1.879 (5.390 GFlop => 2868.56 MFlop/s, residual 0.556728, 40 iterations)
+Resolution:  4500Resolution:  4500, Time: 3.140 (8.910 GFlop => 2837.44 MFlop/s, residual 0.715752, 40 iterations)
+PAPI-HL Info: PAPI has been initiated!
+PAPI-HL Info: Using the following events:
+  PAPI_TOT_INS
+  PAPI_TOT_CYC
+  PAPI_L2_DCM
+  PAPI_L3_TCM
+  500; 0.235; 468.133
+ 1500; 0.254; 3897.039
+ 2500; 0.871; 3156.019
+ 3500; 1.879; 2868.564
+ 4500; 3.140; 2837.438
+PAPI-HL Info: Print results...
+Resolutions       : (500, 1500, ... 4800)
+Iterations        : 40
+Algorithm         : 0 (Jacobi)
+Num. Heat sources : 2
+   1: (0.00, 0.00) 1.00 1.00 
+   2: (1.00, 1.00) 1.00 0.50 
+Resolution:   500Resolution:   500, Time: 0.232 (0.110 GFlop => 473.36 MFlop/s, residual 0.079613, 40 iterations)
+Resolution:  1500Resolution:  1500, Time: 0.240 (0.990 GFlop => 4123.13 MFlop/s, residual 0.238673, 40 iterations)
+Resolution:  2500Resolution:  2500, Time: 0.874 (2.750 GFlop => 3145.48 MFlop/s, residual 0.397703, 40 iterations)
+Resolution:  3500Resolution:  3500, Time: 1.879 (5.390 GFlop => 2868.67 MFlop/s, residual 0.556728, 40 iterations)
+Resolution:  4500Resolution:  4500, Time: 3.136 (8.910 GFlop => 2841.51 MFlop/s, residual 0.715752, 40 iterations)
+PAPI-HL Info: PAPI has been initiated!
+PAPI-HL Info: Using the following events:
+  PAPI_TOT_INS
+  PAPI_TOT_CYC
+  PAPI_L2_DCM
+  PAPI_L3_TCM
+  500; 0.232; 473.363
+ 1500; 0.240; 4123.128
+ 2500; 0.874; 3145.485
+ 3500; 1.879; 2868.671
+ 4500; 3.136; 2841.507
+PAPI-HL Info: Print results...
