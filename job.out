@@ -1,645 +1,0 @@
-vtune: Warning: Access to /proc/kallsyms file is limited. Consider changing /proc/sys/kernel/kptr_restrict to 0 to enable resolution of OS kernel and kernel module symbols.
-vtune: Warning: To profile kernel modules during the session, make sure they are available in the /lib/modules/kernel_version/ location.
-vtune: Peak bandwidth measurement started.
-vtune: Peak bandwidth measurement finished.
-vtune: Collection started. To stop the collection, either press CTRL-C or enter from another console window: vtune -r /dss/dsshome1/04/h039vag/MultiCore/HeatProject/Vtunedata/MemoryAccess -command stop.
-Resolutions       : (4500, 5500, ... 4500)
-Iterations        : 500
-Algorithm         : 0 (Jacobi)
-Num. Heat sources : 2
-   1: (0.00, 0.00) 1.00 1.00 
-   2: (1.00, 1.00) 1.00 0.50 
-Resolution:  4500Resolution:  4500, Time: 39.277 (111.375 GFlop => 2835.63 MFlop/s, residual 0.016684, 500 iterations)
- 4500; 39.277; 2835.631
-vtune: Collection stopped.
-vtune: Using result path `/dss/dsshome1/04/h039vag/MultiCore/HeatProject/Vtunedata/MemoryAccess'
-vtune: Executing actions  0 %                                                  vtune: Executing actions  0 % Finalizing results                               vtune: Executing actions  0 % Finalizing the result                            vtune: Executing actions  0 % Clearing the database                            vtune: Executing actions  7 % Clearing the database                            vtune: Executing actions  7 % Loading raw data to the database                 vtune: Executing actions  7 % Loading 'systemcollector-3611675-i01r01c02s07.sc'vtune: Executing actions 12 % Loading 'systemcollector-3611675-i01r01c02s07.sc'vtune: Executing actions 12 % Loading 'system-wide.perf' file                  vtune: Executing actions 12 % Loading 'system-wide.stat.perf' file             vtune: Executing actions 12 % Updating precomputed scalar metrics              vtune: Executing actions 14 % Updating precomputed scalar metrics              vtune: Executing actions 14 % Processing profile metrics and debug information vtune: Executing actions 19 % Processing profile metrics and debug information vtune: Executing actions 19 % Setting data model parameters                    vtune: Executing actions 19 % Resolving module symbols                         vtune: Executing actions 19 % Resolving information for dangling locations     vtune: Executing actions 19 % Resolving information for `ld-2.31.so'           vtune: Executing actions 19 % Resolving information for `heat'                 
-vtune: Warning: Cannot locate debugging information for file `/lib64/ld-2.31.so'.
-vtune: Executing actions 19 % Resolving information for `libc-2.31.so'         vtune: Executing actions 20 % Resolving information for `libc-2.31.so'         
-vtune: Warning: Cannot locate debugging information for file `/lib64/libc-2.31.so'.
-vtune: Executing actions 21 % Resolving information for `libc-2.31.so'         vtune: Executing actions 22 % Resolving information for `libc-2.31.so'         vtune: Executing actions 22 % Resolving bottom user stack information          vtune: Executing actions 23 % Resolving bottom user stack information          vtune: Executing actions 23 % Resolving thread name information                vtune: Executing actions 24 % Resolving thread name information                vtune: Executing actions 24 % Resolving call target names for dynamic code     vtune: Executing actions 25 % Resolving call target names for dynamic code     vtune: Executing actions 25 % Resolving interrupt name information             vtune: Executing actions 26 % Resolving interrupt name information             vtune: Executing actions 26 % Processing profile metrics and debug information vtune: Executing actions 27 % Processing profile metrics and debug information vtune: Executing actions 28 % Processing profile metrics and debug information vtune: Executing actions 29 % Processing profile metrics and debug information vtune: Executing actions 30 % Processing profile metrics and debug information vtune: Executing actions 31 % Processing profile metrics and debug information vtune: Executing actions 31 % Preparing output tree                            vtune: Executing actions 31 % Parsing columns in input tree                    vtune: Executing actions 32 % Parsing columns in input tree                    vtune: Executing actions 32 % Creating top-level columns                       vtune: Executing actions 32 % Creating top-level rows                          vtune: Executing actions 33 % Creating top-level rows                          vtune: Executing actions 33 % Preparing output tree                            vtune: Executing actions 33 % Parsing columns in input tree                    vtune: Executing actions 33 % Creating top-level columns                       vtune: Executing actions 34 % Creating top-level columns                       vtune: Executing actions 34 % Creating top-level rows                          vtune: Executing actions 35 % Creating top-level rows                          vtune: Executing actions 36 % Creating top-level rows                          vtune: Executing actions 37 % Creating top-level rows                          vtune: Executing actions 37 % Preparing output tree                            vtune: Executing actions 37 % Parsing columns in input tree                    vtune: Executing actions 37 % Creating top-level columns                       vtune: Executing actions 38 % Creating top-level columns                       vtune: Executing actions 38 % Creating top-level rows                          vtune: Executing actions 39 % Creating top-level rows                          vtune: Executing actions 39 % Preparing output tree                            vtune: Executing actions 39 % Parsing columns in input tree                    vtune: Executing actions 39 % Creating top-level columns                       vtune: Executing actions 39 % Creating top-level rows                          vtune: Executing actions 40 % Creating top-level rows                          vtune: Executing actions 40 % Preparing output tree                            vtune: Executing actions 40 % Parsing columns in input tree                    vtune: Executing actions 40 % Creating top-level columns                       vtune: Executing actions 41 % Creating top-level columns                       vtune: Executing actions 41 % Creating top-level rows                          vtune: Executing actions 42 % Creating top-level rows                          vtune: Executing actions 42 % Preparing output tree                            vtune: Executing actions 42 % Parsing columns in input tree                    vtune: Executing actions 42 % Creating top-level columns                       vtune: Executing actions 43 % Creating top-level columns                       vtune: Executing actions 43 % Creating top-level rows                          vtune: Executing actions 44 % Creating top-level rows                          vtune: Executing actions 44 % Preparing output tree                            vtune: Executing actions 44 % Parsing columns in input tree                    vtune: Executing actions 44 % Creating top-level columns                       vtune: Executing actions 45 % Creating top-level columns                       vtune: Executing actions 45 % Creating top-level rows                          vtune: Executing actions 46 % Creating top-level rows                          vtune: Executing actions 46 % Preparing output tree                            vtune: Executing actions 46 % Parsing columns in input tree                    vtune: Executing actions 46 % Creating top-level columns                       vtune: Executing actions 46 % Creating top-level rows                          vtune: Executing actions 47 % Creating top-level rows                          vtune: Executing actions 47 % Preparing output tree                            vtune: Executing actions 47 % Parsing columns in input tree                    vtune: Executing actions 48 % Parsing columns in input tree                    vtune: Executing actions 48 % Creating top-level columns                       vtune: Executing actions 48 % Creating top-level rows                          vtune: Executing actions 49 % Creating top-level rows                          vtune: Executing actions 49 % Preparing output tree                            vtune: Executing actions 49 % Parsing columns in input tree                    vtune: Executing actions 49 % Creating top-level columns                       vtune: Executing actions 50 % Creating top-level columns                       vtune: Executing actions 50 % Creating top-level rows                          vtune: Executing actions 50 % Preparing output tree                            vtune: Executing actions 50 % Parsing columns in input tree                    vtune: Executing actions 50 % Creating top-level columns                       vtune: Executing actions 50 % Creating top-level rows                          vtune: Executing actions 50 % Preparing output tree                            vtune: Executing actions 50 % Parsing columns in input tree                    vtune: Executing actions 50 % Creating top-level columns                       vtune: Executing actions 50 % Creating top-level rows                          vtune: Executing actions 50 % Preparing output tree                            vtune: Executing actions 50 % Parsing columns in input tree                    vtune: Executing actions 50 % Creating top-level columns                       vtune: Executing actions 50 % Creating top-level rows                          vtune: Executing actions 50 % Preparing output tree                            vtune: Executing actions 50 % Parsing columns in input tree                    vtune: Executing actions 50 % Creating top-level columns                       vtune: Executing actions 50 % Creating top-level rows                          vtune: Executing actions 50 % Preparing output tree                            vtune: Executing actions 50 % Parsing columns in input tree                    vtune: Executing actions 50 % Creating top-level columns                       vtune: Executing actions 50 % Creating top-level rows                          vtune: Executing actions 50 % Preparing output tree                            vtune: Executing actions 50 % Parsing columns in input tree                    vtune: Executing actions 50 % Creating top-level columns                       vtune: Executing actions 50 % Creating top-level rows                          vtune: Executing actions 50 % Preparing output tree                            vtune: Executing actions 50 % Parsing columns in input tree                    vtune: Executing actions 50 % Creating top-level columns                       vtune: Executing actions 50 % Creating top-level rows                          vtune: Executing actions 50 % Preparing output tree                            vtune: Executing actions 50 % Parsing columns in input tree                    vtune: Executing actions 50 % Creating top-level columns                       vtune: Executing actions 50 % Creating top-level rows                          vtune: Executing actions 50 % Preparing output tree                            vtune: Executing actions 50 % Parsing columns in input tree                    vtune: Executing actions 50 % Creating top-level columns                       vtune: Executing actions 50 % Creating top-level rows                          vtune: Executing actions 50 % Preparing output tree                            vtune: Executing actions 50 % Parsing columns in input tree                    vtune: Executing actions 50 % Creating top-level columns                       vtune: Executing actions 50 % Creating top-level rows                          vtune: Executing actions 50 % Setting data model parameters                    vtune: Executing actions 50 % Precomputing frequently used data                vtune: Executing actions 50 % Precomputing frequently used data                vtune: Executing actions 50 % Updating precomputed scalar metrics              vtune: Executing actions 50 % Discarding redundant overtime data               vtune: Executing actions 50 % Saving the result                                vtune: Executing actions 50 % Generating a report                              vtune: Executing actions 50 % Setting data model parameters                    vtune: Executing actions 75 % Setting data model parameters                    vtune: Executing actions 75 % Generating a report                              Elapsed Time: 39.548s
-    CPU Time: 39.313s
-    Memory Bound: 67.6% of Pipeline Slots
-     | The metric value is high. This may indicate that a significant fraction
-     | of execution pipeline slots could be stalled due to demand memory load
-     | and stores. Explore the metric breakdown by memory hierarchy, memory
-     | bandwidth information, and correlation by memory objects.
-     |
-        L1 Bound: 12.8% of Clockticks
-         | This metric shows how often machine was stalled without missing the
-         | L1 data cache. The L1 cache typically has the shortest latency.
-         | However, in certain cases like loads blocked on older stores, a load
-         | might suffer a high latency even though it is being satisfied by the
-         | L1.
-         |
-        L2 Bound: 2.4% of Clockticks
-        L3 Bound: 3.9% of Clockticks
-        DRAM Bound: 45.6% of Clockticks
-         | This metric shows how often CPU was stalled on the main memory
-         | (DRAM). Caching typically improves the latency and increases
-         | performance.
-         |
-            DRAM Bandwidth Bound: 0.0% of Elapsed Time
-        Store Bound: 0.2% of Clockticks
-        NUMA: % of Remote Accesses: 0.0%
-        UPI Utilization Bound: 0.0% of Elapsed Time
-    Loads: 26,591,930,526
-    Stores: 3,884,463,975
-    LLC Miss Count: 88,791,300
-        Local DRAM Access Count: 110,989,125
-        Remote DRAM Access Count: 0
-        Remote Cache Access Count: 0
-    Average Latency (cycles): 50
-    Total Thread Count: 1
-    Paused Time: 0s
-
-Bandwidth Utilization
-Bandwidth Domain                  Platform Maximum  Observed Maximum  Average  % of Elapsed Time with High BW Utilization(%)
---------------------------------  ----------------  ----------------  -------  ---------------------------------------------
-DRAM, GB/sec                      230                         18.700   11.652                                           0.0%
-DRAM Single-Package, GB/sec       115                         17.400   11.519                                           0.0%
-UPI Utilization Single-link, (%)  100                         12.100    1.932                                           0.0%
-Collection and Platform Info
-    Application Command Line: ./heat "test.dat" 
-    Operating System: 5.3.18-150300.59.63-default NAME="SLES" VERSION="15-SP3" VERSION_ID="15.3" PRETTY_NAME="SUSE Linux Enterprise Server 15 SP3" ID="sles" ID_LIKE="suse" ANSI_COLOR="0;32" CPE_NAME="cpe:/o:suse:sles:15:sp3" DOCUMENTATION_URL="https://documentation.suse.com/"
-    Computer Name: i01r01c02s07
-    Result Size: 96.4 MB 
-    Collection start time: 15:09:19 25/04/2024 UTC
-    Collection stop time: 15:09:58 25/04/2024 UTC
-    Collector Type: Driverless Perf system-wide sampling
-    CPU
-        Name: Intel(R) Xeon(R) Processor code named Skylake
-        Frequency: 2.694 GHz 
-        Logical CPU Count: 96
-        Max DRAM Single-Package Bandwidth: 115.000 GB/s
-        Cache Allocation Technology
-            Level 2 capability: not detected
-            Level 3 capability: available
-
-If you want to skip descriptions of detected performance issues in the report,
-enter: vtune -report summary -report-knob show-issues=false -r <my_result_dir>.
-Alternatively, you may view the report in the csv format: vtune -report
-<report_name> -format=csv.
-vtune: Executing actions 100 % Generating a report                             vtune: Executing actions 100 % done                                            
-vtune: Warning: Access to /proc/kallsyms file is limited. Consider changing /proc/sys/kernel/kptr_restrict to 0 to enable resolution of OS kernel and kernel module symbols.
-vtune: Warning: To profile kernel modules during the session, make sure they are available in the /lib/modules/kernel_version/ location.
-vtune: Collection started. To stop the collection, either press CTRL-C or enter from another console window: vtune -r /dss/dsshome1/04/h039vag/MultiCore/HeatProject/Vtunedata/MicroArchitecture -command stop.
-Resolutions       : (4500, 5500, ... 4500)
-Iterations        : 500
-Algorithm         : 0 (Jacobi)
-Num. Heat sources : 2
-   1: (0.00, 0.00) 1.00 1.00 
-   2: (1.00, 1.00) 1.00 0.50 
-Resolution:  4500Resolution:  4500, Time: 39.220 (111.375 GFlop => 2839.77 MFlop/s, residual 0.016684, 500 iterations)
- 4500; 39.220; 2839.769
-vtune: Collection stopped.
-vtune: Using result path `/dss/dsshome1/04/h039vag/MultiCore/HeatProject/Vtunedata/MicroArchitecture'
-vtune: Executing actions  0 %                                                  vtune: Executing actions  0 % Finalizing results                               vtune: Executing actions  0 % Finalizing the result                            vtune: Executing actions  0 % Clearing the database                            vtune: Executing actions  7 % Clearing the database                            vtune: Executing actions  7 % Loading raw data to the database                 vtune: Executing actions  7 % Loading 'systemcollector-3612150-i01r01c02s07.sc'vtune: Executing actions 12 % Loading 'systemcollector-3612150-i01r01c02s07.sc'vtune: Executing actions 12 % Loading 'system-wide.perf' file                  vtune: Executing actions 12 % Updating precomputed scalar metrics              vtune: Executing actions 14 % Updating precomputed scalar metrics              vtune: Executing actions 14 % Processing profile metrics and debug information vtune: Executing actions 19 % Processing profile metrics and debug information vtune: Executing actions 19 % Setting data model parameters                    vtune: Executing actions 19 % Resolving module symbols                         vtune: Executing actions 19 % Resolving information for dangling locations     vtune: Executing actions 19 % Resolving information for `heat'                 vtune: Executing actions 19 % Resolving information for `libc-2.31.so'         
-vtune: Warning: Cannot locate debugging information for file `/lib64/libc-2.31.so'.
-vtune: Executing actions 20 % Resolving information for `libc-2.31.so'         vtune: Executing actions 21 % Resolving information for `libc-2.31.so'         vtune: Executing actions 22 % Resolving information for `libc-2.31.so'         vtune: Executing actions 22 % Resolving bottom user stack information          vtune: Executing actions 23 % Resolving bottom user stack information          vtune: Executing actions 23 % Resolving thread name information                vtune: Executing actions 24 % Resolving thread name information                vtune: Executing actions 24 % Resolving call target names for dynamic code     vtune: Executing actions 24 % Resolving interrupt name information             vtune: Executing actions 26 % Resolving interrupt name information             vtune: Executing actions 26 % Processing profile metrics and debug information vtune: Executing actions 27 % Processing profile metrics and debug information vtune: Executing actions 28 % Processing profile metrics and debug information vtune: Executing actions 29 % Processing profile metrics and debug information vtune: Executing actions 30 % Processing profile metrics and debug information vtune: Executing actions 30 % Setting data model parameters                    vtune: Executing actions 30 % Precomputing frequently used data                vtune: Executing actions 30 % Precomputing frequently used data                vtune: Executing actions 31 % Precomputing frequently used data                vtune: Executing actions 32 % Precomputing frequently used data                vtune: Executing actions 33 % Precomputing frequently used data                vtune: Executing actions 34 % Precomputing frequently used data                vtune: Executing actions 35 % Precomputing frequently used data                vtune: Executing actions 36 % Precomputing frequently used data                vtune: Executing actions 36 % Updating precomputed scalar metrics              vtune: Executing actions 37 % Updating precomputed scalar metrics              vtune: Executing actions 37 % Discarding redundant overtime data               vtune: Executing actions 39 % Discarding redundant overtime data               vtune: Executing actions 39 % Saving the result                                vtune: Executing actions 41 % Saving the result                                vtune: Executing actions 42 % Saving the result                                vtune: Executing actions 50 % Saving the result                                vtune: Executing actions 50 % Generating a report                              vtune: Executing actions 50 % Setting data model parameters                    vtune: Executing actions 75 % Setting data model parameters                    vtune: Executing actions 75 % Generating a report                              Elapsed Time: 39.522s
-    Clockticks: 90,008,500,000
-    Instructions Retired: 64,170,000,000
-    CPI Rate: 1.403
-     | The CPI may be too high. This could be caused by issues such as memory
-     | stalls, instruction starvation, branch misprediction or long latency
-     | instructions. Explore the other hardware-related metrics to identify what
-     | is causing high CPI.
-     |
-    Retiring: 20.4% of Pipeline Slots
-        Light Operations: 15.1% of Pipeline Slots
-            FP Arithmetic: 32.5% of uOps
-                FP x87: 0.0% of uOps
-                FP Scalar: 0.0% of uOps
-                FP Vector: 32.5% of uOps
-            Other: 67.5% of uOps
-        Heavy Operations: 5.3% of Pipeline Slots
-            Microcode Sequencer: 1.0% of Pipeline Slots
-                Assists: 0.0% of Pipeline Slots
-    Front-End Bound: 2.0% of Pipeline Slots
-        Front-End Latency: 0.0% of Pipeline Slots
-            ICache Misses: 0.0% of Clockticks
-            ITLB Overhead: 0.0% of Clockticks
-            Branch Resteers: 0.0% of Clockticks
-                Mispredicts Resteers: 0.0% of Clockticks
-                Clears Resteers: 0.0% of Clockticks
-                Unknown Branches: 0.0% of Clockticks
-            DSB Switches: 3.7% of Clockticks
-            Length Changing Prefixes: 0.0% of Clockticks
-            MS Switches: 1.2% of Clockticks
-        Front-End Bandwidth: 2.0% of Pipeline Slots
-            Front-End Bandwidth MITE: 0.7% of Pipeline Slots
-            Front-End Bandwidth DSB: 1.4% of Pipeline Slots
-            (Info) DSB Coverage: 82.1%
-    Bad Speculation: 0.2% of Pipeline Slots
-        Branch Mispredict: 0.0% of Pipeline Slots
-        Machine Clears: 0.2% of Pipeline Slots
-    Back-End Bound: 77.5% of Pipeline Slots
-     | A significant portion of pipeline slots are remaining empty. When
-     | operations take too long in the back-end, they introduce bubbles in the
-     | pipeline that ultimately cause fewer pipeline slots containing useful
-     | work to be retired per cycle than the machine is capable to support. This
-     | opportunity cost results in slower execution. Long-latency operations
-     | like divides and memory operations can cause this, as can too many
-     | operations being directed to a single execution port (for example, more
-     | multiply operations arriving in the back-end per cycle than the execution
-     | unit can support).
-     |
-        Memory Bound: 63.1% of Pipeline Slots
-         | The metric value is high. This can indicate that the significant
-         | fraction of execution pipeline slots could be stalled due to demand
-         | memory load and stores. Use Memory Access analysis to have the metric
-         | breakdown by memory hierarchy, memory bandwidth information,
-         | correlation by memory objects.
-         |
-            L1 Bound: 11.3% of Clockticks
-             | This metric shows how often machine was stalled without missing
-             | the L1 data cache. The L1 cache typically has the shortest
-             | latency. However, in certain cases like loads blocked on older
-             | stores, a load might suffer a high latency even though it is
-             | being satisfied by the L1. Note that this metric value may be
-             | highlighted due to DTLB Overhead or Cycles of 1 Port Utilized
-             | issues.
-             |
-                DTLB Overhead: 100.0% of Clockticks
-                 | Issue: A significant portion of cycles is being spent
-                 | handling first-level data TLB misses.
-                 | 
-                 | Tips:
-                 | 
-                 | 1.  As with ordinary data caching, focus on improving data
-                 | locality and reducing the working-set size to minimize the
-                 | DTLB overhead.
-                 | 
-                 | 2. Consider using profile-guided optimization (PGO) to
-                 | collocate frequently-used data on the same page.
-                 | 
-                 | 3. Try using larger page sizes for large amounts of
-                 | frequently-used data.
-                 |
-                    Load STLB Hit: 100.0% of Clockticks
-                     | In significant fraction of cycles the (first level) DTLB
-                     | was missed by load accesses, that later on hit in second-
-                     | level TLB (STLB).
-                     |
-                    Load STLB Miss: 0.0% of Clockticks
-                Loads Blocked by Store Forwarding: 0.0% of Clockticks
-                Lock Latency: 0.0% of Clockticks
-                 | A significant fraction of CPU cycles spent handling cache
-                 | misses due to lock operations. Due to the microarchitecture
-                 | handling of locks, they are classified as L1 Bound regardless
-                 | of what memory source satisfied them. Note that this metric
-                 | value may be highlighted due to Store Latency issue.
-                 |
-                Split Loads: 24.7% of Clockticks
-                 | Issue: A significant portion of cycles is spent handling
-                 | split loads.
-                 | 
-                 | Tips: Consider aligning your data to the 64-byte cache line
-                 | granularity.
-                 | 
-                 | See the Intel 64 and IA-32 Architectures Optimization
-                 | Reference Manual for more details.
-                 |
-                4K Aliasing: 1.0% of Clockticks
-                FB Full: 100.0% of Clockticks
-                 | This metric does a rough estimation of how often L1D Fill
-                 | Buffer unavailability limited additional L1D miss memory
-                 | access requests to proceed. The higher the metric value, the
-                 | deeper the memory hierarchy level the misses are satisfied
-                 | from. Often it hints on approaching bandwidth limits (to L2
-                 | cache, L3 cache or external memory). Avoid adding software
-                 | prefetches if indeed memory BW limited.
-                 |
-            L2 Bound: 2.5% of Clockticks
-            L3 Bound: 3.4% of Clockticks
-                Contested Accesses: 0.0% of Clockticks
-                Data Sharing: 0.0% of Clockticks
-                L3 Latency: 0.0% of Clockticks
-                SQ Full: 7.3% of Clockticks
-            DRAM Bound: 41.1% of Clockticks
-             | This metric shows how often CPU was stalled on the main memory
-             | (DRAM). Caching typically improves the latency and increases
-             | performance.
-             |
-                Memory Bandwidth: 63.1% of Clockticks
-                 | Issue: A significant fraction of cycles was stalled due to
-                 | approaching bandwidth limits of the main memory (DRAM).
-                 | 
-                 | Tips: Improve data accesses to reduce cacheline transfers
-                 | from/to memory using these possible techniques:
-                 |     - Consume all bytes of each cacheline before it is
-                 |       evicted (for example, reorder structure elements and
-                 |       split non-hot ones).
-                 |     - Merge compute-limited and bandwidth-limited loops.
-                 |     - Use NUMA optimizations on a multi-socket system.
-                 | 
-                 | Note: software prefetches do not help a bandwidth-limited
-                 | application.
-                 |
-                Memory Latency: 18.6% of Clockticks
-                 | Issue: A significant fraction of cycles was stalled due to
-                 | the latency of the main memory (DRAM).
-                 | 
-                 | Tips: Improve data accesses or interleave them with compute
-                 | using such possible techniques as data layout re-structuring
-                 | or software prefetches (through the compiler).
-                 |
-                    Local DRAM: 74.7% of Clockticks
-                     | The number of CPU stalls on loads from the local memory
-                     | exceeds the threshold. Consider caching data to improve
-                     | the latency and increase the performance.
-                     |
-                    Remote DRAM: 0.0% of Clockticks
-                    Remote Cache: 0.0% of Clockticks
-            Store Bound: 0.0% of Clockticks
-                Store Latency: 67.7% of Clockticks
-                False Sharing: 0.0% of Clockticks
-                Split Stores: 0.0% of Clockticks
-                DTLB Store Overhead: 0.1% of Clockticks
-                    Store STLB Hit: 0.0% of Clockticks
-                    Store STLB Hit: 0.1% of Clockticks
-        Core Bound: 14.4% of Pipeline Slots
-         | This metric represents how much Core non-memory issues were of a
-         | bottleneck. Shortage in hardware compute resources, or dependencies
-         | software's instructions are both categorized under Core Bound. Hence
-         | it may indicate the machine ran out of an OOO resources, certain
-         | execution units are overloaded or dependencies in program's data- or
-         | instruction- flow are limiting the performance (e.g. FP-chained long-
-         | latency arithmetic operations).
-         |
-            Divider: 0.0% of Clockticks
-            Port Utilization: 13.3% of Clockticks
-                Cycles of 0 Ports Utilized: 25.0% of Clockticks
-                    Serializing Operations: 0.3% of Clockticks
-                    Mixing Vectors: 0.0% of uOps
-                Cycles of 1 Port Utilized: 4.8% of Clockticks
-                Cycles of 2 Ports Utilized: 4.7% of Clockticks
-                Cycles of 3+ Ports Utilized: 7.9% of Clockticks
-                    ALU Operation Utilization: 13.9% of Clockticks
-                        Port 0: 13.1% of Clockticks
-                        Port 1: 13.4% of Clockticks
-                        Port 5: 22.8% of Clockticks
-                        Port 6: 6.3% of Clockticks
-                    Load Operation Utilization: 9.2% of Clockticks
-                        Port 2: 12.6% of Clockticks
-                        Port 3: 12.8% of Clockticks
-                    Store Operation Utilization: 7.6% of Clockticks
-                        Port 4: 7.6% of Clockticks
-                        Port 7: 0.5% of Clockticks
-                Vector Capacity Usage (FPU): 50.0%
-                 | Vector Capacity Usage is low, which usually indicates the use
-                 | of floating point scalar instructions or vector instructions
-                 | with partial vector capacity. Explore the instruction mix
-                 | breakdown to learn more about vectorized code.
-                 |
-    Average CPU Frequency: 2.295 GHz 
-    Total Thread Count: 1
-    Paused Time: 0s
-Effective Physical Core Utilization: 2.4% (1.154 out of 48)
- | The metric value is low, which may signal a poor physical CPU cores
- | utilization caused by:
- |     - load imbalance
- |     - threading runtime overhead
- |     - contended synchronization
- |     - thread/process underutilization
- |     - incorrect affinity that utilizes logical cores instead of physical
- |       cores
- | Explore sub-metrics to estimate the efficiency of MPI and OpenMP parallelism
- | or run the Locks and Waits analysis to identify parallel bottlenecks for
- | other parallel runtimes.
- |
-    Effective Logical Core Utilization: 1.0% (0.992 out of 96)
-     | The metric value is low, which may signal a poor logical CPU cores
-     | utilization. Consider improving physical core utilization as the first
-     | step and then look at opportunities to utilize logical cores, which in
-     | some cases can improve processor throughput and overall performance of
-     | multi-threaded applications.
-     |
-Collection and Platform Info
-    Application Command Line: ./heat "test.dat" 
-    Operating System: 5.3.18-150300.59.63-default NAME="SLES" VERSION="15-SP3" VERSION_ID="15.3" PRETTY_NAME="SUSE Linux Enterprise Server 15 SP3" ID="sles" ID_LIKE="suse" ANSI_COLOR="0;32" CPE_NAME="cpe:/o:suse:sles:15:sp3" DOCUMENTATION_URL="https://documentation.suse.com/"
-    Computer Name: i01r01c02s07
-    Result Size: 10.1 MB 
-    Collection start time: 15:10:21 25/04/2024 UTC
-    Collection stop time: 15:11:01 25/04/2024 UTC
-    Collector Type: Driverless Perf system-wide sampling
-    CPU
-        Name: Intel(R) Xeon(R) Processor code named Skylake
-        Frequency: 2.694 GHz 
-        Logical CPU Count: 96
-        Cache Allocation Technology
-            Level 2 capability: not detected
-            Level 3 capability: available
-
-If you want to skip descriptions of detected performance issues in the report,
-enter: vtune -report summary -report-knob show-issues=false -r <my_result_dir>.
-Alternatively, you may view the report in the csv format: vtune -report
-<report_name> -format=csv.
-vtune: Executing actions 100 % Generating a report                             vtune: Executing actions 100 % done                                            
-vtune: Collection started. To stop the collection, either press CTRL-C or enter from another console window: vtune -r /dss/dsshome1/04/h039vag/MultiCore/HeatProject/Vtunedata/Hotspots -command stop.
-Resolutions       : (4500, 5500, ... 4500)
-Iterations        : 500
-Algorithm         : 0 (Jacobi)
-Num. Heat sources : 2
-   1: (0.00, 0.00) 1.00 1.00 
-   2: (1.00, 1.00) 1.00 0.50 
-Resolution:  4500Resolution:  4500, Time: 38.378 (111.375 GFlop => 2902.04 MFlop/s, residual 0.016684, 500 iterations)
- 4500; 38.378; 2902.044
-vtune: Collection stopped.
-vtune: Using result path `/dss/dsshome1/04/h039vag/MultiCore/HeatProject/Vtunedata/Hotspots'
-vtune: Executing actions  0 %                                                  vtune: Executing actions  0 % Finalizing results                               vtune: Executing actions  0 % Finalizing the result                            vtune: Executing actions  0 % Clearing the database                            vtune: Executing actions  7 % Clearing the database                            vtune: Executing actions  7 % Loading raw data to the database                 vtune: Executing actions  7 % Loading 'systemcollector-3612436-i01r01c02s07.sc'vtune: Executing actions 12 % Loading 'systemcollector-3612436-i01r01c02s07.sc'vtune: Executing actions 12 % Loading '3612446.stat.perf' file                 vtune: Executing actions 12 % Loading '3612436-3612446.0.trace' file           vtune: Executing actions 12 % Updating precomputed scalar metrics              vtune: Executing actions 14 % Updating precomputed scalar metrics              vtune: Executing actions 14 % Processing profile metrics and debug information vtune: Executing actions 19 % Processing profile metrics and debug information vtune: Executing actions 19 % Setting data model parameters                    vtune: Executing actions 19 % Resolving module symbols                         vtune: Executing actions 19 % Resolving information for `heat'                 vtune: Executing actions 19 % Resolving information for `libc.so.6'            
-vtune: Warning: Cannot locate debugging information for file `/lib64/libc.so.6'.
-vtune: Executing actions 20 % Resolving information for `libc.so.6'            vtune: Executing actions 22 % Resolving information for `libc.so.6'            vtune: Executing actions 22 % Resolving bottom user stack information          vtune: Executing actions 23 % Resolving bottom user stack information          vtune: Executing actions 23 % Resolving thread name information                vtune: Executing actions 24 % Resolving thread name information                vtune: Executing actions 24 % Resolving call target names for dynamic code     vtune: Executing actions 24 % Resolving interrupt name information             vtune: Executing actions 26 % Resolving interrupt name information             vtune: Executing actions 26 % Processing profile metrics and debug information vtune: Executing actions 28 % Processing profile metrics and debug information vtune: Executing actions 29 % Processing profile metrics and debug information vtune: Executing actions 30 % Processing profile metrics and debug information vtune: Executing actions 30 % Setting data model parameters                    vtune: Executing actions 30 % Precomputing frequently used data                vtune: Executing actions 30 % Precomputing frequently used data                vtune: Executing actions 31 % Precomputing frequently used data                vtune: Executing actions 33 % Precomputing frequently used data                vtune: Executing actions 34 % Precomputing frequently used data                vtune: Executing actions 36 % Precomputing frequently used data                vtune: Executing actions 36 % Updating precomputed scalar metrics              vtune: Executing actions 37 % Updating precomputed scalar metrics              vtune: Executing actions 37 % Discarding redundant overtime data               vtune: Executing actions 39 % Discarding redundant overtime data               vtune: Executing actions 39 % Saving the result                                vtune: Executing actions 41 % Saving the result                                vtune: Executing actions 42 % Saving the result                                vtune: Executing actions 50 % Saving the result                                vtune: Executing actions 50 % Generating a report                              vtune: Executing actions 50 % Setting data model parameters                    vtune: Executing actions 75 % Setting data model parameters                    vtune: Executing actions 75 % Generating a report                              Elapsed Time: 39.457s
-    CPU Time: 38.620s
-        Effective Time: 38.620s
-            Idle: 0s
-            Poor: 38.620s
-            Ok: 0s
-            Ideal: 0s
-            Over: 0s
-        Spin Time: 0s
-        Overhead Time: 0s
-    Total Thread Count: 1
-    Paused Time: 0s
-
-Top Hotspots
-Function                Module     CPU Time
-----------------------  ---------  --------
-__intel_avx_rep_memcpy  heat        16.492s
-relax_jacobi            heat        13.567s
-residual_jacobi         heat         8.311s
-_IO_fprintf             libc.so.6    0.152s
-write_image             heat         0.048s
-[Others]                N/A          0.048s
-Effective Physical Core Utilization: 2.0% (0.981 out of 48)
- | The metric value is low, which may signal a poor physical CPU cores
- | utilization caused by:
- |     - load imbalance
- |     - threading runtime overhead
- |     - contended synchronization
- |     - thread/process underutilization
- |     - incorrect affinity that utilizes logical cores instead of physical
- |       cores
- | Explore sub-metrics to estimate the efficiency of MPI and OpenMP parallelism
- | or run the Locks and Waits analysis to identify parallel bottlenecks for
- | other parallel runtimes.
- |
-    Effective Logical Core Utilization: 1.0% (0.982 out of 96)
-     | The metric value is low, which may signal a poor logical CPU cores
-     | utilization. Consider improving physical core utilization as the first
-     | step and then look at opportunities to utilize logical cores, which in
-     | some cases can improve processor throughput and overall performance of
-     | multi-threaded applications.
-     |
-Collection and Platform Info
-    Application Command Line: ./heat "test.dat" 
-    Operating System: 5.3.18-150300.59.63-default NAME="SLES" VERSION="15-SP3" VERSION_ID="15.3" PRETTY_NAME="SUSE Linux Enterprise Server 15 SP3" ID="sles" ID_LIKE="suse" ANSI_COLOR="0;32" CPE_NAME="cpe:/o:suse:sles:15:sp3" DOCUMENTATION_URL="https://documentation.suse.com/"
-    Computer Name: i01r01c02s07
-    Result Size: 4.4 MB 
-    Collection start time: 15:11:10 25/04/2024 UTC
-    Collection stop time: 15:11:49 25/04/2024 UTC
-    Collector Type: Driverless Perf per-process counting,User-mode sampling and tracing
-    CPU
-        Name: Intel(R) Xeon(R) Processor code named Skylake
-        Frequency: 2.694 GHz 
-        Logical CPU Count: 96
-        Cache Allocation Technology
-            Level 2 capability: not detected
-            Level 3 capability: available
-
-If you want to skip descriptions of detected performance issues in the report,
-enter: vtune -report summary -report-knob show-issues=false -r <my_result_dir>.
-Alternatively, you may view the report in the csv format: vtune -report
-<report_name> -format=csv.
-vtune: Executing actions 100 % Generating a report                             vtune: Executing actions 100 % done                                            
-vtune: Peak bandwidth measurement started.
-vtune: Peak bandwidth measurement finished.
-vtune: Collection started. To stop the collection, either press CTRL-C or enter from another console window: vtune -r /dss/dsshome1/04/h039vag/MultiCore/HeatProject/Vtunedata/PerformanceSnapshot -command stop.
-Resolutions       : (4500, 5500, ... 4500)
-Iterations        : 500
-Algorithm         : 0 (Jacobi)
-Num. Heat sources : 2
-   1: (0.00, 0.00) 1.00 1.00 
-   2: (1.00, 1.00) 1.00 0.50 
-Resolution:  4500Resolution:  4500, Time: 38.477 (111.375 GFlop => 2894.62 MFlop/s, residual 0.016684, 500 iterations)
- 4500; 38.477; 2894.622
-vtune: Collection stopped.
-vtune: Using result path `/dss/dsshome1/04/h039vag/MultiCore/HeatProject/Vtunedata/PerformanceSnapshot'
-vtune: Executing actions  0 %                                                  vtune: Executing actions  0 % Finalizing results                               vtune: Executing actions  0 % Finalizing the result                            vtune: Executing actions  0 % Clearing the database                            vtune: Executing actions  7 % Clearing the database                            vtune: Executing actions  7 % Loading raw data to the database                 vtune: Executing actions  7 % Loading 'systemcollector-3612734-i01r01c02s07.sc'vtune: Executing actions 12 % Loading 'systemcollector-3612734-i01r01c02s07.sc'vtune: Executing actions 12 % Loading '3612744.stat.perf' file                 vtune: Executing actions 12 % Updating precomputed scalar metrics              vtune: Executing actions 14 % Updating precomputed scalar metrics              vtune: Executing actions 14 % Processing profile metrics and debug information vtune: Executing actions 19 % Processing profile metrics and debug information vtune: Executing actions 19 % Setting data model parameters                    vtune: Executing actions 19 % Resolving module symbols                         vtune: Executing actions 19 % Resolving thread name information                vtune: Executing actions 21 % Resolving thread name information                vtune: Executing actions 21 % Resolving call target names for dynamic code     vtune: Executing actions 24 % Resolving call target names for dynamic code     vtune: Executing actions 24 % Resolving interrupt name information             vtune: Executing actions 26 % Resolving interrupt name information             vtune: Executing actions 26 % Processing profile metrics and debug information vtune: Executing actions 28 % Processing profile metrics and debug information vtune: Executing actions 29 % Processing profile metrics and debug information vtune: Executing actions 30 % Processing profile metrics and debug information vtune: Executing actions 31 % Processing profile metrics and debug information vtune: Executing actions 31 % Preparing output tree                            vtune: Executing actions 31 % Parsing columns in input tree                    vtune: Executing actions 32 % Parsing columns in input tree                    vtune: Executing actions 32 % Creating top-level columns                       vtune: Executing actions 32 % Creating top-level rows                          vtune: Executing actions 33 % Creating top-level rows                          vtune: Executing actions 33 % Preparing output tree                            vtune: Executing actions 33 % Parsing columns in input tree                    vtune: Executing actions 33 % Creating top-level columns                       vtune: Executing actions 34 % Creating top-level columns                       vtune: Executing actions 34 % Creating top-level rows                          vtune: Executing actions 35 % Creating top-level rows                          vtune: Executing actions 35 % Setting data model parameters                    vtune: Executing actions 35 % Precomputing frequently used data                vtune: Executing actions 35 % Precomputing frequently used data                vtune: Executing actions 36 % Precomputing frequently used data                vtune: Executing actions 37 % Precomputing frequently used data                vtune: Executing actions 38 % Precomputing frequently used data                vtune: Executing actions 39 % Precomputing frequently used data                vtune: Executing actions 40 % Precomputing frequently used data                vtune: Executing actions 41 % Precomputing frequently used data                vtune: Executing actions 41 % Updating precomputed scalar metrics              vtune: Executing actions 42 % Updating precomputed scalar metrics              vtune: Executing actions 42 % Discarding redundant overtime data               vtune: Executing actions 44 % Discarding redundant overtime data               vtune: Executing actions 44 % Saving the result                                vtune: Executing actions 46 % Saving the result                                vtune: Executing actions 48 % Saving the result                                vtune: Executing actions 49 % Saving the result                                vtune: Executing actions 50 % Saving the result                                vtune: Executing actions 50 % Generating a report                              vtune: Executing actions 50 % Setting data model parameters                    vtune: Executing actions 75 % Setting data model parameters                    vtune: Executing actions 75 % Generating a report                              Elapsed Time: 38.740s
-    IPC: 0.723
-     | The IPC may be too low. This could be caused by issues such as memory
-     | stalls, instruction starvation, branch misprediction or long latency
-     | instructions. Explore the other hardware-related metrics to identify what
-     | is causing low IPC.
-     |
-    SP GFLOPS: 0.000
-    DP GFLOPS: 2.854
-    x87 GFLOPS: 0.000
-    Average CPU Frequency: 2.295 GHz 
-Logical Core Utilization: 1.0% (0.997 out of 96)
- | The metric value is low, which may signal a poor logical CPU cores
- | utilization. Consider improving physical core utilization as the first step
- | and then look at opportunities to utilize logical cores, which in some cases
- | can improve processor throughput and overall performance of multi-threaded
- | applications.
- |
-    Physical Core Utilization: 2.1% (0.997 out of 48)
-     | The metric value is low, which may signal a poor physical CPU cores
-     | utilization caused by:
-     |     - load imbalance
-     |     - threading runtime overhead
-     |     - contended synchronization
-     |     - thread/process underutilization
-     |     - incorrect affinity that utilizes logical cores instead of physical
-     |       cores
-     | Run the HPC Performance Characterization analysis to estimate the
-     | efficiency of MPI and OpenMP parallelism or run the Locks and Waits
-     | analysis to identify parallel bottlenecks for other parallel runtimes.
-     |
-Microarchitecture Usage: 24.2% of Pipeline Slots
- | You code efficiency on this platform is too low.
- | 
- | Possible cause: memory stalls, instruction starvation, branch misprediction
- | or long latency instructions.
- | 
- | Next steps: Run Microarchitecture Exploration analysis to identify the cause
- | of the low microarchitecture usage efficiency.
- |
-    Retiring: 24.2% of Pipeline Slots
-    Front-End Bound: 2.4% of Pipeline Slots
-    Bad Speculation: 0.0% of Pipeline Slots
-    Back-End Bound: 73.5% of Pipeline Slots
-     | A significant portion of pipeline slots are remaining empty. When
-     | operations take too long in the back-end, they introduce bubbles in the
-     | pipeline that ultimately cause fewer pipeline slots containing useful
-     | work to be retired per cycle than the machine is capable to support. This
-     | opportunity cost results in slower execution. Long-latency operations
-     | like divides and memory operations can cause this, as can too many
-     | operations being directed to a single execution port (for example, more
-     | multiply operations arriving in the back-end per cycle than the execution
-     | unit can support).
-     |
-        Memory Bound: 58.2% of Pipeline Slots
-         | The metric value is high. This can indicate that the significant
-         | fraction of execution pipeline slots could be stalled due to demand
-         | memory load and stores. Use Memory Access analysis to have the metric
-         | breakdown by memory hierarchy, memory bandwidth information,
-         | correlation by memory objects.
-         |
-            L1 Bound: 10.8% of Clockticks
-             | This metric shows how often machine was stalled without missing
-             | the L1 data cache. The L1 cache typically has the shortest
-             | latency. However, in certain cases like loads blocked on older
-             | stores, a load might suffer a high latency even though it is
-             | being satisfied by the L1. Note that this metric value may be
-             | highlighted due to DTLB Overhead or Cycles of 1 Port Utilized
-             | issues.
-             |
-                FB Full: 100.0% of Clockticks
-                 | This metric does a rough estimation of how often L1D Fill
-                 | Buffer unavailability limited additional L1D miss memory
-                 | access requests to proceed. The higher the metric value, the
-                 | deeper the memory hierarchy level the misses are satisfied
-                 | from. Often it hints on approaching bandwidth limits (to L2
-                 | cache, L3 cache or external memory). Avoid adding software
-                 | prefetches if indeed memory BW limited.
-                 |
-            L2 Bound: 2.5% of Clockticks
-            L3 Bound: 3.0% of Clockticks
-                L3 Latency: 1.5% of Clockticks
-            DRAM Bound: 41.0% of Clockticks
-             | This metric shows how often CPU was stalled on the main memory
-             | (DRAM). Caching typically improves the latency and increases
-             | performance.
-             |
-                Memory Bandwidth: 62.8% of Clockticks
-                 | Issue: A significant fraction of cycles was stalled due to
-                 | approaching bandwidth limits of the main memory (DRAM).
-                 | 
-                 | Tips: Improve data accesses to reduce cacheline transfers
-                 | from/to memory using these possible techniques:
-                 |     - Consume all bytes of each cacheline before it is
-                 |       evicted (for example, reorder structure elements and
-                 |       split non-hot ones).
-                 |     - Merge compute-limited and bandwidth-limited loops.
-                 |     - Use NUMA optimizations on a multi-socket system.
-                 | 
-                 | Note: software prefetches do not help a bandwidth-limited
-                 | application.
-                 |
-                Memory Latency: 18.5% of Clockticks
-                 | Issue: A significant fraction of cycles was stalled due to
-                 | the latency of the main memory (DRAM).
-                 | 
-                 | Tips: Improve data accesses or interleave them with compute
-                 | using such possible techniques as data layout re-structuring
-                 | or software prefetches (through the compiler).
-                 |
-                    Local DRAM: 81.6% of Clockticks
-                     | The number of CPU stalls on loads from the local memory
-                     | exceeds the threshold. Consider caching data to improve
-                     | the latency and increase the performance.
-                     |
-                    Remote DRAM: 0.0% of Clockticks
-                    Remote Cache: 0.0% of Clockticks
-            Store Bound: 0.5% of Clockticks
-        Core Bound: 15.3% of Pipeline Slots
-         | This metric represents how much Core non-memory issues were of a
-         | bottleneck. Shortage in hardware compute resources, or dependencies
-         | software's instructions are both categorized under Core Bound. Hence
-         | it may indicate the machine ran out of an OOO resources, certain
-         | execution units are overloaded or dependencies in program's data- or
-         | instruction- flow are limiting the performance (e.g. FP-chained long-
-         | latency arithmetic operations).
-         |
-Memory Bound: 58.2% of Pipeline Slots
- | The metric value is high. This can indicate that the significant fraction of
- | execution pipeline slots could be stalled due to demand memory load and
- | stores. Use Memory Access analysis to have the metric breakdown by memory
- | hierarchy, memory bandwidth information, correlation by memory objects.
- |
-    Cache Bound: 16.3% of Clockticks
-    DRAM Bound: 41.0% of Clockticks
-     | The metric value is high. This indicates that a significant fraction of
-     | cycles could be stalled on the main memory (DRAM) because of demand loads
-     | or stores.
-     |
-     | The code is memory bandwidth bound, which means that there are a
-     | significant fraction of cycles during which the bandwidth limits of the
-     | main memory are being reached and the code could stall. Review the
-     | Bandwidth Utilization Histogram to estimate the scale of the issue.
-     | Improve data accesses to reduce cacheline transfers from/to memory using
-     | these possible techniques: 1) consume all bytes of each cacheline before
-     | it is evicted (for example, reorder structure elements and split non-hot
-     | ones); 2) merge compute-limited and bandwidth-limited loops; 3) use NUMA
-     | optimizations on a multi-socket system.
-     |
-     | The code is latency bound, which means that there are a significant
-     | fraction of cycles during which the code could be stalled due to main
-     | memory latency. Consider optimizing data layout or using software
-     | prefetches through the compiler to improve cache reuse and to reduce the
-     | data fetched from the main memory.
-     |
-        Average DRAM Bandwidth, GB/s: 0.000
-    NUMA: % of Remote Accesses: 0.0%
-Vectorization: 99.8% of Packed FP Operations
-    Instruction Mix
-        SP FLOPs: 0.0% of uOps
-            Packed: 0.0% from SP FP
-                128-bit: 0.0% from SP FP
-                256-bit: 0.0% from SP FP
-                512-bit: 0.0% from SP FP
-            Scalar: 100.0% from SP FP
-             | This code has floating point operations and is not vectorized.
-             | Consider either recompiling the code with optimization options
-             | that allow vectorization or using Intel Advisor to vectorize the
-             | loops.
-             |
-        DP FLOPs: 32.3% of uOps
-            Packed: 99.8% from DP FP
-                128-bit: 0.0% from DP FP
-                256-bit: 99.8% from DP FP
-                 | A significant fraction of floating point arithmetic vector
-                 | instructions executed with a partial vector load. You can try
-                 | to compile the code with the latest instruction set or use
-                 | Intel Advisor for vectorization help.
-                 |
-                512-bit: 0.0% from DP FP
-            Scalar: 0.2% from DP FP
-        x87 FLOPs: 0.0% of uOps
-        Non-FP: 67.7% of uOps
-    FP Arith/Mem Rd Instr. Ratio: 1.197
-    FP Arith/Mem Wr Instr. Ratio: 10.116
-Collection and Platform Info
-    Application Command Line: ./heat "test.dat" 
-    Operating System: 5.3.18-150300.59.63-default NAME="SLES" VERSION="15-SP3" VERSION_ID="15.3" PRETTY_NAME="SUSE Linux Enterprise Server 15 SP3" ID="sles" ID_LIKE="suse" ANSI_COLOR="0;32" CPE_NAME="cpe:/o:suse:sles:15:sp3" DOCUMENTATION_URL="https://documentation.suse.com/"
-    Computer Name: i01r01c02s07
-    Result Size: 3.9 MB 
-    Collection start time: 15:12:05 25/04/2024 UTC
-    Collection stop time: 15:12:43 25/04/2024 UTC
-    Collector Type: Driverless Perf per-process counting
-    CPU
-        Name: Intel(R) Xeon(R) Processor code named Skylake
-        Frequency: 2.694 GHz 
-        Logical CPU Count: 96
-        Max DRAM Single-Package Bandwidth: 115.000 GB/s
-        Cache Allocation Technology
-            Level 2 capability: not detected
-            Level 3 capability: available
-
-Recommendations:
-    Hotspots: Start with Hotspots analysis to understand the efficiency of your algorithm.
-     | Use Hotspots analysis to identify the most time consuming functions.
-     | Drill down to see the time spent on every line of code.
-    Memory Access: The Memory Bound metric is high  (58.2%). A significant fraction of execution pipeline slots could be stalled due to demand memory load and stores.
-     | Use Memory Access analysis to measure metrics that can identify memory
-     | access issues.
-    Threading: There is poor utilization of logical CPU cores (1.0%) in your application.
-     |  Use Threading to explore more opportunities to increase parallelism in
-     | your application.
-
-If you want to skip descriptions of detected performance issues in the report,
-enter: vtune -report summary -report-knob show-issues=false -r <my_result_dir>.
-Alternatively, you may view the report in the csv format: vtune -report
-<report_name> -format=csv.
-vtune: Executing actions 100 % Generating a report                             vtune: Executing actions 100 % done                                            
