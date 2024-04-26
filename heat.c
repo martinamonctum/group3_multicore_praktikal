@@ -6,15 +6,11 @@
 
 #include "heat.h"
 
-#include "papi.h"
 #include <stdio.h>
 #include <stdlib.h>
 
 #include "input.h"
 #include "timing.h"
-
-#define NUM_FLOPS 10000
-#define NUM_EVENTS 1
 
 void usage(char *s) {
 	fprintf(stderr, "Usage: %s <input file> [result file]\n\n", s);
@@ -33,7 +29,6 @@ int main(int argc, char *argv[]) {
 	double residual;
 	double time[1000];
 	double floprate[1000];
-	double papi_floprate[1000];
 	int resolution[1000];
 	int experiment=0;
 
@@ -79,7 +74,7 @@ int main(int argc, char *argv[]) {
 	param.uvis = 0;
 
 	param.act_res = param.initial_res;
-	char c = 0;
+
 	// loop over different resolutions
 	while (1) {
 
@@ -102,27 +97,9 @@ int main(int argc, char *argv[]) {
 		runtime = wtime();
 		residual = 999999999;
 
-		int retval;
-		retval = PAPI_hl_region_begin("computation");
-		if (retval!= PAPI_OK){
-			printf("PAPI IS NOT OK!!!!");
-			return 0;
-		}
-		
-
-		//float real_time, proc_time, mflops;
-  		// long long flpops;
-		// int flops_retval;
-		
-		//flops_retval = PAPI_flops_rate(PAPI_FP_OPS, &real_time, &proc_time, &flpops, &mflops);
-		// flops_retval = mflops;
-		// if(flops_retval < PAPI_OK){
-		// 	printf("PAPI IS NOT OK!!!!");
-		// 	return 0;
-		// }
 		iter = 0;
 		while (1) {
-			float mflops = PAPI_DP_OPS;
+
 			switch (param.algorithm) {
 
 			case 0: // JACOBI
@@ -151,29 +128,11 @@ int main(int argc, char *argv[]) {
 			// if (iter % 100 == 0)
 			// 	fprintf(stderr, "residual %f, %d iterations\n", residual, iter);
 		}
-		//flops_retval = PAPI_flops_rate(PAPI_FP_OPS, &real_time, &proc_time, &flpops, &mflops);
-		// flops_retval = mflops;
-		// if(flops_retval < PAPI_OK){
-		// 	printf("PAPI IS NOT OK!!!!");
-		// 	return 0;
-		// }
-		float mflops;
-		
-		
-		
 
 		// Flop count after <i> iterations
 		flop = iter * 11.0 * param.act_res * param.act_res;
 		// stopping time
 		runtime = wtime() - runtime;
-		mflops = PAPI_DP_OPS/(PAPI_TOT_CYC*1000000); //(PAPI_TOT_CYC*1000000);
-		
-		papi_floprate[experiment] = mflops;
-		retval = PAPI_hl_region_end("computation");
-		if (retval!= PAPI_OK){
-			printf("PAPI IS NOT OK!!!!");
-			return 0;
-		}
 
 		fprintf(stderr, "Resolution: %5u, ", param.act_res);
 		fprintf(stderr, "Time: %04.3f ", runtime);
@@ -185,21 +144,18 @@ int main(int argc, char *argv[]) {
 		floprate[experiment]=flop / runtime / 1000000;
 		resolution[experiment]=param.act_res;
 		experiment++;
-		c++;
+
 		if (param.act_res + param.res_step_size > param.max_res)
-			break;
-		if (c==5)
 			break;
 		param.act_res += param.res_step_size;
 		
 	}
 
-    FILE *flopDat = fopen("FlopData", "w");
+    FILE *flopDat = fopen("FlopData", "a");
 
 	for (i=0;i<experiment; i++){
 		fprintf(flopDat, "%5d " ,resolution[i]);
-        fprintf(flopDat, "%5.3f ", floprate[i]);
-		fprintf(flopDat, "%5.3f\n", papi_floprate[i]);
+                fprintf(flopDat, "%5.3f\n", floprate[i]);
 		printf("%5d; %5.3f; %5.3f\n", resolution[i], time[i], floprate[i]);
 	}
 	fclose(flopDat);

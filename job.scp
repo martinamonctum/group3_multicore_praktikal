@@ -10,8 +10,7 @@
 #SBATCH --partition=test
 #SBATCH --ear=off
 
-srun sh -c 'if [ $SLURM_LOCALID == 0 ]; then /lrz/sys/tools/dcdb/bin/perfstop.sh; fi'
-for (( c=1; c <=25; c++ ))
-do
-   ./heat test.dat
-done
+vtune -collect memory-access -call-stack-mode user-plus-one -result-dir ../Vtunedata/MemoryAccess -app-working-dir . ./heat test.dat
+vtune -collect uarch-exploration -call-stack-mode user-plus-one -result-dir ../Vtunedata/MicroArchitecture -app-working-dir . ./heat test.dat
+vtune -collect hotspots -call-stack-mode user-plus-one -result-dir ../Vtunedata/Hotspots -app-working-dir . ./heat test.dat
+vtune -collect performance-snapshot -call-stack-mode user-plus-one -result-dir ../Vtunedata/PerformanceSnapshot -app-working-dir . ./heat test.dat

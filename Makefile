@@ -1,19 +1,18 @@
 # Intel compiler
-CC =  icc 
-CFLAGS = -O3 -xhost -fno-alias
-PAPI_INC = -I/dss/lrzsys/sys/spack/release/22.2.1/opt/skylake_avx512/papi/6.0.0.1-intel-pf2m6io/include
-PAPI_LIB = -L/dss/lrzsys/sys/spack/release/22.2.1/opt/skylake_avx512/papi/6.0.0.1-intel-pf2m6io/lib
+CC =  icc
+CFLAGS = -O3 -fno-alias -xhost
+
 MPICC = mpicc
 
 all: heat
 
-heat : heat.o input.o misc.o timing.o relax_gauss.o relax_jacobi.o 
-	$(CC) $(CFLAGS) ${PAPI_LIB} -o $@ $+ -lm -lpapi
+heat : heat.o input.o misc.o timing.o relax_gauss.o relax_jacobi.o
+	$(CC) $(CFLAGS) -o $@ $+ -lm
 
 %.o : %.c heat.h timing.h input.h
-	$(CC) $(CFLAGS) $(PAPI_INC) -c -o $@ $< 
+	$(CC) $(CFLAGS) -c -o $@ $< 
 
 clean:
-	rm -f *.o heat *~ *.ppm *.annot
+	rm -f *.o heat *~ *.ppm
 
 remake : clean all
