@@ -10,7 +10,7 @@
 #SBATCH --partition=test
 #SBATCH --ear=off
 
-vtune -collect memory-access -call-stack-mode user-plus-one -result-dir ../Vtunedata/MemoryAccess -app-working-dir . ./heat test.dat
-vtune -collect uarch-exploration -call-stack-mode user-plus-one -result-dir ../Vtunedata/MicroArchitecture -app-working-dir . ./heat test.dat
-vtune -collect hotspots -call-stack-mode user-plus-one -result-dir ../Vtunedata/Hotspots -app-working-dir . ./heat test.dat
-vtune -collect performance-snapshot -call-stack-mode user-plus-one -result-dir ../Vtunedata/PerformanceSnapshot -app-working-dir . ./heat test.dat
+vtune -collect memory-access -call-stack-mode user-plus-one -result-dir ../Vtunedata/MemoryAccessO2 -app-working-dir . ./heat test.dat
+vtune -collect uarch-exploration -call-stack-mode user-plus-one -result-dir ../Vtunedata/MicroArchitectureO2 -app-working-dir . ./heat test.dat
+vtune -collect hotspots -call-stack-mode user-plus-one -result-dir ../Vtunedata/HotspotsO2 -app-working-dir . ./heat test.dat
+vtune -collect performance-snapshot -call-stack-mode user-plus-one -result-dir ../Vtunedata/PerformanceSnapshotO2 -app-working-dir . ./heat test.dat
