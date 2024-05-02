@@ -1,0 +1,16 @@
+#!/bin/bash
+# Job Name and Files (also --job-name)
+#SBATCH -J heat
+#Output and error (also --output, --error):
+#SBATCH -o job.out
+#SBATCH -e job.out
+# Wall clock limit:
+#SBATCH --time=00:05:00
+#SBATCH --account=h039v
+#SBATCH --partition=test
+#SBATCH --ear=off
+
+vtune -collect memory-access -call-stack-mode user-plus-one -result-dir ../Vtunedata/MemoryAccess -app-working-dir . ./heat test.dat
+vtune -collect uarch-exploration -call-stack-mode user-plus-one -result-dir ../Vtunedata/MicroArchitecture -app-working-dir . ./heat test.dat
+vtune -collect hotspots -call-stack-mode user-plus-one -result-dir ../Vtunedata/Hotspots -app-working-dir . ./heat test.dat
+vtune -collect performance-snapshot -call-stack-mode user-plus-one -result-dir ../Vtunedata/PerformanceSnapshot -app-working-dir . ./heat test.dat
