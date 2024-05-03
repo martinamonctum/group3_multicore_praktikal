@@ -1,0 +1,67 @@
+Using CPUID GenuineIntel-6-55-4
+Compression enabled, disabling build id collection at the end of the session.
+nr_cblocks: 0
+affinity: SYS
+mmap flush: 1
+comp level: 1
+Problems creating module maps, continuing anyway...
+WARNING: Kernel address maps (/proc/{kallsyms,modules}) are restricted,
+check /proc/sys/kernel/kptr_restrict and /proc/sys/kernel/perf_event_paranoid.
+
+Samples in kernel functions may not be resolved if a suitable vmlinux
+file is not found in the buildid cache or in the vmlinux path.
+
+Samples in kernel modules won't be resolved at all.
+
+If some relocation was applied (e.g. kexec) symbols may be misresolved
+even with a suitable vmlinux or kallsyms file.
+
+mmap size 528384B
+thread 0 monitor: 0-95 allowed: any
+Couldn't record kernel reference relocation symbol
+Symbol resolution may be skewed if relocation was used (e.g. kexec).
+Check /proc/kallsyms permission or run as root.
+couldn't open /proc/1/task/1/maps
+couldn't open /proc/1479/task/1479/maps
+couldn't open /proc/1572/task/1572/maps
+couldn't open /proc/15855/task/15855/maps
+couldn't open /proc/15880/task/15880/maps
+couldn't open /proc/15903/task/15903/maps
+couldn't open /proc/16733/task/16733/maps
+couldn't open /proc/2212/task/2212/maps
+couldn't open /proc/2214/task/2214/maps
+couldn't open /proc/2219/task/2219/maps
+couldn't open /proc/2223/task/2223/maps
+couldn't open /proc/2225/task/2225/maps
+couldn't open /proc/2226/task/2226/maps
+couldn't open /proc/2235506/task/2235506/maps
+couldn't open /proc/2255/task/2255/maps
+couldn't open /proc/2257966/task/2257966/maps
+couldn't open /proc/2257970/task/2257970/maps
+couldn't open /proc/2257972/task/2257972/maps
+couldn't open /proc/2258005/task/2258005/maps
+couldn't open /proc/2302/task/2302/maps
+couldn't open /proc/26253/task/26253/maps
+couldn't open /proc/26254/task/26254/maps
+couldn't open /proc/26255/task/26255/maps
+couldn't open /proc/26256/task/26256/maps
+couldn't open /proc/26260/task/26260/maps
+couldn't open /proc/26268/task/26268/maps
+couldn't open /proc/26373/task/26373/maps
+couldn't open /proc/2720179/task/2720179/maps
+couldn't open /proc/2720372/task/2720372/maps
+couldn't open /proc/2805/task/2805/maps
+couldn't open /proc/2808/task/2808/maps
+couldn't open /proc/286510/task/286510/maps
+couldn't open /proc/3485/task/3485/maps
+couldn't open /proc/3487/task/3487/maps
+couldn't open /proc/3599/task/3599/maps
+couldn't open /proc/3703/task/3703/maps
+couldn't open /proc/3704/task/3704/maps
+couldn't open /proc/3962/task/3962/maps
+couldn't open /proc/6254/task/6254/maps
+cmd_pipe: /hppfs/scratch/04/h039vag/tmp/amplxe-tmp-h039vag/perf-pipe-2258009-22661061597878212
+
+2258027:perf-sync:ready:SYS=8412635470614666
+[ perf record: Woken up 1 times to write data ]
+[ perf record: Captured and wrote 0.298 MB /dss/dsshome1/04/h039vag/MultiCore/HeatProject/Vtunedata/MemoryAccess/data.0/temp.dryrun.perf, compressed (original 0.012 MB, ratio is 5.644) ]
