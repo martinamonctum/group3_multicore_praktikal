@@ -1,0 +1,254 @@
+//
+// ------- Annotated listing with optimization reports for "/dss/dsshome1/05/h039vak/Assignment1/heatdir/relax_gauss.c" -------
+//
+//Intel(R) C Intel(R) 64 Compiler Classic for applications running on Intel(R) 64, Version 2021.4.0 Build 20210910_000000
+//
+//Compiler options: -I/dss/lrzsys/sys/spack/release/22.2.1/opt/skylake_avx512/papi/6.0.0.1-intel-pf2m6io/include -O3 -xhost -fno-alias -qopt-report-annotate -qopt-report=5 -c -o relax_gauss.o
+//  WHOLE PROGRAM (SAFE) [EITHER METHOD]: false
+//  WHOLE PROGRAM (SEEN) [TABLE METHOD]: false
+//  WHOLE PROGRAM (READ) [OBJECT READER METHOD]: false
+//
+//INLINING OPTION VALUES:
+//  -inline-factor: 100
+//  -inline-min-size: 30
+//  -inline-max-size: 230
+//  -inline-max-total-size: 2000
+//  -inline-max-per-routine: 10000
+//  -inline-max-per-compile: 500000
+//
+//In the inlining report below:
+//   "sz" refers to the "size" of the routine. The smaller a routine's size,
+//      the more likely it is to be inlined.
+//   "isz" refers to the "inlined size" of the routine. This is the amount
+//      the calling routine will grow if the called routine is inlined into it.
+//      The compiler generally limits the amount a routine can grow by having
+//      routines inlined into it.
+1	/*
+2	 * relax_gauss.c
+3	 *
+4	 * Gauss-Seidel Relaxation
+5	 *
+6	 */
+7	
+8	#include "heat.h"
+9	
+10	/*
+11	 * Residual (length of error vector)
+12	 * between current solution and next after a Gauss-Seidel step
+13	 *
+14	 * Temporary array utmp needed to not change current solution
+15	 *
+16	 * Flop count in inner body is 7
+17	 */
+18	
+19	double residual_gauss(double *u, double *utmp, unsigned sizex, unsigned sizey) {
+//INLINE REPORT: (residual_gauss(double *, double *, unsigned int, unsigned int)) [1/2=50.0%] /dss/dsshome1/05/h039vak/Assignment1/heatdir/relax_gauss.c(19,80)
+//
+///dss/dsshome1/05/h039vak/Assignment1/heatdir/relax_gauss.c(19,80):remark #34051: REGISTER ALLOCATION : [residual_gauss] /dss/dsshome1/05/h039vak/Assignment1/heatdir/relax_gauss.c:19
+//
+//    Hardware registers
+//        Reserved     :    2[ rsp rip]
+//        Available    :   63[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm31 k0-k7]
+//        Callee-save  :    6[ rbx rbp r12-r15]
+//        Assigned     :   22[ rax rdx rcx rbx rsi rdi r8-r15 zmm0-zmm7]
+//        
+//    Routine temporaries
+//        Total         :      79
+//            Global    :      35
+//            Local     :      44
+//        Regenerable   :       1
+//        Spilled       :       6
+//        
+//    Routine stack
+//        Variables     :       0 bytes*
+//            Reads     :       0 [0.00e+00 ~ 0.0%]
+//            Writes    :       0 [0.00e+00 ~ 0.0%]
+//        Spills        :       8 bytes*
+//            Reads     :       2 [2.21e-01 ~ 0.2%]
+//            Writes    :       2 [2.21e-01 ~ 0.2%]
+//    
+//    Notes
+//    
+//        *Non-overlapping variables and spills may share stack space,
+//         so the total stack size might be less than this.
+//    
+//
+20		unsigned i, j;
+21		double unew, diff, sum = 0.0;
+22	
+23		// first row (boundary condition) into utmp
+24		for (j = 1; j < sizex - 1; j++)
+//
+//LOOP BEGIN at /dss/dsshome1/05/h039vak/Assignment1/heatdir/relax_gauss.c(24,2)
+//   remark #25399: memcopy generated
+//   remark #15542: loop was not vectorized: inner loop was already vectorized
+//
+//   LOOP BEGIN at /dss/dsshome1/05/h039vak/Assignment1/heatdir/relax_gauss.c(24,2)
+//      remark #15389: vectorization support: reference utmp[j] has unaligned access   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/relax_gauss.c(25,3) ]
+//      remark #15389: vectorization support: reference u[j] has unaligned access   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/relax_gauss.c(25,25) ]
+//      remark #15381: vectorization support: unaligned access used inside loop body
+//      remark #15305: vectorization support: vector length 4
+//      remark #15309: vectorization support: normalized vectorization overhead 1.000
+//      remark #15300: LOOP WAS VECTORIZED
+//      remark #26013: Compiler has chosen to target XMM/YMM vector. Try using -qopt-zmm-usage=high to override
+//      remark #15450: unmasked unaligned unit stride loads: 1 
+//      remark #15451: unmasked unaligned unit stride stores: 1 
+//      remark #15475: --- begin vector cost summary ---
+//      remark #15476: scalar cost: 5 
+//      remark #15477: vector cost: 1.500 
+//      remark #15478: estimated potential speedup: 2.500 
+//      remark #15488: --- end vector cost summary ---
+//      remark #25015: Estimate of max trip count of loop=3
+//   LOOP END
+//
+//   LOOP BEGIN at /dss/dsshome1/05/h039vak/Assignment1/heatdir/relax_gauss.c(24,2)
+//   <Remainder loop for vectorization>
+//      remark #15389: vectorization support: reference utmp[j] has unaligned access   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/relax_gauss.c(25,3) ]
+//      remark #15389: vectorization support: reference u[j] has unaligned access   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/relax_gauss.c(25,25) ]
+//      remark #15381: vectorization support: unaligned access used inside loop body
+//      remark #15335: remainder loop was not vectorized: vectorization possible but seems inefficient. Use vector always directive or -vec-threshold0 to override 
+//      remark #15305: vectorization support: vector length 2
+//      remark #15309: vectorization support: normalized vectorization overhead 1.133
+//      remark #15450: unmasked unaligned unit stride loads: 1 
+//      remark #15451: unmasked unaligned unit stride stores: 1 
+//      remark #15475: --- begin vector cost summary ---
+//      remark #15476: scalar cost: 5 
+//      remark #15477: vector cost: 1.500 
+//      remark #15478: estimated potential speedup: 2.500 
+//      remark #15488: --- end vector cost summary ---
+//      remark #25015: Estimate of max trip count of loop=12
+//   LOOP END
+//LOOP END
+///dss/dsshome1/05/h039vak/Assignment1/heatdir/relax_gauss.c(24,2):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+///dss/dsshome1/05/h039vak/Assignment1/heatdir/relax_gauss.c(24,2):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+///dss/dsshome1/05/h039vak/Assignment1/heatdir/relax_gauss.c(24,2):remark #34026: call to memcpy implemented as a call to optimized library version
+25			utmp[0 * sizex + j] = u[0 * sizex + j];
+26		// first column (boundary condition) into utmp
+27		for (i = 1; i < sizey - 1; i++)
+//
+//LOOP BEGIN at /dss/dsshome1/05/h039vak/Assignment1/heatdir/relax_gauss.c(27,2)
+//<Multiversioned v1>
+//   remark #25235: Loop multiversioned to eliminate assumed dependencies
+//   remark #15335: loop was not vectorized: vectorization possible but seems inefficient. Use vector always directive or -vec-threshold0 to override 
+//   remark #15305: vectorization support: vector length 2
+//   remark #15399: vectorization support: unroll factor set to 4
+//   remark #15309: vectorization support: normalized vectorization overhead 0.250
+//   remark #15475: --- begin vector cost summary ---
+//   remark #15476: scalar cost: 5 
+//   remark #15477: vector cost: 1.500 
+//   remark #15478: estimated potential speedup: 3.210 
+//   remark #15488: --- end vector cost summary ---
+//LOOP END
+//
+//LOOP BEGIN at /dss/dsshome1/05/h039vak/Assignment1/heatdir/relax_gauss.c(27,2)
+//<Multiversioned v2>
+//   remark #15329: vectorization support: non-unit strided store was emulated for the variable <utmp[i*sizex]>, stride is unknown to compiler   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/relax_gauss.c(28,3) ]
+//   remark #15328: vectorization support: non-unit strided load was emulated for the variable <u[i*sizex]>, stride is unknown to compiler   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/relax_gauss.c(28,25) ]
+//   remark #15305: vectorization support: vector length 2
+//   remark #15300: LOOP WAS VECTORIZED
+//   remark #26013: Compiler has chosen to target XMM/YMM vector. Try using -qopt-zmm-usage=high to override
+//   remark #15452: unmasked strided loads: 1 
+//   remark #15453: unmasked strided stores: 1 
+//   remark #15475: --- begin vector cost summary ---
+//   remark #15476: scalar cost: 5 
+//   remark #15477: vector cost: 4.000 
+//   remark #15478: estimated potential speedup: 1.250 
+//   remark #15488: --- end vector cost summary ---
+//LOOP END
+//
+//LOOP BEGIN at /dss/dsshome1/05/h039vak/Assignment1/heatdir/relax_gauss.c(27,2)
+//<Remainder loop for vectorization, Multiversioned v2>
+//LOOP END
+28			utmp[i * sizex + 0] = u[i * sizex + 0];
+29	
+30		for (j = 1; j < sizex - 1; j++) {
+//
+//LOOP BEGIN at /dss/dsshome1/05/h039vak/Assignment1/heatdir/relax_gauss.c(30,2)
+//   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+//   remark #15346: vector dependence: assumed ANTI dependence between utmp[i*sizex+j-1] (32:4) and utmp[i*sizex+j] (40:4)
+//   remark #15346: vector dependence: assumed FLOW dependence between utmp[i*sizex+j] (40:4) and utmp[i*sizex+j-1] (32:4)
+//
+//   LOOP BEGIN at /dss/dsshome1/05/h039vak/Assignment1/heatdir/relax_gauss.c(31,3)
+//      remark #15344: loop was not vectorized: vector dependence prevents vectorization
+//      remark #15346: vector dependence: assumed ANTI dependence between utmp[(i-1)*sizex+j] (32:4) and utmp[i*sizex+j] (40:4)
+//      remark #15346: vector dependence: assumed FLOW dependence between utmp[i*sizex+j] (40:4) and utmp[(i-1)*sizex+j] (32:4)
+//   LOOP END
+//LOOP END
+31			for (i = 1; i < sizey - 1; i++) {
+32				unew = 0.25 * (utmp[i * sizex + (j - 1)] +  // new left
+33							u[i * sizex + (j + 1)] +  // right
+34							utmp[(i - 1) * sizex + j] +  // new top
+35							u[(i + 1) * sizex + j]); // bottom
+36	
+37				diff = unew - u[i * sizex + j];
+38				sum += diff * diff;
+39	
+40				utmp[i * sizex + j] = unew;
+41			}
+42		}
+43	
+44		return sum;
+45	}
+46	
+47	/*
+48	 * One Gauss-Seidel iteration step
+49	 *
+50	 * Flop count in inner body is 4
+51	 */
+52	void relax_gauss(double *u, unsigned sizex, unsigned sizey) {
+//INLINE REPORT: (relax_gauss(double *, unsigned int, unsigned int)) [2/2=100.0%] /dss/dsshome1/05/h039vak/Assignment1/heatdir/relax_gauss.c(52,61)
+//
+///dss/dsshome1/05/h039vak/Assignment1/heatdir/relax_gauss.c(52,61):remark #34051: REGISTER ALLOCATION : [relax_gauss] /dss/dsshome1/05/h039vak/Assignment1/heatdir/relax_gauss.c:52
+//
+//    Hardware registers
+//        Reserved     :    2[ rsp rip]
+//        Available    :   63[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm31 k0-k7]
+//        Callee-save  :    6[ rbx rbp r12-r15]
+//        Assigned     :   19[ rax rdx rcx rbx rbp rsi rdi r8-r11 r14-r15 zmm0-zmm5]
+//        
+//    Routine temporaries
+//        Total         :      38
+//            Global    :      21
+//            Local     :      17
+//        Regenerable   :       2
+//        Spilled       :       4
+//        
+//    Routine stack
+//        Variables     :       0 bytes*
+//            Reads     :       0 [0.00e+00 ~ 0.0%]
+//            Writes    :       0 [0.00e+00 ~ 0.0%]
+//        Spills        :      32 bytes*
+//            Reads     :       4 [6.03e-01 ~ 0.6%]
+//            Writes    :       4 [6.03e-01 ~ 0.6%]
+//    
+//    Notes
+//    
+//        *Non-overlapping variables and spills may share stack space,
+//         so the total stack size might be less than this.
+//    
+//
+53		unsigned i, j;
+54	
+55		for (j = 1; j < sizex - 1; j++) {
+//
+//LOOP BEGIN at /dss/dsshome1/05/h039vak/Assignment1/heatdir/relax_gauss.c(55,2)
+//   remark #25445: Loop Interchange not done due to: Data Dependencies
+//   remark #25446: Dependencies found between following statements:  [From_Line# -> (Dependency Type) To_Line#]
+//   remark #25447: Dependence found between following statements:  [57 -> (Flow) 57]
+//   remark #25447: Dependence found between following statements:  [57 -> (Anti) 57]
+//   remark #25451: Advice: Loop Interchange, if possible, might help loopnest. Suggested Permutation : ( 1 2 ) --> ( 2 1 ) 
+//   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+//   remark #15346: vector dependence: assumed FLOW dependence between u[i*sizex+j] (57:4) and u[i*sizex+j-1] (57:4)
+//   remark #15346: vector dependence: assumed ANTI dependence between u[i*sizex+j-1] (57:4) and u[i*sizex+j] (57:4)
+//
+//   LOOP BEGIN at /dss/dsshome1/05/h039vak/Assignment1/heatdir/relax_gauss.c(56,3)
+//      remark #15344: loop was not vectorized: vector dependence prevents vectorization
+//      remark #15346: vector dependence: assumed FLOW dependence between u[i*sizex+j] (57:4) and u[(i-1)*sizex+j] (57:4)
+//      remark #15346: vector dependence: assumed ANTI dependence between u[(i-1)*sizex+j] (57:4) and u[i*sizex+j] (57:4)
+//   LOOP END
+//LOOP END
+56			for (i = 1; i < sizey - 1; i++) {
+57				u[i * sizex + j] = 0.25 * (u[i * sizex + (j - 1)] + u[i * sizex + (j + 1)] + u[(i - 1) * sizex + j] + u[(i + 1) * sizex + j]);
+58			}
+59		}
+60	}

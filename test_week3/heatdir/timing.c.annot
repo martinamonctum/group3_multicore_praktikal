@@ -1,0 +1,74 @@
+//
+// ------- Annotated listing with optimization reports for "/dss/dsshome1/05/h039vak/Assignment1/heatdir/timing.c" -------
+//
+//Intel(R) C Intel(R) 64 Compiler Classic for applications running on Intel(R) 64, Version 2021.4.0 Build 20210910_000000
+//
+//Compiler options: -I/dss/lrzsys/sys/spack/release/22.2.1/opt/skylake_avx512/papi/6.0.0.1-intel-pf2m6io/include -O3 -xhost -fno-alias -qopt-report-annotate -qopt-report=5 -c -o timing.o
+//  WHOLE PROGRAM (SAFE) [EITHER METHOD]: false
+//  WHOLE PROGRAM (SEEN) [TABLE METHOD]: false
+//  WHOLE PROGRAM (READ) [OBJECT READER METHOD]: false
+//
+//INLINING OPTION VALUES:
+//  -inline-factor: 100
+//  -inline-min-size: 30
+//  -inline-max-size: 230
+//  -inline-max-total-size: 2000
+//  -inline-max-per-routine: 10000
+//  -inline-max-per-compile: 500000
+//
+//In the inlining report below:
+//   "sz" refers to the "size" of the routine. The smaller a routine's size,
+//      the more likely it is to be inlined.
+//   "isz" refers to the "inlined size" of the routine. This is the amount
+//      the calling routine will grow if the called routine is inlined into it.
+//      The compiler generally limits the amount a routine can grow by having
+//      routines inlined into it.
+1	//
+2	// timing.c 
+3	// 
+4	
+5	
+6	#include <sys/time.h>
+7	#include "timing.h"
+8	
+9	
+10	double wtime()
+11	{
+//INLINE REPORT: (wtime()) [1/1=100.0%] /dss/dsshome1/05/h039vak/Assignment1/heatdir/timing.c(11,1)
+//  -> EXTERN: (13,3) gettimeofday(struct timeval *__restrict__, void *__restrict__)
+//
+///dss/dsshome1/05/h039vak/Assignment1/heatdir/timing.c(11,1):remark #34051: REGISTER ALLOCATION : [wtime] /dss/dsshome1/05/h039vak/Assignment1/heatdir/timing.c:11
+//
+//    Hardware registers
+//        Reserved     :    2[ rsp rip]
+//        Available    :   63[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm31 k0-k7]
+//        Callee-save  :    6[ rbx rbp r12-r15]
+//        Assigned     :    4[ rsi rdi zmm0-zmm1]
+//        
+//    Routine temporaries
+//        Total         :      13
+//            Global    :       6
+//            Local     :       7
+//        Regenerable   :       3
+//        Spilled       :       0
+//        
+//    Routine stack
+//        Variables     :      16 bytes*
+//            Reads     :       2 [9.52e+00 ~ 9.5%]
+//            Writes    :       0 [0.00e+00 ~ 0.0%]
+//        Spills        :       0 bytes*
+//            Reads     :       0 [0.00e+00 ~ 0.0%]
+//            Writes    :       0 [0.00e+00 ~ 0.0%]
+//    
+//    Notes
+//    
+//        *Non-overlapping variables and spills may share stack space,
+//         so the total stack size might be less than this.
+//    
+//
+12	  struct timeval tv;
+13	  gettimeofday(&tv, 0);
+14	
+15	  return tv.tv_sec+1e-6*tv.tv_usec;
+16	}
+17	

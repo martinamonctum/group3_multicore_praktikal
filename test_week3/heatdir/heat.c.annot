@@ -1,0 +1,389 @@
+//
+// ------- Annotated listing with optimization reports for "/dss/dsshome1/05/h039vak/Assignment1/heatdir/heat.c" -------
+//
+//Intel(R) C Intel(R) 64 Compiler Classic for applications running on Intel(R) 64, Version 2021.4.0 Build 20210910_000000
+//
+//Compiler options: -I/dss/lrzsys/sys/spack/release/22.2.1/opt/skylake_avx512/papi/6.0.0.1-intel-pf2m6io/include -O3 -xhost -fno-alias -qopt-report-annotate -qopt-report=5 -c -o heat.o
+//  WHOLE PROGRAM (SAFE) [EITHER METHOD]: false
+//  WHOLE PROGRAM (SEEN) [TABLE METHOD]: false
+//  WHOLE PROGRAM (READ) [OBJECT READER METHOD]: false
+//
+//INLINING OPTION VALUES:
+//  -inline-factor: 100
+//  -inline-min-size: 30
+//  -inline-max-size: 230
+//  -inline-max-total-size: 2000
+//  -inline-max-per-routine: 10000
+//  -inline-max-per-compile: 500000
+//
+//In the inlining report below:
+//   "sz" refers to the "size" of the routine. The smaller a routine's size,
+//      the more likely it is to be inlined.
+//   "isz" refers to the "inlined size" of the routine. This is the amount
+//      the calling routine will grow if the called routine is inlined into it.
+//      The compiler generally limits the amount a routine can grow by having
+//      routines inlined into it.
+1	/*
+2	 * heat.h
+3	 *
+4	 * Iterative solver for heat distribution
+5	 */
+6	
+7	#include "heat.h"
+8	
+9	#include "papi.h"
+10	#include <stdio.h>
+11	#include <stdlib.h>
+12	
+13	#include "input.h"
+14	#include "timing.h"
+15	
+16	#define NUM_FLOPS 10000
+17	#define NUM_EVENTS 1
+18	
+19	void usage(char *s) {
+//INLINE REPORT: (usage(char *)) [2/2=100.0%] /dss/dsshome1/05/h039vak/Assignment1/heatdir/heat.c(19,21)
+//  -> EXTERN: (20,2) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+//
+///dss/dsshome1/05/h039vak/Assignment1/heatdir/heat.c(19,21):remark #34051: REGISTER ALLOCATION : [usage] /dss/dsshome1/05/h039vak/Assignment1/heatdir/heat.c:19
+//
+//    Hardware registers
+//        Reserved     :    2[ rsp rip]
+//        Available    :   63[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm31 k0-k7]
+//        Callee-save  :    6[ rbx rbp r12-r15]
+//        Assigned     :    4[ rax rdx rsi rdi]
+//        
+//    Routine temporaries
+//        Total         :      14
+//            Global    :       0
+//            Local     :      14
+//        Regenerable   :       3
+//        Spilled       :       0
+//        
+//    Routine stack
+//        Variables     :       0 bytes*
+//            Reads     :       0 [0.00e+00 ~ 0.0%]
+//            Writes    :       0 [0.00e+00 ~ 0.0%]
+//        Spills        :       0 bytes*
+//            Reads     :       0 [0.00e+00 ~ 0.0%]
+//            Writes    :       0 [0.00e+00 ~ 0.0%]
+//    
+//    Notes
+//    
+//        *Non-overlapping variables and spills may share stack space,
+//         so the total stack size might be less than this.
+//    
+//
+20		fprintf(stderr, "Usage: %s <input file> [result file]\n\n", s);
+21	}
+22	
+23	int main(int argc, char *argv[]) {
+//INLINE REPORT: (main(int, char **)) [1/2=50.0%] /dss/dsshome1/05/h039vak/Assignment1/heatdir/heat.c(23,34)
+//  -> INLINE: (42,3) usage(char *) (isz = 4) (sz = 9)
+//    -> EXTERN: (20,2) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+//  -> EXTERN: (47,17) fopen(const char *__restrict__, const char *__restrict__)
+//  -> EXTERN: (48,3) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+//  -> INLINE: (50,3) usage(char *) (isz = 4) (sz = 9)
+//    -> EXTERN: (20,2) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+//  -> EXTERN: (57,18) fopen(const char *__restrict__, const char *__restrict__)
+//  -> EXTERN: (58,3) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+//  -> INLINE: (60,3) usage(char *) (isz = 4) (sz = 9)
+//    -> EXTERN: (20,2) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+//  -> EXTERN: (65,7) read_input(FILE *, algoparam_t *)
+//  -> EXTERN: (66,3) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+//  -> INLINE: (68,3) usage(char *) (isz = 4) (sz = 9)
+//    -> EXTERN: (20,2) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+//  -> EXTERN: (72,2) print_params(algoparam_t *)
+//  -> EXTERN: (110,4) finalize(algoparam_t *)
+//  -> EXTERN: (112,8) initialize(algoparam_t *)
+//  -> EXTERN: (113,4) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+//  -> INLINE: (115,4) usage(char *) (isz = 4) (sz = 9)
+//    -> EXTERN: (20,2) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+//  -> EXTERN: (118,3) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+//  -> EXTERN: (124,13) wtime()
+//  -> EXTERN: (128,12) PAPI_hl_region_begin(const char *)
+//  -> EXTERN: (130,4) printf(const char *__restrict__, ...)
+//  -> EXTERN: (136,11) PAPI_get_real_usec(void)
+//  -> EXTERN: (145,16) relax_jacobi(double *, double *, unsigned int, unsigned int)
+//  -> EXTERN: (147,5) printf(const char *__restrict__, ...)
+//  -> EXTERN: (152,5) relax_gauss(double *, unsigned int, unsigned int)
+//  -> EXTERN: (153,16) residual_gauss(double *, double *, unsigned int, unsigned int)
+//  -> EXTERN: (170,12) PAPI_hl_region_end(const char *)
+//  -> EXTERN: (172,4) printf(const char *__restrict__, ...)
+//  -> EXTERN: (188,11) PAPI_get_real_usec(void)
+//  -> EXTERN: (194,13) wtime()
+//  -> EXTERN: (196,3) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+//  -> EXTERN: (197,3) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+//  -> EXTERN: (198,3) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+//  -> EXTERN: (199,3) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+//  -> EXTERN: (220,21) fopen(const char *__restrict__, const char *__restrict__)
+//  -> EXTERN: (223,3) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+//  -> EXTERN: (224,9) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+//  -> EXTERN: (225,3) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+//  -> EXTERN: (226,3) printf(const char *__restrict__, ...)
+//  -> EXTERN: (228,2) fclose(FILE *)
+//  -> EXTERN: (230,2) coarsen(double *, unsigned int, unsigned int, double *, unsigned int, unsigned int)
+//  -> EXTERN: (231,2) write_image(FILE *, double *, unsigned int, unsigned int)
+//  -> EXTERN: (233,2) finalize(algoparam_t *)
+//
+///dss/dsshome1/05/h039vak/Assignment1/heatdir/heat.c(23,34):remark #34051: REGISTER ALLOCATION : [main] /dss/dsshome1/05/h039vak/Assignment1/heatdir/heat.c:23
+//
+//    Hardware registers
+//        Reserved     :    2[ rsp rip]
+//        Available    :   63[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm31 k0-k7]
+//        Callee-save  :    6[ rbx rbp r12-r15]
+//        Assigned     :   17[ rax rdx rcx rbx rsi rdi r8-r9 r12-r15 zmm0-zmm4]
+//        
+//    Routine temporaries
+//        Total         :     255
+//            Global    :      63
+//            Local     :     192
+//        Regenerable   :      94
+//        Spilled       :      16
+//        
+//    Routine stack
+//        Variables     :   28076 bytes*
+//            Reads     :      25 [1.41e+01 ~ 14.1%]
+//            Writes    :      11 [9.54e-02 ~ 0.1%]
+//        Spills        :      88 bytes*
+//            Reads     :      16 [7.03e+00 ~ 7.0%]
+//            Writes    :      16 [7.04e+00 ~ 7.0%]
+//    
+//    Notes
+//    
+//        *Non-overlapping variables and spills may share stack space,
+//         so the total stack size might be less than this.
+//    
+//
+24		unsigned iter;
+25		FILE *infile, *resfile;
+26		char *resfilename;
+27	
+28		// algorithmic parameters
+29		algoparam_t param;
+30		int np,i;
+31	
+32		double runtime, flop;
+33		double residual;
+34		double time[1000];
+35		double floprate[1000];
+36		double papi_floprate[1000];
+37		int resolution[1000];
+38		int experiment=0;
+39	
+40		// check arguments
+41		if (argc < 2) {
+42			usage(argv[0]);
+43			return 1;
+44		}
+45	
+46		// check input file
+47		if (!(infile = fopen(argv[1], "r"))) {
+48			fprintf(stderr, "\nError: Cannot open \"%s\" for reading.\n\n", argv[1]);
+49	
+50			usage(argv[0]);
+51			return 1;
+52		}
+53	
+54		// check result file
+55		resfilename = (argc >= 3) ? argv[2] : "heat.ppm";
+56	
+57		if (!(resfile = fopen(resfilename, "w"))) {
+58			fprintf(stderr, "\nError: Cannot open \"%s\" for writing.\n\n", resfilename);
+59	
+60			usage(argv[0]);
+61			return 1;
+62		}
+63	
+64		// check input
+65		if (!read_input(infile, &param)) {
+66			fprintf(stderr, "\nError: Error parsing input file.\n\n");
+67	
+68			usage(argv[0]);
+69			return 1;
+70		}
+71	
+72		print_params(&param);
+73		// // papi init
+74		// int retval,status=0, EventSet=PAPI_NULL;
+75		// int EventCode[4] = {PAPI_L2_TCA,PAPI_L2_TCM,PAPI_L3_TCA,PAPI_L3_TCM};
+76		// long_long values[4];
+77		// retval = PAPI_library_init(PAPI_VER_CURRENT);
+78		// if (retval != PAPI_VER_CURRENT) {
+79		// fprintf(stderr, "PAPI library init error!\n");
+80		// exit(1);
+81		// }
+82		// /* Create the Event Set */
+83		// if (PAPI_create_eventset(&EventSet) != PAPI_OK){
+84		// 	fprintf(stderr, "PAPI create event error\n");
+85		// 	exit(1);
+86		// }
+87		// /* Add Total Instructions Executed to our Event Set */
+88		// if (PAPI_add_events(EventSet, EventCode,4) != PAPI_OK){
+89		// 	fprintf(stderr, "PAPI add event error!\n");
+90		// 	exit(1);
+91		// }
+92		// set the visualization resolution
+93		param.visres = 1024;
+94	
+95		param.u = 0;
+96		param.uhelp = 0;
+97		param.uvis = 0;
+98	
+99		param.act_res = param.initial_res;
+100		char c = 0;
+101		// if (PAPI_start(EventSet) != PAPI_OK){
+102		// 		fprintf(stderr, "PAPI start event error!\n");
+103		// 		exit(1);
+104		// 	}
+105		// loop over different resolutions
+106		while (1) {
+107	
+108			// free allocated memory of previous experiment
+109			if (param.u != 0)
+//
+//LOOP BEGIN at /dss/dsshome1/05/h039vak/Assignment1/heatdir/heat.c(109,7)
+//   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+//
+//   LOOP BEGIN at /dss/dsshome1/05/h039vak/Assignment1/heatdir/heat.c(138,3)
+//      remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+//   LOOP END
+//LOOP END
+110				finalize(&param);
+111	
+112			if (!initialize(&param)) {
+113				fprintf(stderr, "Error in Jacobi initialization.\n\n");
+114	
+115				usage(argv[0]);
+116			}
+117	
+118			fprintf(stderr, "Resolution: %5u\r", param.act_res);
+119	
+120			// full size (param.act_res are only the inner points)
+121			np = param.act_res + 2;
+122	
+123			// starting time
+124			runtime = wtime();
+125			residual = 999999999;
+126	
+127			int retval;
+128			retval = PAPI_hl_region_begin("computation");
+129			if (retval!= PAPI_OK){
+130				printf("PAPI IS NOT OK!!!!");
+131				return 0;
+132			}
+133			/* Start counting events in the Event Set */
+134			
+135			double ftime;
+136			ftime = PAPI_get_real_usec();
+137			
+138			iter = 0;
+139			while (1) {
+140	
+141				switch (param.algorithm) {
+142	
+143				case 0: // JACOBI
+144	
+145					residual = relax_jacobi(param.u, param.uhelp, np, np);
+146					//residual = residual_jacobi(param.u, np, np);
+147					printf("REDISUAL:  %f", residual);
+148					break;
+149	
+150				case 1: // GAUSS
+151	
+152					relax_gauss(param.u, np, np);
+153					residual = residual_gauss(param.u, param.uhelp, np, np);
+154					break;
+155				}
+156	
+157				iter++;
+158	
+159				// solution good enough ?
+160				if (residual < 0.000005)
+161					break;
+162	
+163				// max. iteration reached ? (no limit with maxiter=0)
+164				if (param.maxiter > 0 && iter >= param.maxiter)
+165					break;
+166	
+167				// if (iter % 100 == 0)
+168				// 	fprintf(stderr, "residual %f, %d iterations\n", residual, iter);
+169			}
+170			retval = PAPI_hl_region_end("computation");
+171			if (retval!= PAPI_OK){
+172				printf("PAPI IS NOT OK!!!!");
+173				return 0;
+174			}
+175			/* Read the counting events in the Event Set */
+176			// if (PAPI_read(EventSet, values) != PAPI_OK){
+177			// 	fprintf(stderr, "PAPI add event error!\n");
+178			// 	exit(1);
+179			// }
+180			// FILE *cacheMisses = fopen("cacheMisses", "a");
+181			// for (i=0;i<4; i++){
+182			// 	fprintf(cacheMisses, "%5d " ,values[i]);
+183			// }
+184			// fprintf(cacheMisses,"\n");
+185			// fprintf(cacheMisses, "L2 miss rate%5d\n", values[1]/values[0]);
+186			// fprintf(cacheMisses, "L3 miss rate%5d\n", values[3]/values[2]);
+187			
+188			ftime = PAPI_get_real_usec() - ftime;
+189			// papi_floprate[experiment] = values[0]/ftime;
+190			
+191			// Flop count after <i> iterations
+192			flop = iter * 11.0 * param.act_res * param.act_res;
+193			// stopping time
+194			runtime = wtime() - runtime;
+195	
+196			fprintf(stderr, "Resolution: %5u, ", param.act_res);
+197			fprintf(stderr, "Time in microseconds: %04.3f ", ftime);
+198			fprintf(stderr, "(%3.3f GFlop => %6.2f MFlop/s, ", flop / 1000000.0, flop / runtime / 1000000);
+199			fprintf(stderr, "residual %f, %d iterations)\n", residual, iter);
+200	
+201			// for plot...
+202			time[experiment]=runtime;
+203			floprate[experiment]=flop / runtime / 1000000;
+204			resolution[experiment]=param.act_res;
+205			experiment++;
+206			c++;
+207			if (param.act_res + param.res_step_size > param.max_res)
+208				break;
+209			if (c==5)
+210				break;
+211			param.act_res += param.res_step_size;
+212			
+213			// /* Reset the counting events in the Event Set */
+214			// if (PAPI_reset(EventSet) != PAPI_OK){
+215			// 	fprintf(stderr, "PAPI reset event error!\n");
+216			// 	exit(1);
+217			// }
+218		}
+219		
+220	    FILE *flopDat = fopen("FlopData", "w");
+221	
+222		for (i=0;i<experiment; i++){
+//
+//LOOP BEGIN at /dss/dsshome1/05/h039vak/Assignment1/heatdir/heat.c(222,2)
+//   remark #15382: vectorization support: call to function fprintf(FILE *__restrict__, const char *__restrict__, ...) cannot be vectorized   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/heat.c(223,3) ]
+//   remark #15382: vectorization support: call to function fprintf(FILE *__restrict__, const char *__restrict__, ...) cannot be vectorized   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/heat.c(224,9) ]
+//   remark #15382: vectorization support: call to function fprintf(FILE *__restrict__, const char *__restrict__, ...) cannot be vectorized   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/heat.c(225,3) ]
+//   remark #15382: vectorization support: call to function printf(const char *__restrict__, ...) cannot be vectorized   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/heat.c(226,3) ]
+//   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+//   remark #15346: vector dependence: assumed OUTPUT dependence between call:fprintf(FILE *__restrict__, const char *__restrict__, ...) (223:3) and call:printf(const char *__restrict__, ...) (226:3)
+//   remark #15346: vector dependence: assumed OUTPUT dependence between call:printf(const char *__restrict__, ...) (226:3) and call:fprintf(FILE *__restrict__, const char *__restrict__, ...) (223:3)
+//   remark #25456: Number of Array Refs Scalar Replaced In Loop: 3
+//   remark #25015: Estimate of max trip count of loop=1000
+//LOOP END
+223			fprintf(flopDat, "%5d " ,resolution[i]);
+224	        fprintf(flopDat, "%5.3f ", floprate[i]);
+225			fprintf(flopDat, "%5.3f\n", papi_floprate[i]);
+226			printf("%5d; %5.3f; %5.3f; %5.3f\n", resolution[i], time[i], floprate[i], papi_floprate[i]);
+227		}
+228		fclose(flopDat);
+229		
+230		coarsen(param.u, np, np, param.uvis, param.visres + 2, param.visres + 2);
+231		write_image(resfile, param.uvis, param.visres + 2, param.visres + 2);
+232	
+233		finalize(&param);
+234		return 0;
+235	}

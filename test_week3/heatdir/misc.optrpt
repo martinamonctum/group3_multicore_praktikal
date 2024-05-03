@@ -1,0 +1,603 @@
+Intel(R) Advisor can now assist with vectorization and show optimization
+  report messages with your source code.
+See "https://software.intel.com/en-us/intel-advisor-xe" for details.
+
+Intel(R) C Intel(R) 64 Compiler Classic for applications running on Intel(R) 64, Version 2021.4.0 Build 20210910_000000
+
+Compiler options: -I/dss/lrzsys/sys/spack/release/22.2.1/opt/skylake_avx512/papi/6.0.0.1-intel-pf2m6io/include -O3 -xhost -fno-alias -qopt-report-annotate -qopt-report=5 -c -o misc.o
+
+    Report from: Interprocedural optimizations [ipo]
+
+  WHOLE PROGRAM (SAFE) [EITHER METHOD]: false
+  WHOLE PROGRAM (SEEN) [TABLE METHOD]: false
+  WHOLE PROGRAM (READ) [OBJECT READER METHOD]: false
+
+INLINING OPTION VALUES:
+  -inline-factor: 100
+  -inline-min-size: 30
+  -inline-max-size: 230
+  -inline-max-total-size: 2000
+  -inline-max-per-routine: 10000
+  -inline-max-per-compile: 500000
+
+In the inlining report below:
+   "sz" refers to the "size" of the routine. The smaller a routine's size,
+      the more likely it is to be inlined.
+   "isz" refers to the "inlined size" of the routine. This is the amount
+      the calling routine will grow if the called routine is inlined into it.
+      The compiler generally limits the amount a routine can grow by having
+      routines inlined into it.
+
+Begin optimization report for: finalize(algoparam_t *)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (finalize(algoparam_t *)) [1/4=25.0%] /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(120,1)
+  -> EXTERN: (122,2) free(void *)
+  -> EXTERN: (127,2) free(void *)
+  -> EXTERN: (132,2) free(void *)
+
+
+    Report from: Code generation optimizations [cg]
+
+/dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(120,1):remark #34051: REGISTER ALLOCATION : [finalize] /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c:120
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   63[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm31 k0-k7]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :    3[ rax rbp rdi]
+        
+    Routine temporaries
+        Total         :      15
+            Global    :      10
+            Local     :       5
+        Regenerable   :       1
+        Spilled       :       1
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: write_image(FILE *, double *, unsigned int, unsigned int)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (write_image(FILE *, double *, unsigned int, unsigned int)) [2/4=50.0%] /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(146,1)
+  -> EXTERN: (194,5) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+  -> EXTERN: (195,5) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+  -> EXTERN: (196,5) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+  -> EXTERN: (205,6) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+  -> EXTERN: (207,2) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(156,5)
+   remark #15329: vectorization support: non-unit strided store was emulated for the variable <r[j]>, stride is -1   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(158,2) ]
+   remark #15329: vectorization support: non-unit strided store was emulated for the variable <g[j]>, stride is -1   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(158,12) ]
+   remark #15329: vectorization support: non-unit strided store was emulated for the variable <b[j]>, stride is -1   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(158,20) ]
+   remark #15305: vectorization support: vector length 64
+   remark #15309: vectorization support: normalized vectorization overhead 0.005
+   remark #15300: LOOP WAS VECTORIZED
+   remark #26013: Compiler has chosen to target XMM/YMM vector. Try using -qopt-zmm-usage=high to override
+   remark #15453: unmasked strided stores: 3 
+   remark #15475: --- begin vector cost summary ---
+   remark #15476: scalar cost: 7 
+   remark #15477: vector cost: 6.390 
+   remark #15478: estimated potential speedup: 1.090 
+   remark #15488: --- end vector cost summary ---
+   remark #25015: Estimate of max trip count of loop=4
+LOOP END
+
+LOOP BEGIN at /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(161,5)
+   remark #15329: vectorization support: non-unit strided store was emulated for the variable <r[j]>, stride is -1   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(163,2) ]
+   remark #15329: vectorization support: non-unit strided store was emulated for the variable <g[j]>, stride is -1   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(163,14) ]
+   remark #15329: vectorization support: non-unit strided store was emulated for the variable <b[j]>, stride is -1   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(163,24) ]
+   remark #15305: vectorization support: vector length 64
+   remark #15309: vectorization support: normalized vectorization overhead 0.005
+   remark #15300: LOOP WAS VECTORIZED
+   remark #26013: Compiler has chosen to target XMM/YMM vector. Try using -qopt-zmm-usage=high to override
+   remark #15453: unmasked strided stores: 3 
+   remark #15475: --- begin vector cost summary ---
+   remark #15476: scalar cost: 9 
+   remark #15477: vector cost: 6.390 
+   remark #15478: estimated potential speedup: 1.400 
+   remark #15488: --- end vector cost summary ---
+   remark #25015: Estimate of max trip count of loop=4
+LOOP END
+
+LOOP BEGIN at /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(166,5)
+   remark #15329: vectorization support: non-unit strided store was emulated for the variable <r[j]>, stride is -1   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(168,2) ]
+   remark #15329: vectorization support: non-unit strided store was emulated for the variable <g[j]>, stride is -1   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(168,10) ]
+   remark #15329: vectorization support: non-unit strided store was emulated for the variable <b[j]>, stride is -1   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(168,20) ]
+   remark #15305: vectorization support: vector length 64
+   remark #15309: vectorization support: normalized vectorization overhead 0.005
+   remark #15300: LOOP WAS VECTORIZED
+   remark #26013: Compiler has chosen to target XMM/YMM vector. Try using -qopt-zmm-usage=high to override
+   remark #15453: unmasked strided stores: 3 
+   remark #15475: --- begin vector cost summary ---
+   remark #15476: scalar cost: 7 
+   remark #15477: vector cost: 6.390 
+   remark #15478: estimated potential speedup: 1.090 
+   remark #15488: --- end vector cost summary ---
+   remark #25015: Estimate of max trip count of loop=4
+LOOP END
+
+LOOP BEGIN at /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(171,5)
+   remark #25453: Loop Reversed
+   remark #15389: vectorization support: reference r[j] has unaligned access   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(173,2) ]
+   remark #15389: vectorization support: reference g[j] has unaligned access   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(173,10) ]
+   remark #15389: vectorization support: reference b[j] has unaligned access   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(173,22) ]
+   remark #15381: vectorization support: unaligned access used inside loop body
+   remark #15305: vectorization support: vector length 32
+   remark #15427: loop was completely unrolled
+   remark #15399: vectorization support: unroll factor set to 8
+   remark #15309: vectorization support: normalized vectorization overhead 0.070
+   remark #15301: REVERSED LOOP WAS VECTORIZED
+   remark #26013: Compiler has chosen to target XMM/YMM vector. Try using -qopt-zmm-usage=high to override
+   remark #15451: unmasked unaligned unit stride stores: 3 
+   remark #15475: --- begin vector cost summary ---
+   remark #15476: scalar cost: 8 
+   remark #15477: vector cost: 0.500 
+   remark #15478: estimated potential speedup: 14.940 
+   remark #15488: --- end vector cost summary ---
+LOOP END
+
+LOOP BEGIN at /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(182,5)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(184,2)
+   <Peeled loop for vectorization>
+      remark #25015: Estimate of max trip count of loop=3
+   LOOP END
+
+   LOOP BEGIN at /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(184,2)
+      remark #15389: vectorization support: reference u[i*sizex+j] has unaligned access   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(186,10) ]
+      remark #15389: vectorization support: reference u[i*sizex+j] has unaligned access   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(188,10) ]
+      remark #15381: vectorization support: unaligned access used inside loop body
+      remark #15305: vectorization support: vector length 4
+      remark #15399: vectorization support: unroll factor set to 4
+      remark #15309: vectorization support: normalized vectorization overhead 1.200
+      remark #15355: vectorization support: max is double type reduction   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(151,5) ]
+      remark #15355: vectorization support: min is double type reduction   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(151,5) ]
+      remark #15300: LOOP WAS VECTORIZED
+      remark #26013: Compiler has chosen to target XMM/YMM vector. Try using -qopt-zmm-usage=high to override
+      remark #15442: entire loop may be executed in remainder
+      remark #15450: unmasked unaligned unit stride loads: 1 
+      remark #15475: --- begin vector cost summary ---
+      remark #15476: scalar cost: 16 
+      remark #15477: vector cost: 2.500 
+      remark #15478: estimated potential speedup: 5.000 
+      remark #15488: --- end vector cost summary ---
+   LOOP END
+
+   LOOP BEGIN at /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(184,2)
+   <Remainder loop for vectorization>
+      remark #15389: vectorization support: reference u[i*sizex+j] has unaligned access   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(186,10) ]
+      remark #15389: vectorization support: reference u[i*sizex+j] has unaligned access   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(188,10) ]
+      remark #15381: vectorization support: unaligned access used inside loop body
+      remark #15305: vectorization support: vector length 4
+      remark #15309: vectorization support: normalized vectorization overhead 4.636
+      remark #15355: vectorization support: max is double type reduction   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(151,5) ]
+      remark #15355: vectorization support: min is double type reduction   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(151,5) ]
+      remark #15301: REMAINDER LOOP WAS VECTORIZED
+      remark #15442: entire loop may be executed in remainder
+   LOOP END
+
+   LOOP BEGIN at /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(184,2)
+   <Remainder loop for vectorization>
+   LOOP END
+LOOP END
+
+LOOP BEGIN at /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(198,5)
+   remark #15382: vectorization support: call to function fprintf(FILE *__restrict__, const char *__restrict__, ...) cannot be vectorized   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(205,6) ]
+   remark #15382: vectorization support: call to function fprintf(FILE *__restrict__, const char *__restrict__, ...) cannot be vectorized   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(207,2) ]
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed OUTPUT dependence between call:fprintf(FILE *__restrict__, const char *__restrict__, ...) (205:6) and call:fprintf(FILE *__restrict__, const char *__restrict__, ...) (207:2)
+   remark #15346: vector dependence: assumed OUTPUT dependence between call:fprintf(FILE *__restrict__, const char *__restrict__, ...) (207:2) and call:fprintf(FILE *__restrict__, const char *__restrict__, ...) (205:6)
+
+   LOOP BEGIN at /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(200,2)
+      remark #15527: loop was not vectorized: function call to fprintf(FILE *__restrict__, const char *__restrict__, ...) cannot be vectorized   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(205,6) ]
+   LOOP END
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+/dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(146,1):remark #34051: REGISTER ALLOCATION : [write_image] /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c:146
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   63[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm31 k0-k7]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   32[ rax rdx rcx rbx rsi rdi r8-r15 zmm0-zmm14 zmm16-zmm18]
+        
+    Routine temporaries
+        Total         :     193
+            Global    :      69
+            Local     :     124
+        Regenerable   :      26
+        Spilled       :      12
+        
+    Routine stack
+        Variables     :    3072 bytes*
+            Reads     :       3 [4.76e-02 ~ 0.0%]
+            Writes    :     216 [3.12e+01 ~ 31.2%]
+        Spills        :      56 bytes*
+            Reads     :       8 [4.43e-02 ~ 0.0%]
+            Writes    :       9 [1.21e-02 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: coarsen(double *, unsigned int, unsigned int, double *, unsigned int, unsigned int)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (coarsen(double *, unsigned int, unsigned int, double *, unsigned int, unsigned int)) [3/4=75.0%] /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(214,1)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(238,5)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(240,2)
+   <Peeled loop for vectorization>
+      remark #15389: vectorization support: reference unew[i*newx+j] has unaligned access   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(242,6) ]
+      remark #15381: vectorization support: unaligned access used inside loop body
+      remark #15335: peel loop was not vectorized: vectorization possible but seems inefficient. Use vector always directive or -vec-threshold0 to override 
+      remark #15305: vectorization support: vector length 2
+      remark #15309: vectorization support: normalized vectorization overhead 0.326
+      remark #15451: unmasked unaligned unit stride stores: 1 
+      remark #15452: unmasked strided loads: 1 
+      remark #15475: --- begin vector cost summary ---
+      remark #15476: scalar cost: 5 
+      remark #15477: vector cost: 2.500 
+      remark #15478: estimated potential speedup: 1.960 
+      remark #15488: --- end vector cost summary ---
+      remark #25015: Estimate of max trip count of loop=1
+   LOOP END
+
+   LOOP BEGIN at /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(240,2)
+      remark #15389: vectorization support: reference unew[i*newx+j] has unaligned access   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(242,6) ]
+      remark #15381: vectorization support: unaligned access used inside loop body
+      remark #15328: vectorization support: non-unit strided load was emulated for the variable <uold[(i*oldx)*stepy+j*stepx]>, stride is unknown to compiler   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(242,21) ]
+      remark #15305: vectorization support: vector length 2
+      remark #15309: vectorization support: normalized vectorization overhead 2.000
+      remark #15300: LOOP WAS VECTORIZED
+      remark #26013: Compiler has chosen to target XMM/YMM vector. Try using -qopt-zmm-usage=high to override
+      remark #15451: unmasked unaligned unit stride stores: 1 
+      remark #15452: unmasked strided loads: 1 
+      remark #15475: --- begin vector cost summary ---
+      remark #15476: scalar cost: 5 
+      remark #15477: vector cost: 2.500 
+      remark #15478: estimated potential speedup: 1.960 
+      remark #15488: --- end vector cost summary ---
+   LOOP END
+
+   LOOP BEGIN at /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(240,2)
+   <Remainder loop for vectorization>
+      remark #15389: vectorization support: reference unew[i*newx+j] has unaligned access   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(242,6) ]
+      remark #15381: vectorization support: unaligned access used inside loop body
+      remark #15335: remainder loop was not vectorized: vectorization possible but seems inefficient. Use vector always directive or -vec-threshold0 to override 
+      remark #15305: vectorization support: vector length 2
+      remark #15309: vectorization support: normalized vectorization overhead 0.326
+      remark #15451: unmasked unaligned unit stride stores: 1 
+      remark #15452: unmasked strided loads: 1 
+      remark #15475: --- begin vector cost summary ---
+      remark #15476: scalar cost: 5 
+      remark #15477: vector cost: 2.500 
+      remark #15478: estimated potential speedup: 1.960 
+      remark #15488: --- end vector cost summary ---
+   LOOP END
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+/dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(214,1):remark #34051: REGISTER ALLOCATION : [coarsen] /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c:214
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   63[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm31 k0-k7]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   16[ rax rdx rcx rbx rsi rdi r8-r15 zmm0-zmm1]
+        
+    Routine temporaries
+        Total         :      70
+            Global    :      36
+            Local     :      34
+        Regenerable   :       5
+        Spilled       :      10
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :      72 bytes*
+            Reads     :      14 [4.08e+00 ~ 4.1%]
+            Writes    :      12 [2.64e+00 ~ 2.6%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: initialize(algoparam_t *)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (initialize(algoparam_t *)) [4/4=100.0%] /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(23,1)
+  -> EXTERN: (33,31) calloc(size_t, size_t)
+  -> EXTERN: (34,31) calloc(size_t, size_t)
+  -> EXTERN: (35,31) calloc(size_t, size_t)
+  -> EXTERN: (42,2) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+  -> EXTERN: (51,19) pow(double, double)
+  -> EXTERN: (53,5) pow(double, double)
+  -> EXTERN: (67,19) pow(double, double)
+  -> EXTERN: (69,5) pow(double, double)
+  -> EXTERN: (83,19) pow(double, double)
+  -> EXTERN: (84,5) pow(double, double)
+  -> EXTERN: (99,19) pow(double, double)
+  -> EXTERN: (100,5) pow(double, double)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(46,5)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(49,2)
+   <Peeled loop for vectorization>
+      remark #15389: vectorization support: reference param->u[j] has unaligned access   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(57,4) ]
+      remark #15389: vectorization support: reference param->u[j] has unaligned access   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(57,4) ]
+      remark #15381: vectorization support: unaligned access used inside loop body
+      remark #15305: vectorization support: vector length 4
+      remark #15309: vectorization support: normalized vectorization overhead 0.197
+      remark #15301: PEEL LOOP WAS VECTORIZED
+      remark #15442: entire loop may be executed in remainder
+      remark #15460: masked strided loads: 1 
+      remark #15462: unmasked indexed (or gather) loads: 1 
+      remark #15475: --- begin vector cost summary ---
+      remark #15476: scalar cost: 122 
+      remark #15477: vector cost: 39.250 
+      remark #15478: estimated potential speedup: 3.020 
+      remark #15486: divides: 2 
+      remark #15487: type converts: 1 
+      remark #15488: --- end vector cost summary ---
+   LOOP END
+
+   LOOP BEGIN at /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(49,2)
+      remark #15389: vectorization support: reference param->u[j] has unaligned access   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(57,4) ]
+      remark #15389: vectorization support: reference param->u[j] has unaligned access   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(57,4) ]
+      remark #15381: vectorization support: unaligned access used inside loop body
+      remark #15305: vectorization support: vector length 4
+      remark #15309: vectorization support: normalized vectorization overhead 0.159
+      remark #15300: LOOP WAS VECTORIZED
+      remark #26013: Compiler has chosen to target XMM/YMM vector. Try using -qopt-zmm-usage=high to override
+      remark #15456: masked unaligned unit stride loads: 1 
+      remark #15457: masked unaligned unit stride stores: 1 
+      remark #15475: --- begin vector cost summary ---
+      remark #15476: scalar cost: 120 
+      remark #15477: vector cost: 33.000 
+      remark #15478: estimated potential speedup: 3.480 
+      remark #15486: divides: 2 
+      remark #15487: type converts: 1 
+      remark #15488: --- end vector cost summary ---
+   LOOP END
+
+   LOOP BEGIN at /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(65,2)
+   <Peeled loop for vectorization>
+      remark #15389: vectorization support: reference param->u[(np-1)*np+j] has unaligned access   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(73,4) ]
+      remark #15389: vectorization support: reference param->u[(np-1)*np+j] has unaligned access   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(73,4) ]
+      remark #15381: vectorization support: unaligned access used inside loop body
+      remark #15305: vectorization support: vector length 4
+      remark #15309: vectorization support: normalized vectorization overhead 0.195
+      remark #15301: PEEL LOOP WAS VECTORIZED
+      remark #15442: entire loop may be executed in remainder
+      remark #15460: masked strided loads: 1 
+      remark #15462: unmasked indexed (or gather) loads: 1 
+      remark #15475: --- begin vector cost summary ---
+      remark #15476: scalar cost: 122 
+      remark #15477: vector cost: 39.250 
+      remark #15478: estimated potential speedup: 3.020 
+      remark #15486: divides: 2 
+      remark #15487: type converts: 1 
+      remark #15488: --- end vector cost summary ---
+   LOOP END
+
+   LOOP BEGIN at /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(65,2)
+      remark #15389: vectorization support: reference param->u[(np-1)*np+j] has unaligned access   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(73,4) ]
+      remark #15389: vectorization support: reference param->u[(np-1)*np+j] has unaligned access   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(73,4) ]
+      remark #15381: vectorization support: unaligned access used inside loop body
+      remark #15305: vectorization support: vector length 4
+      remark #15309: vectorization support: normalized vectorization overhead 0.157
+      remark #15300: LOOP WAS VECTORIZED
+      remark #26013: Compiler has chosen to target XMM/YMM vector. Try using -qopt-zmm-usage=high to override
+      remark #15456: masked unaligned unit stride loads: 1 
+      remark #15457: masked unaligned unit stride stores: 1 
+      remark #15475: --- begin vector cost summary ---
+      remark #15476: scalar cost: 122 
+      remark #15477: vector cost: 33.500 
+      remark #15478: estimated potential speedup: 3.490 
+      remark #15486: divides: 2 
+      remark #15487: type converts: 1 
+      remark #15488: --- end vector cost summary ---
+   LOOP END
+
+   LOOP BEGIN at /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(81,2)
+      remark #15416: vectorization support: non-unit strided store was generated for the variable <param->u[j*np]>, masked, stride is unknown to compiler   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(89,4) ]
+      remark #15415: vectorization support: non-unit strided load was generated for the variable <param->u[j*np]>, masked, stride is unknown to compiler   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(89,4) ]
+      remark #15305: vectorization support: vector length 4
+      remark #15309: vectorization support: normalized vectorization overhead 0.097
+      remark #15300: LOOP WAS VECTORIZED
+      remark #26013: Compiler has chosen to target XMM/YMM vector. Try using -qopt-zmm-usage=high to override
+      remark #15442: entire loop may be executed in remainder
+      remark #15460: masked strided loads: 1 
+      remark #15462: unmasked indexed (or gather) loads: 1 
+      remark #15475: --- begin vector cost summary ---
+      remark #15476: scalar cost: 120 
+      remark #15477: vector cost: 38.750 
+      remark #15478: estimated potential speedup: 3.010 
+      remark #15486: divides: 2 
+      remark #15487: type converts: 1 
+      remark #15488: --- end vector cost summary ---
+   LOOP END
+
+   LOOP BEGIN at /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(81,2)
+   <Remainder loop for vectorization>
+   LOOP END
+
+   LOOP BEGIN at /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(97,2)
+      remark #15416: vectorization support: non-unit strided store was generated for the variable <param->u[j*np+np-1]>, masked, stride is unknown to compiler   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(105,4) ]
+      remark #15415: vectorization support: non-unit strided load was generated for the variable <param->u[j*np+np-1]>, masked, stride is unknown to compiler   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(105,4) ]
+      remark #15305: vectorization support: vector length 4
+      remark #15309: vectorization support: normalized vectorization overhead 0.096
+      remark #15300: LOOP WAS VECTORIZED
+      remark #26013: Compiler has chosen to target XMM/YMM vector. Try using -qopt-zmm-usage=high to override
+      remark #15442: entire loop may be executed in remainder
+      remark #15460: masked strided loads: 1 
+      remark #15462: unmasked indexed (or gather) loads: 1 
+      remark #15475: --- begin vector cost summary ---
+      remark #15476: scalar cost: 122 
+      remark #15477: vector cost: 39.250 
+      remark #15478: estimated potential speedup: 3.020 
+      remark #15486: divides: 2 
+      remark #15487: type converts: 1 
+      remark #15488: --- end vector cost summary ---
+   LOOP END
+
+   LOOP BEGIN at /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(97,2)
+   <Remainder loop for vectorization>
+   LOOP END
+
+   LOOP BEGIN at /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(49,2)
+   <Remainder loop for vectorization>
+      remark #15389: vectorization support: reference param->u[j] has unaligned access   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(57,4) ]
+      remark #15389: vectorization support: reference param->u[j] has unaligned access   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(57,4) ]
+      remark #15381: vectorization support: unaligned access used inside loop body
+      remark #15305: vectorization support: vector length 4
+      remark #15309: vectorization support: normalized vectorization overhead 0.197
+      remark #15301: REMAINDER LOOP WAS VECTORIZED
+      remark #15442: entire loop may be executed in remainder
+      remark #15460: masked strided loads: 1 
+      remark #15462: unmasked indexed (or gather) loads: 1 
+      remark #15475: --- begin vector cost summary ---
+      remark #15476: scalar cost: 122 
+      remark #15477: vector cost: 39.250 
+      remark #15478: estimated potential speedup: 3.020 
+      remark #15486: divides: 2 
+      remark #15487: type converts: 1 
+      remark #15488: --- end vector cost summary ---
+   LOOP END
+
+   LOOP BEGIN at /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(65,2)
+   <Remainder loop for vectorization>
+      remark #15389: vectorization support: reference param->u[(np-1)*np+j] has unaligned access   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(73,4) ]
+      remark #15389: vectorization support: reference param->u[(np-1)*np+j] has unaligned access   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(73,4) ]
+      remark #15381: vectorization support: unaligned access used inside loop body
+      remark #15305: vectorization support: vector length 4
+      remark #15309: vectorization support: normalized vectorization overhead 0.195
+      remark #15301: REMAINDER LOOP WAS VECTORIZED
+      remark #15442: entire loop may be executed in remainder
+      remark #15460: masked strided loads: 1 
+      remark #15462: unmasked indexed (or gather) loads: 1 
+      remark #15475: --- begin vector cost summary ---
+      remark #15476: scalar cost: 122 
+      remark #15477: vector cost: 39.250 
+      remark #15478: estimated potential speedup: 3.020 
+      remark #15486: divides: 2 
+      remark #15487: type converts: 1 
+      remark #15488: --- end vector cost summary ---
+   LOOP END
+
+   LOOP BEGIN at /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(81,2)
+   <Remainder loop for vectorization>
+      remark #15305: vectorization support: vector length 4
+      remark #15309: vectorization support: normalized vectorization overhead 0.163
+      remark #15301: REMAINDER LOOP WAS VECTORIZED
+      remark #15442: entire loop may be executed in remainder
+      remark #15460: masked strided loads: 1 
+      remark #15462: unmasked indexed (or gather) loads: 1 
+      remark #15475: --- begin vector cost summary ---
+      remark #15476: scalar cost: 122 
+      remark #15477: vector cost: 39.250 
+      remark #15478: estimated potential speedup: 3.020 
+      remark #15486: divides: 2 
+      remark #15487: type converts: 1 
+      remark #15488: --- end vector cost summary ---
+   LOOP END
+
+   LOOP BEGIN at /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(97,2)
+   <Remainder loop for vectorization>
+      remark #15305: vectorization support: vector length 4
+      remark #15309: vectorization support: normalized vectorization overhead 0.161
+      remark #15301: REMAINDER LOOP WAS VECTORIZED
+      remark #15442: entire loop may be executed in remainder
+      remark #15460: masked strided loads: 1 
+      remark #15462: unmasked indexed (or gather) loads: 1 
+      remark #15475: --- begin vector cost summary ---
+      remark #15476: scalar cost: 122 
+      remark #15477: vector cost: 39.250 
+      remark #15478: estimated potential speedup: 3.020 
+      remark #15486: divides: 2 
+      remark #15487: type converts: 1 
+      remark #15488: --- end vector cost summary ---
+   LOOP END
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+/dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(23,1):remark #34051: REGISTER ALLOCATION : [initialize] /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c:23
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   63[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm31 k0-k7]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   44[ rax rdx rcx rbx rsi rdi r8-r15 zmm0-zmm26 k0-k2]
+        
+    Routine temporaries
+        Total         :     526
+            Global    :     145
+            Local     :     381
+        Regenerable   :      14
+        Spilled       :      25
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :     152 bytes*
+            Reads     :      29 [1.35e+00 ~ 1.4%]
+            Writes    :      22 [4.92e-01 ~ 0.5%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================

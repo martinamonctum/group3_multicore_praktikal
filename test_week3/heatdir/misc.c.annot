@@ -1,0 +1,802 @@
+//
+// ------- Annotated listing with optimization reports for "/dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c" -------
+//
+//Intel(R) C Intel(R) 64 Compiler Classic for applications running on Intel(R) 64, Version 2021.4.0 Build 20210910_000000
+//
+//Compiler options: -I/dss/lrzsys/sys/spack/release/22.2.1/opt/skylake_avx512/papi/6.0.0.1-intel-pf2m6io/include -O3 -xhost -fno-alias -qopt-report-annotate -qopt-report=5 -c -o misc.o
+//  WHOLE PROGRAM (SAFE) [EITHER METHOD]: false
+//  WHOLE PROGRAM (SEEN) [TABLE METHOD]: false
+//  WHOLE PROGRAM (READ) [OBJECT READER METHOD]: false
+//
+//INLINING OPTION VALUES:
+//  -inline-factor: 100
+//  -inline-min-size: 30
+//  -inline-max-size: 230
+//  -inline-max-total-size: 2000
+//  -inline-max-per-routine: 10000
+//  -inline-max-per-compile: 500000
+//
+//In the inlining report below:
+//   "sz" refers to the "size" of the routine. The smaller a routine's size,
+//      the more likely it is to be inlined.
+//   "isz" refers to the "inlined size" of the routine. This is the amount
+//      the calling routine will grow if the called routine is inlined into it.
+//      The compiler generally limits the amount a routine can grow by having
+//      routines inlined into it.
+1	/*
+2	 * misc.c
+3	 *
+4	 * Helper functions for
+5	 * - initialization
+6	 * - finalization,
+7	 * - writing out a picture
+8	 */
+9	
+10	#include <stdlib.h>
+11	#include <stdio.h>
+12	#include <math.h>
+13	#include <float.h>
+14	
+15	#include "heat.h"
+16	
+17	/*
+18	 * Initialize the iterative solver
+19	 * - allocate memory for matrices
+20	 * - set boundary conditions according to configuration
+21	 */
+22	int initialize( algoparam_t *param )
+23	{
+//INLINE REPORT: (initialize(algoparam_t *)) [4/4=100.0%] /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(23,1)
+//  -> EXTERN: (33,31) calloc(size_t, size_t)
+//  -> EXTERN: (34,31) calloc(size_t, size_t)
+//  -> EXTERN: (35,31) calloc(size_t, size_t)
+//  -> EXTERN: (42,2) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+//  -> EXTERN: (51,19) pow(double, double)
+//  -> EXTERN: (53,5) pow(double, double)
+//  -> EXTERN: (67,19) pow(double, double)
+//  -> EXTERN: (69,5) pow(double, double)
+//  -> EXTERN: (83,19) pow(double, double)
+//  -> EXTERN: (84,5) pow(double, double)
+//  -> EXTERN: (99,19) pow(double, double)
+//  -> EXTERN: (100,5) pow(double, double)
+//
+///dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(23,1):remark #34051: REGISTER ALLOCATION : [initialize] /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c:23
+//
+//    Hardware registers
+//        Reserved     :    2[ rsp rip]
+//        Available    :   63[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm31 k0-k7]
+//        Callee-save  :    6[ rbx rbp r12-r15]
+//        Assigned     :   44[ rax rdx rcx rbx rsi rdi r8-r15 zmm0-zmm26 k0-k2]
+//        
+//    Routine temporaries
+//        Total         :     526
+//            Global    :     145
+//            Local     :     381
+//        Regenerable   :      14
+//        Spilled       :      25
+//        
+//    Routine stack
+//        Variables     :       0 bytes*
+//            Reads     :       0 [0.00e+00 ~ 0.0%]
+//            Writes    :       0 [0.00e+00 ~ 0.0%]
+//        Spills        :     152 bytes*
+//            Reads     :      29 [1.35e+00 ~ 1.4%]
+//            Writes    :      22 [4.92e-01 ~ 0.5%]
+//    
+//    Notes
+//    
+//        *Non-overlapping variables and spills may share stack space,
+//         so the total stack size might be less than this.
+//    
+//
+24	    int i, j;
+25	    double dist;
+26	
+27	    // total number of points (including border)
+28	    const int np = param->act_res + 2;
+29	  
+30	    //
+31	    // allocate memory
+32	    //
+33	    (param->u)     = (double*)calloc( sizeof(double),np*np );
+34	    (param->uhelp) = (double*)calloc( sizeof(double),np*np );
+35	    (param->uvis)  = (double*)calloc( sizeof(double),
+36					      (param->visres+2) *
+37					      (param->visres+2) );
+38	  
+39	
+40	    if( !(param->u) || !(param->uhelp) || !(param->uvis) )
+41	    {
+42		fprintf(stderr, "Error: Cannot allocate memory\n");
+43		return 0;
+44	    }
+45	
+46	    for( i=0; i<param->numsrcs; i++ )
+//
+//LOOP BEGIN at /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(46,5)
+//   remark #15542: loop was not vectorized: inner loop was already vectorized
+//
+//   LOOP BEGIN at /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(49,2)
+//   <Peeled loop for vectorization>
+//      remark #15389: vectorization support: reference param->u[j] has unaligned access   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(57,4) ]
+//      remark #15389: vectorization support: reference param->u[j] has unaligned access   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(57,4) ]
+//      remark #15381: vectorization support: unaligned access used inside loop body
+//      remark #15305: vectorization support: vector length 4
+//      remark #15309: vectorization support: normalized vectorization overhead 0.197
+//      remark #15301: PEEL LOOP WAS VECTORIZED
+//      remark #15442: entire loop may be executed in remainder
+//      remark #15460: masked strided loads: 1 
+//      remark #15462: unmasked indexed (or gather) loads: 1 
+//      remark #15475: --- begin vector cost summary ---
+//      remark #15476: scalar cost: 122 
+//      remark #15477: vector cost: 39.250 
+//      remark #15478: estimated potential speedup: 3.020 
+//      remark #15486: divides: 2 
+//      remark #15487: type converts: 1 
+//      remark #15488: --- end vector cost summary ---
+//   LOOP END
+//
+//   LOOP BEGIN at /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(49,2)
+//      remark #15389: vectorization support: reference param->u[j] has unaligned access   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(57,4) ]
+//      remark #15389: vectorization support: reference param->u[j] has unaligned access   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(57,4) ]
+//      remark #15381: vectorization support: unaligned access used inside loop body
+//      remark #15305: vectorization support: vector length 4
+//      remark #15309: vectorization support: normalized vectorization overhead 0.159
+//      remark #15300: LOOP WAS VECTORIZED
+//      remark #26013: Compiler has chosen to target XMM/YMM vector. Try using -qopt-zmm-usage=high to override
+//      remark #15456: masked unaligned unit stride loads: 1 
+//      remark #15457: masked unaligned unit stride stores: 1 
+//      remark #15475: --- begin vector cost summary ---
+//      remark #15476: scalar cost: 120 
+//      remark #15477: vector cost: 33.000 
+//      remark #15478: estimated potential speedup: 3.480 
+//      remark #15486: divides: 2 
+//      remark #15487: type converts: 1 
+//      remark #15488: --- end vector cost summary ---
+//   LOOP END
+//
+//   LOOP BEGIN at /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(65,2)
+//   <Peeled loop for vectorization>
+//      remark #15389: vectorization support: reference param->u[(np-1)*np+j] has unaligned access   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(73,4) ]
+//      remark #15389: vectorization support: reference param->u[(np-1)*np+j] has unaligned access   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(73,4) ]
+//      remark #15381: vectorization support: unaligned access used inside loop body
+//      remark #15305: vectorization support: vector length 4
+//      remark #15309: vectorization support: normalized vectorization overhead 0.195
+//      remark #15301: PEEL LOOP WAS VECTORIZED
+//      remark #15442: entire loop may be executed in remainder
+//      remark #15460: masked strided loads: 1 
+//      remark #15462: unmasked indexed (or gather) loads: 1 
+//      remark #15475: --- begin vector cost summary ---
+//      remark #15476: scalar cost: 122 
+//      remark #15477: vector cost: 39.250 
+//      remark #15478: estimated potential speedup: 3.020 
+//      remark #15486: divides: 2 
+//      remark #15487: type converts: 1 
+//      remark #15488: --- end vector cost summary ---
+//   LOOP END
+//
+//   LOOP BEGIN at /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(65,2)
+//      remark #15389: vectorization support: reference param->u[(np-1)*np+j] has unaligned access   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(73,4) ]
+//      remark #15389: vectorization support: reference param->u[(np-1)*np+j] has unaligned access   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(73,4) ]
+//      remark #15381: vectorization support: unaligned access used inside loop body
+//      remark #15305: vectorization support: vector length 4
+//      remark #15309: vectorization support: normalized vectorization overhead 0.157
+//      remark #15300: LOOP WAS VECTORIZED
+//      remark #26013: Compiler has chosen to target XMM/YMM vector. Try using -qopt-zmm-usage=high to override
+//      remark #15456: masked unaligned unit stride loads: 1 
+//      remark #15457: masked unaligned unit stride stores: 1 
+//      remark #15475: --- begin vector cost summary ---
+//      remark #15476: scalar cost: 122 
+//      remark #15477: vector cost: 33.500 
+//      remark #15478: estimated potential speedup: 3.490 
+//      remark #15486: divides: 2 
+//      remark #15487: type converts: 1 
+//      remark #15488: --- end vector cost summary ---
+//   LOOP END
+//
+//   LOOP BEGIN at /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(81,2)
+//      remark #15416: vectorization support: non-unit strided store was generated for the variable <param->u[j*np]>, masked, stride is unknown to compiler   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(89,4) ]
+//      remark #15415: vectorization support: non-unit strided load was generated for the variable <param->u[j*np]>, masked, stride is unknown to compiler   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(89,4) ]
+//      remark #15305: vectorization support: vector length 4
+//      remark #15309: vectorization support: normalized vectorization overhead 0.097
+//      remark #15300: LOOP WAS VECTORIZED
+//      remark #26013: Compiler has chosen to target XMM/YMM vector. Try using -qopt-zmm-usage=high to override
+//      remark #15442: entire loop may be executed in remainder
+//      remark #15460: masked strided loads: 1 
+//      remark #15462: unmasked indexed (or gather) loads: 1 
+//      remark #15475: --- begin vector cost summary ---
+//      remark #15476: scalar cost: 120 
+//      remark #15477: vector cost: 38.750 
+//      remark #15478: estimated potential speedup: 3.010 
+//      remark #15486: divides: 2 
+//      remark #15487: type converts: 1 
+//      remark #15488: --- end vector cost summary ---
+//   LOOP END
+//
+//   LOOP BEGIN at /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(81,2)
+//   <Remainder loop for vectorization>
+//   LOOP END
+//
+//   LOOP BEGIN at /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(97,2)
+//      remark #15416: vectorization support: non-unit strided store was generated for the variable <param->u[j*np+np-1]>, masked, stride is unknown to compiler   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(105,4) ]
+//      remark #15415: vectorization support: non-unit strided load was generated for the variable <param->u[j*np+np-1]>, masked, stride is unknown to compiler   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(105,4) ]
+//      remark #15305: vectorization support: vector length 4
+//      remark #15309: vectorization support: normalized vectorization overhead 0.096
+//      remark #15300: LOOP WAS VECTORIZED
+//      remark #26013: Compiler has chosen to target XMM/YMM vector. Try using -qopt-zmm-usage=high to override
+//      remark #15442: entire loop may be executed in remainder
+//      remark #15460: masked strided loads: 1 
+//      remark #15462: unmasked indexed (or gather) loads: 1 
+//      remark #15475: --- begin vector cost summary ---
+//      remark #15476: scalar cost: 122 
+//      remark #15477: vector cost: 39.250 
+//      remark #15478: estimated potential speedup: 3.020 
+//      remark #15486: divides: 2 
+//      remark #15487: type converts: 1 
+//      remark #15488: --- end vector cost summary ---
+//   LOOP END
+//
+//   LOOP BEGIN at /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(97,2)
+//   <Remainder loop for vectorization>
+//   LOOP END
+//
+//   LOOP BEGIN at /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(49,2)
+//   <Remainder loop for vectorization>
+//      remark #15389: vectorization support: reference param->u[j] has unaligned access   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(57,4) ]
+//      remark #15389: vectorization support: reference param->u[j] has unaligned access   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(57,4) ]
+//      remark #15381: vectorization support: unaligned access used inside loop body
+//      remark #15305: vectorization support: vector length 4
+//      remark #15309: vectorization support: normalized vectorization overhead 0.197
+//      remark #15301: REMAINDER LOOP WAS VECTORIZED
+//      remark #15442: entire loop may be executed in remainder
+//      remark #15460: masked strided loads: 1 
+//      remark #15462: unmasked indexed (or gather) loads: 1 
+//      remark #15475: --- begin vector cost summary ---
+//      remark #15476: scalar cost: 122 
+//      remark #15477: vector cost: 39.250 
+//      remark #15478: estimated potential speedup: 3.020 
+//      remark #15486: divides: 2 
+//      remark #15487: type converts: 1 
+//      remark #15488: --- end vector cost summary ---
+//   LOOP END
+//
+//   LOOP BEGIN at /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(65,2)
+//   <Remainder loop for vectorization>
+//      remark #15389: vectorization support: reference param->u[(np-1)*np+j] has unaligned access   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(73,4) ]
+//      remark #15389: vectorization support: reference param->u[(np-1)*np+j] has unaligned access   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(73,4) ]
+//      remark #15381: vectorization support: unaligned access used inside loop body
+//      remark #15305: vectorization support: vector length 4
+//      remark #15309: vectorization support: normalized vectorization overhead 0.195
+//      remark #15301: REMAINDER LOOP WAS VECTORIZED
+//      remark #15442: entire loop may be executed in remainder
+//      remark #15460: masked strided loads: 1 
+//      remark #15462: unmasked indexed (or gather) loads: 1 
+//      remark #15475: --- begin vector cost summary ---
+//      remark #15476: scalar cost: 122 
+//      remark #15477: vector cost: 39.250 
+//      remark #15478: estimated potential speedup: 3.020 
+//      remark #15486: divides: 2 
+//      remark #15487: type converts: 1 
+//      remark #15488: --- end vector cost summary ---
+//   LOOP END
+//
+//   LOOP BEGIN at /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(81,2)
+//   <Remainder loop for vectorization>
+//      remark #15305: vectorization support: vector length 4
+//      remark #15309: vectorization support: normalized vectorization overhead 0.163
+//      remark #15301: REMAINDER LOOP WAS VECTORIZED
+//      remark #15442: entire loop may be executed in remainder
+//      remark #15460: masked strided loads: 1 
+//      remark #15462: unmasked indexed (or gather) loads: 1 
+//      remark #15475: --- begin vector cost summary ---
+//      remark #15476: scalar cost: 122 
+//      remark #15477: vector cost: 39.250 
+//      remark #15478: estimated potential speedup: 3.020 
+//      remark #15486: divides: 2 
+//      remark #15487: type converts: 1 
+//      remark #15488: --- end vector cost summary ---
+//   LOOP END
+//
+//   LOOP BEGIN at /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(97,2)
+//   <Remainder loop for vectorization>
+//      remark #15305: vectorization support: vector length 4
+//      remark #15309: vectorization support: normalized vectorization overhead 0.161
+//      remark #15301: REMAINDER LOOP WAS VECTORIZED
+//      remark #15442: entire loop may be executed in remainder
+//      remark #15460: masked strided loads: 1 
+//      remark #15462: unmasked indexed (or gather) loads: 1 
+//      remark #15475: --- begin vector cost summary ---
+//      remark #15476: scalar cost: 122 
+//      remark #15477: vector cost: 39.250 
+//      remark #15478: estimated potential speedup: 3.020 
+//      remark #15486: divides: 2 
+//      remark #15487: type converts: 1 
+//      remark #15488: --- end vector cost summary ---
+//   LOOP END
+//LOOP END
+47	    {
+48		/* top row */
+49		for( j=0; j<np; j++ )
+50		{
+51		    dist = sqrt( pow((double)j/(double)(np-1) - 
+52				     param->heatsrcs[i].posx, 2)+
+53				 pow(param->heatsrcs[i].posy, 2));
+54		  
+55		    if( dist <= param->heatsrcs[i].range )
+56		    {
+57			(param->u)[j] +=
+58			    (param->heatsrcs[i].range-dist) /
+59			    param->heatsrcs[i].range *
+60			    param->heatsrcs[i].temp;
+61		    }
+62		}
+63	      
+64		/* bottom row */
+65		for( j=0; j<np; j++ )
+66		{
+67		    dist = sqrt( pow((double)j/(double)(np-1) - 
+68				     param->heatsrcs[i].posx, 2)+
+69				 pow(1-param->heatsrcs[i].posy, 2));
+70		  
+71		    if( dist <= param->heatsrcs[i].range )
+72		    {
+73			(param->u)[(np-1)*np+j]+=
+74			    (param->heatsrcs[i].range-dist) / 
+75			    param->heatsrcs[i].range * 
+76			    param->heatsrcs[i].temp;
+77		    }
+78		}
+79	      
+80		/* leftmost column */
+81		for( j=1; j<np-1; j++ )
+82		{
+83		    dist = sqrt( pow(param->heatsrcs[i].posx, 2)+
+84				 pow((double)j/(double)(np-1) - 
+85				     param->heatsrcs[i].posy, 2)); 
+86		  
+87		    if( dist <= param->heatsrcs[i].range )
+88		    {
+89			(param->u)[ j*np ]+=
+90			    (param->heatsrcs[i].range-dist) / 
+91			    param->heatsrcs[i].range *
+92			    param->heatsrcs[i].temp;
+93		    }
+94		}
+95	      
+96		/* rightmost column */
+97		for( j=1; j<np-1; j++ )
+98		{
+99		    dist = sqrt( pow(1-param->heatsrcs[i].posx, 2)+
+100				 pow((double)j/(double)(np-1) - 
+101				     param->heatsrcs[i].posy, 2)); 
+102		  
+103		    if( dist <= param->heatsrcs[i].range )
+104		    {
+105			(param->u)[ j*np+(np-1) ]+=
+106			    (param->heatsrcs[i].range-dist) /
+107			    param->heatsrcs[i].range *
+108			    param->heatsrcs[i].temp;
+109		    }
+110		}
+111	    }
+112	
+113	    return 1;
+114	}
+115	
+116	/*
+117	 * free used memory
+118	 */
+119	int finalize( algoparam_t *param )
+120	{
+//INLINE REPORT: (finalize(algoparam_t *)) [1/4=25.0%] /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(120,1)
+//  -> EXTERN: (122,2) free(void *)
+//  -> EXTERN: (127,2) free(void *)
+//  -> EXTERN: (132,2) free(void *)
+//
+///dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(120,1):remark #34051: REGISTER ALLOCATION : [finalize] /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c:120
+//
+//    Hardware registers
+//        Reserved     :    2[ rsp rip]
+//        Available    :   63[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm31 k0-k7]
+//        Callee-save  :    6[ rbx rbp r12-r15]
+//        Assigned     :    3[ rax rbp rdi]
+//        
+//    Routine temporaries
+//        Total         :      15
+//            Global    :      10
+//            Local     :       5
+//        Regenerable   :       1
+//        Spilled       :       1
+//        
+//    Routine stack
+//        Variables     :       0 bytes*
+//            Reads     :       0 [0.00e+00 ~ 0.0%]
+//            Writes    :       0 [0.00e+00 ~ 0.0%]
+//        Spills        :       0 bytes*
+//            Reads     :       0 [0.00e+00 ~ 0.0%]
+//            Writes    :       0 [0.00e+00 ~ 0.0%]
+//    
+//    Notes
+//    
+//        *Non-overlapping variables and spills may share stack space,
+//         so the total stack size might be less than this.
+//    
+//
+121	    if( param->u ) {
+122		free(param->u);
+123		param->u = 0;
+124	    }
+125	
+126	    if( param->uhelp ) {
+127		free(param->uhelp);
+128		param->uhelp = 0;
+129	    }
+130	
+131	    if( param->uvis ) {
+132		free(param->uvis);
+133		param->uvis = 0;
+134	    }
+135	
+136	    return 1;
+137	}
+138	
+139	
+140	/*
+141	 * write the given temperature u matrix to rgb values
+142	 * and write the resulting image to file f
+143	 */
+144	void write_image( FILE * f, double *u,
+145			  unsigned sizex, unsigned sizey ) 
+146	{
+//INLINE REPORT: (write_image(FILE *, double *, unsigned int, unsigned int)) [2/4=50.0%] /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(146,1)
+//  -> EXTERN: (194,5) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+//  -> EXTERN: (195,5) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+//  -> EXTERN: (196,5) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+//  -> EXTERN: (205,6) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+//  -> EXTERN: (207,2) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+//
+///dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(146,1):remark #34051: REGISTER ALLOCATION : [write_image] /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c:146
+//
+//    Hardware registers
+//        Reserved     :    2[ rsp rip]
+//        Available    :   63[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm31 k0-k7]
+//        Callee-save  :    6[ rbx rbp r12-r15]
+//        Assigned     :   32[ rax rdx rcx rbx rsi rdi r8-r15 zmm0-zmm14 zmm16-zmm18]
+//        
+//    Routine temporaries
+//        Total         :     193
+//            Global    :      69
+//            Local     :     124
+//        Regenerable   :      26
+//        Spilled       :      12
+//        
+//    Routine stack
+//        Variables     :    3072 bytes*
+//            Reads     :       3 [4.76e-02 ~ 0.0%]
+//            Writes    :     216 [3.12e+01 ~ 31.2%]
+//        Spills        :      56 bytes*
+//            Reads     :       8 [4.43e-02 ~ 0.0%]
+//            Writes    :       9 [1.21e-02 ~ 0.0%]
+//    
+//    Notes
+//    
+//        *Non-overlapping variables and spills may share stack space,
+//         so the total stack size might be less than this.
+//    
+//
+147	    // RGB table
+148	    unsigned char r[1024], g[1024], b[1024];
+149	    int i, j, k;
+150	  
+151	    double min, max;
+152	
+153	    j=1023;
+154	
+155	    // prepare RGB table
+156	    for( i=0; i<256; i++ )
+//
+//LOOP BEGIN at /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(156,5)
+//   remark #15329: vectorization support: non-unit strided store was emulated for the variable <r[j]>, stride is -1   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(158,2) ]
+//   remark #15329: vectorization support: non-unit strided store was emulated for the variable <g[j]>, stride is -1   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(158,12) ]
+//   remark #15329: vectorization support: non-unit strided store was emulated for the variable <b[j]>, stride is -1   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(158,20) ]
+//   remark #15305: vectorization support: vector length 64
+//   remark #15309: vectorization support: normalized vectorization overhead 0.005
+//   remark #15300: LOOP WAS VECTORIZED
+//   remark #26013: Compiler has chosen to target XMM/YMM vector. Try using -qopt-zmm-usage=high to override
+//   remark #15453: unmasked strided stores: 3 
+//   remark #15475: --- begin vector cost summary ---
+//   remark #15476: scalar cost: 7 
+//   remark #15477: vector cost: 6.390 
+//   remark #15478: estimated potential speedup: 1.090 
+//   remark #15488: --- end vector cost summary ---
+//   remark #25015: Estimate of max trip count of loop=4
+//LOOP END
+157	    {
+158		r[j]=255; g[j]=i; b[j]=0;
+159		j--;
+160	    }
+161	    for( i=0; i<256; i++ )
+//
+//LOOP BEGIN at /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(161,5)
+//   remark #15329: vectorization support: non-unit strided store was emulated for the variable <r[j]>, stride is -1   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(163,2) ]
+//   remark #15329: vectorization support: non-unit strided store was emulated for the variable <g[j]>, stride is -1   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(163,14) ]
+//   remark #15329: vectorization support: non-unit strided store was emulated for the variable <b[j]>, stride is -1   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(163,24) ]
+//   remark #15305: vectorization support: vector length 64
+//   remark #15309: vectorization support: normalized vectorization overhead 0.005
+//   remark #15300: LOOP WAS VECTORIZED
+//   remark #26013: Compiler has chosen to target XMM/YMM vector. Try using -qopt-zmm-usage=high to override
+//   remark #15453: unmasked strided stores: 3 
+//   remark #15475: --- begin vector cost summary ---
+//   remark #15476: scalar cost: 9 
+//   remark #15477: vector cost: 6.390 
+//   remark #15478: estimated potential speedup: 1.400 
+//   remark #15488: --- end vector cost summary ---
+//   remark #25015: Estimate of max trip count of loop=4
+//LOOP END
+162	    {
+163		r[j]=255-i; g[j]=255; b[j]=0;
+164		j--;
+165	    }
+166	    for( i=0; i<256; i++ )
+//
+//LOOP BEGIN at /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(166,5)
+//   remark #15329: vectorization support: non-unit strided store was emulated for the variable <r[j]>, stride is -1   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(168,2) ]
+//   remark #15329: vectorization support: non-unit strided store was emulated for the variable <g[j]>, stride is -1   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(168,10) ]
+//   remark #15329: vectorization support: non-unit strided store was emulated for the variable <b[j]>, stride is -1   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(168,20) ]
+//   remark #15305: vectorization support: vector length 64
+//   remark #15309: vectorization support: normalized vectorization overhead 0.005
+//   remark #15300: LOOP WAS VECTORIZED
+//   remark #26013: Compiler has chosen to target XMM/YMM vector. Try using -qopt-zmm-usage=high to override
+//   remark #15453: unmasked strided stores: 3 
+//   remark #15475: --- begin vector cost summary ---
+//   remark #15476: scalar cost: 7 
+//   remark #15477: vector cost: 6.390 
+//   remark #15478: estimated potential speedup: 1.090 
+//   remark #15488: --- end vector cost summary ---
+//   remark #25015: Estimate of max trip count of loop=4
+//LOOP END
+167	    {
+168		r[j]=0; g[j]=255; b[j]=i;
+169		j--;
+170	    }
+171	    for( i=0; i<256; i++ )
+//
+//LOOP BEGIN at /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(171,5)
+//   remark #25453: Loop Reversed
+//   remark #15389: vectorization support: reference r[j] has unaligned access   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(173,2) ]
+//   remark #15389: vectorization support: reference g[j] has unaligned access   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(173,10) ]
+//   remark #15389: vectorization support: reference b[j] has unaligned access   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(173,22) ]
+//   remark #15381: vectorization support: unaligned access used inside loop body
+//   remark #15305: vectorization support: vector length 32
+//   remark #15427: loop was completely unrolled
+//   remark #15399: vectorization support: unroll factor set to 8
+//   remark #15309: vectorization support: normalized vectorization overhead 0.070
+//   remark #15301: REVERSED LOOP WAS VECTORIZED
+//   remark #26013: Compiler has chosen to target XMM/YMM vector. Try using -qopt-zmm-usage=high to override
+//   remark #15451: unmasked unaligned unit stride stores: 3 
+//   remark #15475: --- begin vector cost summary ---
+//   remark #15476: scalar cost: 8 
+//   remark #15477: vector cost: 0.500 
+//   remark #15478: estimated potential speedup: 14.940 
+//   remark #15488: --- end vector cost summary ---
+//LOOP END
+172	    {
+173		r[j]=0; g[j]=255-i; b[j]=255;
+174		j--;
+175	    }
+176	
+177	
+178	    min=DBL_MAX;
+179	    max=-DBL_MAX;
+180	
+181	    // find minimum and maximum 
+182	    for( i=0; i<sizey; i++ )
+//
+//LOOP BEGIN at /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(182,5)
+//   remark #15542: loop was not vectorized: inner loop was already vectorized
+//
+//   LOOP BEGIN at /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(184,2)
+//   <Peeled loop for vectorization>
+//      remark #25015: Estimate of max trip count of loop=3
+//   LOOP END
+//
+//   LOOP BEGIN at /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(184,2)
+//      remark #15389: vectorization support: reference u[i*sizex+j] has unaligned access   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(186,10) ]
+//      remark #15389: vectorization support: reference u[i*sizex+j] has unaligned access   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(188,10) ]
+//      remark #15381: vectorization support: unaligned access used inside loop body
+//      remark #15305: vectorization support: vector length 4
+//      remark #15399: vectorization support: unroll factor set to 4
+//      remark #15309: vectorization support: normalized vectorization overhead 1.200
+//      remark #15355: vectorization support: max is double type reduction   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(151,5) ]
+//      remark #15355: vectorization support: min is double type reduction   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(151,5) ]
+//      remark #15300: LOOP WAS VECTORIZED
+//      remark #26013: Compiler has chosen to target XMM/YMM vector. Try using -qopt-zmm-usage=high to override
+//      remark #15442: entire loop may be executed in remainder
+//      remark #15450: unmasked unaligned unit stride loads: 1 
+//      remark #15475: --- begin vector cost summary ---
+//      remark #15476: scalar cost: 16 
+//      remark #15477: vector cost: 2.500 
+//      remark #15478: estimated potential speedup: 5.000 
+//      remark #15488: --- end vector cost summary ---
+//   LOOP END
+//
+//   LOOP BEGIN at /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(184,2)
+//   <Remainder loop for vectorization>
+//      remark #15389: vectorization support: reference u[i*sizex+j] has unaligned access   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(186,10) ]
+//      remark #15389: vectorization support: reference u[i*sizex+j] has unaligned access   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(188,10) ]
+//      remark #15381: vectorization support: unaligned access used inside loop body
+//      remark #15305: vectorization support: vector length 4
+//      remark #15309: vectorization support: normalized vectorization overhead 4.636
+//      remark #15355: vectorization support: max is double type reduction   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(151,5) ]
+//      remark #15355: vectorization support: min is double type reduction   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(151,5) ]
+//      remark #15301: REMAINDER LOOP WAS VECTORIZED
+//      remark #15442: entire loop may be executed in remainder
+//   LOOP END
+//
+//   LOOP BEGIN at /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(184,2)
+//   <Remainder loop for vectorization>
+//   LOOP END
+//LOOP END
+183	    {
+184		for( j=0; j<sizex; j++ )
+185		{
+186		    if( u[i*sizex+j]>max )
+187			max=u[i*sizex+j];
+188		    if( u[i*sizex+j]<min )
+189			min=u[i*sizex+j];
+190		}
+191	    }
+192	  
+193	
+194	    fprintf(f, "P3\n");
+195	    fprintf(f, "%u %u\n", sizex, sizey);
+196	    fprintf(f, "%u\n", 255);
+197	
+198	    for( i=0; i<sizey; i++ )
+//
+//LOOP BEGIN at /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(198,5)
+//   remark #15382: vectorization support: call to function fprintf(FILE *__restrict__, const char *__restrict__, ...) cannot be vectorized   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(205,6) ]
+//   remark #15382: vectorization support: call to function fprintf(FILE *__restrict__, const char *__restrict__, ...) cannot be vectorized   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(207,2) ]
+//   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+//   remark #15346: vector dependence: assumed OUTPUT dependence between call:fprintf(FILE *__restrict__, const char *__restrict__, ...) (205:6) and call:fprintf(FILE *__restrict__, const char *__restrict__, ...) (207:2)
+//   remark #15346: vector dependence: assumed OUTPUT dependence between call:fprintf(FILE *__restrict__, const char *__restrict__, ...) (207:2) and call:fprintf(FILE *__restrict__, const char *__restrict__, ...) (205:6)
+//
+//   LOOP BEGIN at /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(200,2)
+//      remark #15527: loop was not vectorized: function call to fprintf(FILE *__restrict__, const char *__restrict__, ...) cannot be vectorized   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(205,6) ]
+//   LOOP END
+//LOOP END
+199	    {
+200		for( j=0; j<sizex; j++ )
+201		{
+202		    k=(int)(1024.0*(u[i*sizex+j]-min)/(max-min));
+203			if (k==1024) k=1023;
+204	
+205		    fprintf(f, "%d %d %d  ", r[k], g[k], b[k]);
+206		}
+207		fprintf(f, "\n");
+208	    }
+209	}
+210	
+211	
+212	int coarsen( double *uold, unsigned oldx, unsigned oldy ,
+213		     double *unew, unsigned newx, unsigned newy )
+214	{
+//INLINE REPORT: (coarsen(double *, unsigned int, unsigned int, double *, unsigned int, unsigned int)) [3/4=75.0%] /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(214,1)
+//
+///dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(214,1):remark #34051: REGISTER ALLOCATION : [coarsen] /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c:214
+//
+//    Hardware registers
+//        Reserved     :    2[ rsp rip]
+//        Available    :   63[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm31 k0-k7]
+//        Callee-save  :    6[ rbx rbp r12-r15]
+//        Assigned     :   16[ rax rdx rcx rbx rsi rdi r8-r15 zmm0-zmm1]
+//        
+//    Routine temporaries
+//        Total         :      70
+//            Global    :      36
+//            Local     :      34
+//        Regenerable   :       5
+//        Spilled       :      10
+//        
+//    Routine stack
+//        Variables     :       0 bytes*
+//            Reads     :       0 [0.00e+00 ~ 0.0%]
+//            Writes    :       0 [0.00e+00 ~ 0.0%]
+//        Spills        :      72 bytes*
+//            Reads     :      14 [4.08e+00 ~ 4.1%]
+//            Writes    :      12 [2.64e+00 ~ 2.6%]
+//    
+//    Notes
+//    
+//        *Non-overlapping variables and spills may share stack space,
+//         so the total stack size might be less than this.
+//    
+//
+215	    int i, j;
+216	
+217	    int stepx;
+218	    int stepy;
+219	    int stopx = newx;
+220	    int stopy = newy;
+221	
+222	    if (oldx>newx)
+223			stepx=oldx/newx;
+224	    else {
+225			stepx=1;
+226			stopx=oldx;
+227	    }
+228	
+229	    if (oldy>newy)
+230			stepy=oldy/newy;
+231	    else {
+232			stepy=1;
+233			stopy=oldy;
+234	    }
+235	
+236	    // NOTE: this only takes the top-left corner,
+237	    // and doesnt' do any real coarsening 
+238	    for( i=0; i<stopy-1; i++ )
+//
+//LOOP BEGIN at /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(238,5)
+//   remark #15542: loop was not vectorized: inner loop was already vectorized
+//
+//   LOOP BEGIN at /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(240,2)
+//   <Peeled loop for vectorization>
+//      remark #15389: vectorization support: reference unew[i*newx+j] has unaligned access   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(242,6) ]
+//      remark #15381: vectorization support: unaligned access used inside loop body
+//      remark #15335: peel loop was not vectorized: vectorization possible but seems inefficient. Use vector always directive or -vec-threshold0 to override 
+//      remark #15305: vectorization support: vector length 2
+//      remark #15309: vectorization support: normalized vectorization overhead 0.326
+//      remark #15451: unmasked unaligned unit stride stores: 1 
+//      remark #15452: unmasked strided loads: 1 
+//      remark #15475: --- begin vector cost summary ---
+//      remark #15476: scalar cost: 5 
+//      remark #15477: vector cost: 2.500 
+//      remark #15478: estimated potential speedup: 1.960 
+//      remark #15488: --- end vector cost summary ---
+//      remark #25015: Estimate of max trip count of loop=1
+//   LOOP END
+//
+//   LOOP BEGIN at /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(240,2)
+//      remark #15389: vectorization support: reference unew[i*newx+j] has unaligned access   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(242,6) ]
+//      remark #15381: vectorization support: unaligned access used inside loop body
+//      remark #15328: vectorization support: non-unit strided load was emulated for the variable <uold[(i*oldx)*stepy+j*stepx]>, stride is unknown to compiler   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(242,21) ]
+//      remark #15305: vectorization support: vector length 2
+//      remark #15309: vectorization support: normalized vectorization overhead 2.000
+//      remark #15300: LOOP WAS VECTORIZED
+//      remark #26013: Compiler has chosen to target XMM/YMM vector. Try using -qopt-zmm-usage=high to override
+//      remark #15451: unmasked unaligned unit stride stores: 1 
+//      remark #15452: unmasked strided loads: 1 
+//      remark #15475: --- begin vector cost summary ---
+//      remark #15476: scalar cost: 5 
+//      remark #15477: vector cost: 2.500 
+//      remark #15478: estimated potential speedup: 1.960 
+//      remark #15488: --- end vector cost summary ---
+//   LOOP END
+//
+//   LOOP BEGIN at /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(240,2)
+//   <Remainder loop for vectorization>
+//      remark #15389: vectorization support: reference unew[i*newx+j] has unaligned access   [ /dss/dsshome1/05/h039vak/Assignment1/heatdir/misc.c(242,6) ]
+//      remark #15381: vectorization support: unaligned access used inside loop body
+//      remark #15335: remainder loop was not vectorized: vectorization possible but seems inefficient. Use vector always directive or -vec-threshold0 to override 
+//      remark #15305: vectorization support: vector length 2
+//      remark #15309: vectorization support: normalized vectorization overhead 0.326
+//      remark #15451: unmasked unaligned unit stride stores: 1 
+//      remark #15452: unmasked strided loads: 1 
+//      remark #15475: --- begin vector cost summary ---
+//      remark #15476: scalar cost: 5 
+//      remark #15477: vector cost: 2.500 
+//      remark #15478: estimated potential speedup: 1.960 
+//      remark #15488: --- end vector cost summary ---
+//   LOOP END
+//LOOP END
+239	    {
+240		for( j=0; j<stopx-1; j++ )
+241	        {
+242		    unew[i*newx+j]=uold[i*oldx*stepy+j*stepx];
+243	        }
+244	    }
+245	
+246	  return 1;
+247	}
+248	
