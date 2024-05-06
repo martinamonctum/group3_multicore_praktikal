@@ -11,36 +11,38 @@
 
 int read_input( FILE *infile, algoparam_t *param )
 {
-  int i, n;
+  int i, n, alg;
   char buf[BUFSIZE];
+  char *tmp;
 
-  fgets(buf, BUFSIZE, infile);
+  tmp=fgets(buf, BUFSIZE, infile);
   n = sscanf( buf, "%u", &(param->maxiter) );
   if( n!=1 )
     return 0;
 
-  fgets(buf, BUFSIZE, infile);
+  tmp=fgets(buf, BUFSIZE, infile);
   n = sscanf( buf, "%u", &(param->initial_res) );
   if( n!=1 )
     return 0;
 
-  fgets(buf, BUFSIZE, infile);
+  tmp=fgets(buf, BUFSIZE, infile);
   n = sscanf( buf, "%u", &(param->max_res) );
   if( n!=1 )
     return 0;
 
-  fgets(buf, BUFSIZE, infile);
+  tmp=fgets(buf, BUFSIZE, infile);
   n = sscanf( buf, "%u", &(param->res_step_size) );
   if( n!=1 )
     return 0;
 
+  tmp=fgets(buf, BUFSIZE, infile);
 
-  fgets(buf, BUFSIZE, infile);
-  n = sscanf(buf, "%d", &(param->algorithm) );
-  if( n!=1 )
-    return 0;
+   n = sscanf( buf, "%u", &(alg) );
+   if( n!=1 )
+     return 0;
 
-  fgets(buf, BUFSIZE, infile);
+
+  tmp=fgets(buf, BUFSIZE, infile);
   n = sscanf(buf, "%u", &(param->numsrcs) );
   if( n!=1 )
     return 0;
@@ -50,7 +52,7 @@ int read_input( FILE *infile, algoparam_t *param )
   
   for( i=0; i<param->numsrcs; i++ )
     {
-      fgets(buf, BUFSIZE, infile);
+      tmp=fgets(buf, BUFSIZE, infile);
       n = sscanf( buf, "%f %f %f %f",
 		  &(param->heatsrcs[i].posx),
 		  &(param->heatsrcs[i].posy),
@@ -74,9 +76,6 @@ void print_params( algoparam_t *param )
 	  param->initial_res + param->res_step_size,
 	  param->max_res);
   fprintf(stderr, "Iterations        : %u\n", param->maxiter);
-  fprintf(stderr, "Algorithm         : %d (%s)\n",
-	  param->algorithm,
-	  (param->algorithm == 0) ? "Jacobi":"Gauss-Jacobi" );
   fprintf(stderr, "Num. Heat sources : %u\n", param->numsrcs);
 
   for( i=0; i<param->numsrcs; i++ )

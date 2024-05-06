@@ -1,16 +1,14 @@
-# Intel compiler
 CC =  icc
-CFLAGS = -O3 -fno-alias -xhost
+CFLAGS = -O3 -fno-alias -xhost  
 
-MPICC = mpicc
 
-all: heat
+all: heat 
 
-heat : heat.o input.o misc.o timing.o relax_gauss.o relax_jacobi.o
-	$(CC) $(CFLAGS) -o $@ $+ -lm
+heat : heat.o input.o misc.o timing.o relax_jacobi.o
+	$(CC) $(CFLAGS) -o heat $+ -lm  
 
-%.o : %.c heat.h timing.h input.h
-	$(CC) $(CFLAGS) -c -o $@ $< 
+%.o : %.c %.h
+	$(CC) $(CFLAGS) -c -o $@ $<
 
 clean:
 	rm -f *.o heat *~ *.ppm

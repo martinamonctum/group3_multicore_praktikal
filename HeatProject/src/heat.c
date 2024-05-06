@@ -1,36 +1,33 @@
-/*
- * heat.h
- *
- * Iterative solver for heat distribution
- */
-
-#include "heat.h"
-
 #include <stdio.h>
 #include <stdlib.h>
 
 #include "input.h"
+#include "heat.h"
 #include "timing.h"
+
+double* time;
 
 void usage(char *s) {
 	fprintf(stderr, "Usage: %s <input file> [result file]\n\n", s);
 }
 
 int main(int argc, char *argv[]) {
-	unsigned iter;
+	int i, j, k, ret;
 	FILE *infile, *resfile;
 	char *resfilename;
+	int np, iter, chkflag;
 
+	
 	// algorithmic parameters
 	algoparam_t param;
-	int np,i;
 
-	double runtime, flop;
+
+	// timing
+
 	double residual;
-	double time[1000];
-	double floprate[1000];
-	int resolution[1000];
-	int experiment=0;
+
+	// set the visualization resolution
+	param.visres = 100;
 
 	// check arguments
 	if (argc < 2) {
@@ -65,22 +62,12 @@ int main(int argc, char *argv[]) {
 	}
 
 	print_params(&param);
+	time = (double *) calloc(sizeof(double), (int) (param.max_res - param.initial_res + param.res_step_size) / param.res_step_size);
 
-	// set the visualization resolution
-	param.visres = 1024;
+	int exp_number = 0;
 
-	param.u = 0;
-	param.uhelp = 0;
-	param.uvis = 0;
-
-	param.act_res = param.initial_res;
-
-	// loop over different resolutions
-	while (1) {
-
-		// free allocated memory of previous experiment
-		if (param.u != 0)
-			finalize(&param);
+	for (param.act_res = param.initial_res; param.act_res <= param.max_res; param.act_res = param.act_res + param.res_step_size) {
+		if (param.act_res!=param.initial_res) finalize(&param);
 
 		if (!initialize(&param)) {
 			fprintf(stderr, "Error in Jacobi initialization.\n\n");
@@ -88,82 +75,44 @@ int main(int argc, char *argv[]) {
 			usage(argv[0]);
 		}
 
-		fprintf(stderr, "Resolution: %5u\r", param.act_res);
-
-		// full size (param.act_res are only the inner points)
-		np = param.act_res + 2;
-
-		// starting time
-		runtime = wtime();
-		residual = 999999999;
-
-		iter = 0;
-		while (1) {
-
-			switch (param.algorithm) {
-
-			case 0: // JACOBI
-
-				relax_jacobi(param.u, param.uhelp, np, np);
-				residual = residual_jacobi(param.u, np, np);
-				break;
-
-			case 1: // GAUSS
-
-				relax_gauss(param.u, np, np);
-				residual = residual_gauss(param.u, param.uhelp, np, np);
-				break;
+		for (i = 0; i < param.act_res + 2; i++) {
+			for (j = 0; j < param.act_res + 2; j++) {
+				param.uhelp[i * (param.act_res + 2) + j] = param.u[i * (param.act_res + 2) + j];
 			}
-
-			iter++;
-
-			// solution good enough ?
-			if (residual < 0.000005)
-				break;
-
-			// max. iteration reached ? (no limit with maxiter=0)
-			if (param.maxiter > 0 && iter >= param.maxiter)
-				break;
-
-			// if (iter % 100 == 0)
-			// 	fprintf(stderr, "residual %f, %d iterations\n", residual, iter);
 		}
 
-		// Flop count after <i> iterations
-		flop = iter * 11.0 * param.act_res * param.act_res;
-		// stopping time
-		runtime = wtime() - runtime;
+		// starting time
+		time[exp_number] = wtime();
+		residual = 999999999;
+		np = param.act_res + 2;
 
-		fprintf(stderr, "Resolution: %5u, ", param.act_res);
-		fprintf(stderr, "Time: %04.3f ", runtime);
-		fprintf(stderr, "(%3.3f GFlop => %6.2f MFlop/s, ", flop / 1000000000.0, flop / runtime / 1000000);
-		fprintf(stderr, "residual %f, %d iterations)\n", residual, iter);
+		for (iter = 0; iter < param.maxiter; iter++) {
+			residual = relax_jacobi(&(param.u), &(param.uhelp), np, np);
+			if (residual<0.00000005)break;
+		}
 
-		// for plot...
-		time[experiment]=runtime;
-		floprate[experiment]=flop / runtime / 1000000;
-		resolution[experiment]=param.act_res;
-		experiment++;
+		time[exp_number] = wtime() - time[exp_number];
 
-		if (param.act_res + param.res_step_size > param.max_res)
-			break;
-		param.act_res += param.res_step_size;
-		
+		printf("\n\nResolution: %u\n", param.act_res);
+		printf("===================\n");
+		printf("Execution time: %f\n", time[exp_number]);
+		printf("Residual: %f\n\n", residual);
+
+		printf("megaflops:  %.1lf\n", (double) param.maxiter * (np - 2) * (np - 2) * 7 / time[exp_number] / 1000000);
+		printf("  flop instructions (M):  %.3lf\n", (double) param.maxiter * (np - 2) * (np - 2) * 7 / 1000000);
+
+		exp_number++;
 	}
 
-    FILE *flopDat = fopen("FlopData", "a");
+    param.uvis  = (double*)calloc( sizeof(double),
+				      (param.visres+2) *
+				      (param.visres+2) );
 
-	for (i=0;i<experiment; i++){
-		fprintf(flopDat, "%5d " ,resolution[i]);
-                fprintf(flopDat, "%5.3f\n", floprate[i]);
-		printf("%5d; %5.3f; %5.3f\n", resolution[i], time[i], floprate[i]);
-	}
-	fclose(flopDat);
-	
-	coarsen(param.u, np, np, param.uvis, param.visres + 2, param.visres + 2);
+	param.act_res = param.act_res - param.res_step_size;
+
+	coarsen(param.u, param.act_res + 2, param.act_res + 2, param.uvis, param.visres + 2, param.visres + 2);
+
 	write_image(resfile, param.uvis, param.visres + 2, param.visres + 2);
 
-	finalize(&param);
-
-      return 0;
+	return 0;
 }

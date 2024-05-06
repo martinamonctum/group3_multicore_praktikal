@@ -7,83 +7,38 @@
 
 #include "heat.h"
 
-/*
- * Residual (length of error vector)
- * between current solution and next after a Jacobi step
- */
-double residual_jacobi(double *u, unsigned sizex, unsigned sizey) {
-	unsigned i, j;
-	double unew, diff, sum = 0.0;
 
-	for (j = 1; j < sizex - 1; j++) {
-		for (i = 1; i < sizey - 1; i++) {
-			unew = 0.25 * (u[i * sizex + (j - 1)] +  // left
-						u[i * sizex + (j + 1)] +  // right
-						u[(i - 1) * sizex + j] +  // top
-						u[(i + 1) * sizex + j]); // bottom
+double relax_jacobi( double **u1, double **utmp1,
+         unsigned sizex, unsigned sizey )
+{
+  int i, j;
+  double *help,*u, *utmp,factor=0.5;
 
-			diff = unew - u[i * sizex + j];
-			sum += diff * diff;
-		}
-	}
+  utmp=*utmp1;
+  u=*u1;
+  double unew, diff, sum=0.0;
 
-	return sum;
+
+  for( i=1; i<sizey-1; i++ ) {
+  	int ii=i*sizex;
+  	int iim1=(i-1)*sizex;
+  	int iip1=(i+1)*sizex;
+#pragma ivdep
+    for( j=1; j<sizex-1; j++ ){
+       unew = 0.25 * (u[ ii+(j-1) ]+
+        		            u[ ii+(j+1) ]+
+        		            u[ iim1+j ]+
+        		            u[ iip1+j ]);
+		    diff = unew - u[ii + j];
+		    utmp[ii+j] = unew;
+		    sum += diff * diff;
+
+       }
+    }
+
+  *u1=utmp;
+  *utmp1=u;
+  return(sum);
 }
 
-/*
- * One Jacobi iteration step
- */
-void relax_jacobi(double *u, double *utmp,unsigned sizex, unsigned sizey) {
 
-	int i, j;
-
-    // this only works for even resólution, for uneven resolution the loops have to be split, due to the borders.
-	for (i = 1; i < sizey - 1; i+=4) {
-	    for (j = 2; j < sizex - 1; j+=2) {
-			u[i * sizex + j] = 0.25 * (u[i * sizex + (j - 1)] +  // left
-						u[i * sizex + (j + 1)] +  // right
-						u[(i - 1) * sizex + j] +  // top
-						u[(i + 1) * sizex + j]); // bottom
-            u[(i+1) * sizex + (j-1)] = 0.25 * (u[(i+1) * sizex + (j-2)] +  // left
-						u[(i+1) * sizex + j] +  // right
-						u[i * sizex + (j-1)] +  // top
-						u[(i+2) * sizex + (j-1)]); // bottom
-		}
-        for (j = sizex-2; j > 0; j-=2) {
-			u[(i+2) * sizex + j] = 0.25 * (u[(i+2) * sizex + (j - 1)] +  // left
-						u[(i+2) * sizex + (j + 1)] +  // right
-						u[(i+1) * sizex + j] +  // top
-						u[(i+3) * sizex + j]); // bottom
-            u[(i+3) * sizex + (j-1)] = 0.25 * (u[(i+3) * sizex + (j-2)] +  // left
-						u[(i+3) * sizex + j] +  // right
-						u[(i+2) * sizex + (j-1)] +  // top
-						u[(i+4) * sizex + (j-1)]); // bottom
-		}
-	}
-
-    for (i = 1; i < sizey - 1; i+=4) {
-	    for (j = 1; j < sizex - 1; j+=2) {
-            u[i * sizex + j] = 0.25 * (u[i * sizex + (j - 1)] +  // left
-						u[i * sizex + (j + 1)] +  // right
-						u[(i - 1) * sizex + j] +  // top
-						u[(i + 1) * sizex + j]); // bottom
-			u[(i+1) * sizex + (j+1)] = 0.25 * (u[(i+1) * sizex + j] +  // left
-						u[(i+1) * sizex + (j + 2)] +  // right
-						u[i * sizex + (j+1)] +  // top
-						u[(i+2) * sizex + (j+1)]); // bottom
-            
-		}
-        for (j = sizex-3; j > 0; j-=2) {
-            u[(i+2) * sizex + j] = 0.25 * (u[(i+2) * sizex + (j - 1)] +  // left
-						u[(i+2) * sizex + (j + 1)] +  // right
-						u[(i+1) * sizex + j] +  // top
-						u[(i+3) * sizex + j]); // bottom
-			u[(i+3) * sizex + (j+1)] = 0.25 * (u[(i+3) * sizex + j] +  // left
-						u[(i+3) * sizex + (j + 2)] +  // right
-						u[(i+2) * sizex + (j+1)] +  // top
-						u[(i+4) * sizex + (j+1)]); // bottom
-            
-		}
-	}
-
-}

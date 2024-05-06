@@ -27,8 +27,6 @@ typedef struct
     unsigned max_res;       // spatial resolution
     unsigned initial_res;
     unsigned res_step_size;
-    int algorithm;          // 0=>Jacobi, 1=>Gauss
-
     unsigned visres;        // visualization resolution
   
     double *u, *uhelp;
@@ -59,7 +57,7 @@ void relax_gauss( double *u,
 // Jacobi: relax_jacobi.c
 double residual_jacobi( double *u,
 			unsigned sizex, unsigned sizey );
-void relax_jacobi( double *u, double *utmp,
+double relax_jacobi( double **u, double **utmp,
 		   unsigned sizex, unsigned sizey ); 
 
 
