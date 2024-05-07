@@ -1,0 +1,31 @@
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    34  100    34    0     0   8500      0 --:--:-- --:--:-- --:--:--  8500
+Plugin perfevent: Sensors stopped
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    28  100    28    0     0   4000      0 --:--:-- --:--:-- --:--:--  4000
+Plugin msr: Sensors stopped
+Resolutions       : (2000, 6000, ... 6500)
+Iterations        : 50
+Num. Heat sources : 2
+   1: (0.00, 0.00) 1.00 1.00 
+   2: (1.00, 1.00) 1.00 0.50 
+
+
+Resolution: 2000
+===================
+Execution time: 0.055107
+Residual: 0.236070
+
+megaflops:  25405.2
+  flop instructions (M):  1400.000
+
+
+Resolution: 6000
+===================
+Execution time: 0.412558
+Residual: 0.708009
+
+megaflops:  30541.2
+  flop instructions (M):  12600.000
