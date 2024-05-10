@@ -34,6 +34,7 @@ int initialize( algoparam_t *param )
     (param->u)     = (double*)malloc( sizeof(double)* np*np );
     (param->uhelp) = (double*)malloc( sizeof(double)* np*np );
 
+	
     for (i=0;i<np;i++){
     	for (j=0;j<np;j++){
     		param->u[i*np+j]=0;
