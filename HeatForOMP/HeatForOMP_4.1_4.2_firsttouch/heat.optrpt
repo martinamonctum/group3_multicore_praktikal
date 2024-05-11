@@ -1,0 +1,34 @@
+Intel(R) Advisor can now assist with vectorization and show optimization
+  report messages with your source code.
+See "https://software.intel.com/en-us/intel-advisor-xe" for details.
+
+
+Begin optimization report for: main(int, char **)
+
+    Report from: Auto-parallelization optimizations [par]
+
+
+LOOP BEGIN at heat.c(69,2)
+   remark #25460: No loop optimizations reported
+
+   LOOP BEGIN at heat.c(78,3)
+      remark #25460: No loop optimizations reported
+
+      LOOP BEGIN at heat.c(79,4)
+         remark #25460: No loop optimizations reported
+
+         LOOP BEGIN at heat.c(79,4)
+         <Multiversioned v2>
+         LOOP END
+
+         LOOP BEGIN at heat.c(79,4)
+         <Remainder, Multiversioned v2>
+         LOOP END
+      LOOP END
+   LOOP END
+
+   LOOP BEGIN at heat.c(89,3)
+      remark #25460: No loop optimizations reported
+   LOOP END
+LOOP END
+===========================================================================

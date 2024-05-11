@@ -1,0 +1,153 @@
+Intel(R) Advisor can now assist with vectorization and show optimization
+  report messages with your source code.
+See "https://software.intel.com/en-us/intel-advisor-xe" for details.
+
+
+Begin optimization report for: write_image(FILE *, double *, unsigned int, unsigned int)
+
+    Report from: Auto-parallelization optimizations [par]
+
+
+LOOP BEGIN at misc.c(157,5)
+   remark #25460: No loop optimizations reported
+LOOP END
+
+LOOP BEGIN at misc.c(162,5)
+   remark #25460: No loop optimizations reported
+LOOP END
+
+LOOP BEGIN at misc.c(167,5)
+   remark #25460: No loop optimizations reported
+LOOP END
+
+LOOP BEGIN at misc.c(172,5)
+LOOP END
+
+LOOP BEGIN at misc.c(182,5)
+   remark #25460: No loop optimizations reported
+
+   LOOP BEGIN at misc.c(184,2)
+   <Peeled loop for vectorization>
+   LOOP END
+
+   LOOP BEGIN at misc.c(184,2)
+      remark #25460: No loop optimizations reported
+   LOOP END
+
+   LOOP BEGIN at misc.c(184,2)
+   <Remainder loop for vectorization>
+   LOOP END
+
+   LOOP BEGIN at misc.c(184,2)
+   <Remainder loop for vectorization>
+   LOOP END
+LOOP END
+
+LOOP BEGIN at misc.c(198,5)
+   remark #25460: No loop optimizations reported
+
+   LOOP BEGIN at misc.c(200,2)
+      remark #25460: No loop optimizations reported
+   LOOP END
+LOOP END
+===========================================================================
+
+Begin optimization report for: coarsen(double *, unsigned int, unsigned int, double *, unsigned int, unsigned int)
+
+    Report from: Auto-parallelization optimizations [par]
+
+
+LOOP BEGIN at misc.c(236,5)
+   remark #25460: No loop optimizations reported
+
+   LOOP BEGIN at misc.c(238,8)
+      remark #25460: No loop optimizations reported
+
+      LOOP BEGIN at misc.c(241,11)
+         remark #25460: No loop optimizations reported
+
+         LOOP BEGIN at misc.c(242,10)
+            remark #25460: No loop optimizations reported
+         LOOP END
+      LOOP END
+   LOOP END
+LOOP END
+===========================================================================
+
+Begin optimization report for: initialize(algoparam_t *)
+
+    Report from: Auto-parallelization optimizations [par]
+
+
+LOOP BEGIN at misc.c(52,5)
+   remark #25460: No loop optimizations reported
+
+   LOOP BEGIN at misc.c(55,2)
+   <Peeled loop for vectorization, Multiversioned v1>
+   LOOP END
+
+   LOOP BEGIN at misc.c(55,2)
+   <Multiversioned v1>
+   LOOP END
+
+   LOOP BEGIN at misc.c(55,2)
+   <Multiversioned v2>
+   LOOP END
+
+   LOOP BEGIN at misc.c(71,2)
+   <Peeled loop for vectorization, Multiversioned v1>
+   LOOP END
+
+   LOOP BEGIN at misc.c(71,2)
+   <Multiversioned v1>
+   LOOP END
+
+   LOOP BEGIN at misc.c(71,2)
+   <Multiversioned v2>
+   LOOP END
+
+   LOOP BEGIN at misc.c(87,2)
+      remark #25460: No loop optimizations reported
+   LOOP END
+
+   LOOP BEGIN at misc.c(103,2)
+      remark #25460: No loop optimizations reported
+   LOOP END
+
+   LOOP BEGIN at misc.c(55,2)
+   <Remainder loop for vectorization, Multiversioned v1>
+   LOOP END
+
+   LOOP BEGIN at misc.c(71,2)
+   <Remainder loop for vectorization, Multiversioned v1>
+   LOOP END
+LOOP END
+
+LOOP BEGIN at misc.c(39,5)
+   remark #25460: No loop optimizations reported
+
+   LOOP BEGIN at misc.c(40,6)
+   <Peeled loop for vectorization, Multiversioned v1>
+   LOOP END
+
+   LOOP BEGIN at misc.c(40,6)
+   <Multiversioned v1>
+   LOOP END
+
+   LOOP BEGIN at misc.c(40,6)
+   <Remainder loop for vectorization, Multiversioned v1>
+   LOOP END
+
+   LOOP BEGIN at misc.c(40,6)
+   <Remainder loop for vectorization, Multiversioned v1>
+   LOOP END
+
+   LOOP BEGIN at misc.c(40,6)
+   <Multiversioned v2>
+   LOOP END
+
+   LOOP BEGIN at misc.c(40,6)
+   <Remainder, Multiversioned v2>
+   LOOP END
+LOOP END
+===========================================================================
