@@ -1,0 +1,22 @@
+process 0 sent and incremented ping_pong_count 1
+process 0 received ping_pong_count 2
+process 0 sent and incremented ping_pong_count 3
+process 0 received ping_pong_count 4
+process 0 sent and incremented ping_pong_count 5
+process 0 received ping_pong_count 6
+process 0 sent and incremented ping_pong_count 7
+process 0 received ping_pong_count 8
+process 0 sent and incremented ping_pong_count 9
+process 0 received ping_pong_count 10
+process 1 received ping_pong_count 1
+process 1 sent and incremented ping_pong_count 2
+process 1 received ping_pong_count 3
+process 1 sent and incremented ping_pong_count 4
+process 1 received ping_pong_count 5
+process 1 sent and incremented ping_pong_count 6
+process 1 received ping_pong_count 7
+process 1 sent and incremented ping_pong_count 8
+process 1 received ping_pong_count 9
+process 1 sent and incremented ping_pong_count 10
+time of sending the message back and forth is 1222976 my rank is:0
+time of sending the message back and forth is 113088 my rank is:1
