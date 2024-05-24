@@ -1,0 +1,10 @@
+process 0 sent and incremented ping_pong_count 1
+process 1 received ping_pong_count 0
+slurmstepd: error: *** STEP 3393341.0 ON i01r01c03s03 CANCELLED AT 2024-05-24T17:43:20 DUE TO TIME LIMIT ***
+slurmstepd: error: *** JOB 3393341 ON i01r01c03s03 CANCELLED AT 2024-05-24T17:43:20 DUE TO TIME LIMIT ***
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 0 PID 3358083 RUNNING AT i01r01c03s03
+=   KILLED BY SIGNAL: 15 (Terminated)
+===================================================================================

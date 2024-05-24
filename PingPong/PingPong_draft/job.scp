@@ -1,0 +1,13 @@
+#!/bin/sh
+# Job Name and Files (also --job-name)
+#SBATCH -J heat
+#Output and error (also --output, --error):
+#SBATCH -o job.out
+#SBATCH -e job.out
+# Wall clock limit:
+#SBATCH --time=00:05:00
+#SBATCH --account=h039v
+#SBATCH --partition=test
+#SBATCH --ear=off
+
+mpirun -np 2 ./main
