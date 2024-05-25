@@ -8,6 +8,17 @@
 #SBATCH --time=00:05:00
 #SBATCH --account=h039v
 #SBATCH --partition=test
-#SBATCH --ear=off
+# Number of tasks (processes):
+#SBATCH --ntasks=2
+# Number of tasks per node:
+#SBATCH --nodes=2
+#SBATCH --ntasks-per-node=1
+# Number of CPUs per task (adjust this based on your specific core requirement)
 
+export I_MPI_DEBUG=4
+
+# Load the Intel MPI module (if needed)
+module load intel-mpi
+
+# Run the application with CPU binding options
 mpirun -np 2 ./main
