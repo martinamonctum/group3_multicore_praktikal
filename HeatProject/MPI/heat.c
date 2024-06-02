@@ -306,6 +306,7 @@ int main(int argc, char *argv[]) {
 				vis_partner_pos[1] = j / xshift_vis;
 				if (vis_partner_pos[0] > dims[0]-1) vis_partner_pos[0] = dims[0]-1;
 				if (vis_partner_pos[1] > dims[1]-1) vis_partner_pos[1] = dims[1]-1;
+				// printf("(%d,%d)\n", vis_partner_pos[0], vis_partner_pos[1]);
 				MPI_Cart_rank(comm_cart, vis_partner_pos, &vis_partner_rank);
 				if (vis_partner_rank == 0){
 					local_ypos_vis = i - vis_partner_pos[0] * yshift_vis;

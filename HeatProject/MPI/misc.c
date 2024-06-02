@@ -238,9 +238,9 @@ int coarsen( double *uold, unsigned oldx, unsigned oldy ,
      stepy=1.0;
     }
 
-    //printf("oldx=%d, newx=%d\n",oldx,newx);
-    //printf("oldy=%d, newy=%d\n",oldy,newy);
-    //printf("rx=%f, ry=%f\n",stepx,stepy);
+    // printf("oldx=%d, newx=%d\n",oldx,newx);
+    // printf("oldy=%d, newy=%d\n",oldy,newy);
+    // printf("rx=%f, ry=%f\n",stepx,stepy);
     // NOTE: this only takes the top-left corner,
     // and doesnt' do any real coarsening
 
@@ -251,7 +251,7 @@ int coarsen( double *uold, unsigned oldx, unsigned oldy ,
           temp = 0;
           for ( k=0; k<stepy; k++ ){
 	       	for ( l=0; l<stepx; l++ ){
-	       		if (ii+k<oldx && jj+l<oldy)
+	       		if (ii+k<oldy && jj+l<oldx)
 		           temp += uold[(ii+k)*oldx+(jj+l)] ;
 	        }
 	      }
