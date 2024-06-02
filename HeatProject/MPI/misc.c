@@ -127,46 +127,6 @@ int initialize( algoparam_t *param, int xdim, int ydim, int xshift, int yshift, 
     }
 	}
 
-	/*if(coords[0]==0 && coords[1]==0){
-		for (i = 0; i <10; i++){
-    	for(j=0;j<10;j++){
-    	   printf("%f ", param->u[i*xdim+j]);
-    	}
-    	printf("\n");
-    }
-	}
-
-	printf("\n");
-
-	if(coords[0]==0 && coords[1]==1){
-		for (i=0;i<10;i++){
-    	for(j=xdim-10;j<xdim;j++){
-    	   printf("%f ", param->u[i*xdim+j]);
-    	}
-    	printf("\n");
-		}
-	}
-
-	printf("\n");
-
-	if(coords[0]==1 && coords[1]==1){
-		for (i=ydim-10;i<ydim;i++){
-    	for(j=xdim-10;j<xdim;j++){
-    	   printf("%f ", param->u[i*xdim+j]);
-    	}
-    	printf("\n");
-		}
-	}
-
-	if(coords[0]==1 && coords[1]==0){
-		for (i=ydim-10;i<ydim;i++){
-    	for(j=0;j<10;j++){
-    	   printf("%f ", param->u[i*xdim+j]);
-    	}
-    	printf("\n");
-		}
-	}*/
-
     return 1;
 }
 
