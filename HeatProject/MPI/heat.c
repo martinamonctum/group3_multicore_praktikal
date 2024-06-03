@@ -216,13 +216,13 @@ int main(int argc, char *argv[]) {
 			if (global_residual<0.00000005)break;
 			for(m = 1; m < xdim-1; m++){
 				// send not border but newly computed data.
-			    lower_border_send[m] = param.u[(ydim-2)*xdim+m];
-				upper_border_send[m] = param.u[xdim+m];
+			    lower_border_send[m-1] = param.u[(ydim-2)*xdim+m];
+				upper_border_send[m-1] = param.u[xdim+m];
 			}
 			for(n = 1; n < ydim-1; n++){
 				// send not border but newly computed data.
-				left_border_send[n] = param.u[n*xdim+1];
-				right_border_send[n] = param.u[n*xdim+(xdim-2)];
+				left_border_send[n-1] = param.u[n*xdim+1];
+				right_border_send[n-1] = param.u[n*xdim+(xdim-2)];
 			}
 
 			MPI_Sendrecv(lower_border_send, xdim-2, MPI_DOUBLE, lower_rank, 1,
@@ -242,12 +242,12 @@ int main(int argc, char *argv[]) {
 						comm_cart, MPI_STATUS_IGNORE);
 
 			for(m = 1; m < xdim-1; m++){
-				if (lower_rank != MPI_PROC_NULL) param.u[(ydim-1)*xdim+m] = lower_border_rec[m];
-				if (upper_rank != MPI_PROC_NULL) param.u[m] = upper_border_rec[m];
+				if (lower_rank != MPI_PROC_NULL) param.u[(ydim-1)*xdim+m] = lower_border_rec[m-1];
+				if (upper_rank != MPI_PROC_NULL) param.u[m] = upper_border_rec[m-1];
 			}
 			for(n = 1; n < ydim-1; n++){
-				if (left_rank != MPI_PROC_NULL) param.u[n*xdim] = left_border_rec[n];
-				if (right_rank != MPI_PROC_NULL) param.u[n*xdim+(xdim-1)] = right_border_rec[n];
+				if (left_rank != MPI_PROC_NULL) param.u[n*xdim] = left_border_rec[n-1];
+				if (right_rank != MPI_PROC_NULL) param.u[n*xdim+(xdim-1)] = right_border_rec[n-1];
 			}
 
 			MPI_Barrier(comm_cart);
@@ -265,23 +265,6 @@ int main(int argc, char *argv[]) {
 			printf("megaflops:  %.1lf\n", (double) param.maxiter * (np - 2) * (np - 2) * 7 / time[exp_number] / 1000000);
 			printf("  flop instructions (M):  %.3lf\n", (double) param.maxiter * (np - 2) * (np - 2) * 7 / 1000000);
 		}
-
-		free(lower_border_send);
-		lower_border_send = 0;
-		free(lower_border_rec);
-		lower_border_rec = 0;
-		free(upper_border_send);
-		upper_border_send = 0;
-		free(upper_border_rec);
-		upper_border_rec = 0;
-		free(left_border_send);
-		left_border_send = 0;
-		free(left_border_rec);
-		left_border_rec = 0;
-		free(right_border_send);
-		right_border_send = 0;
-		free(right_border_rec);
-		right_border_rec = 0;
 
 		exp_number++;
 	}
