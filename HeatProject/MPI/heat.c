@@ -209,11 +209,12 @@ int main(int argc, char *argv[]) {
 		for (iter = 0; iter < param.maxiter; iter++) {
 			global_residual = 0;
 			residual = relax_jacobi(&(param.u), &(param.uhelp), xdim, ydim);
-			MPI_Allreduce(&residual, &global_residual, 1, MPI_DOUBLE, MPI_SUM, comm_cart);
+			//MPI_Allreduce(&residual, &global_residual, 1, MPI_DOUBLE, MPI_SUM, comm_cart);
+			MPI_Reduce(&residual, &global_residual, 1, MPI_DOUBLE, MPI_SUM, 0, comm_cart);
 			if(rank==0){
 				printf("residual iter %d: %f\n", iter, global_residual);
 			}
-			if (global_residual<0.00000005)break;
+			if (rank == 0 && global_residual<0.00000005)break;
 			for(m = 1; m < xdim-1; m++){
 				// send not border but newly computed data.
 			    lower_border_send[m-1] = param.u[(ydim-2)*xdim+m];
