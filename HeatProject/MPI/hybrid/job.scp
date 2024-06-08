@@ -1,0 +1,16 @@
+#!/bin/sh
+#SBATCH -o job.out
+#SBATCH -e job.out
+#SBATCH -J heat
+#SBATCH --time=00:10:00
+#SBATCH --account=h039v
+#SBATCH --partition=test
+
+#SBATCH --nodes=4
+#SBATCH --ntasks=4
+#SBATCH --ntasks-per-node=1
+#SBATCH --cpus-per-task=48
+
+export OMP_NUM_THREADS=48
+
+srun ./heat test.dat heat.ppm 2 2
