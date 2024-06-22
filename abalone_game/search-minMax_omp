@@ -10,14 +10,11 @@
 #include "search.h"
 #include "board.h"
 #include "eval.h"
-#include <vector>
 #include <omp.h>
 
 
 #define max(i,j) ((i>j)?i:j)
 #define min(i,j) ((i<j)?i:j)
-
-int _maxDepth;
 
 /**
  * To create your own search strategy:
@@ -69,36 +66,30 @@ int MinMaxAlgorithm::minimax(int currentdepth, bool isMaximizing)
     {
         return -evaluate();
     }
-    int eval;
-    int bestEval = -999999;
     
     Move m;
     MoveList list;
     generateMoves(list);
-    
-    //while(list.getNext(m)){
-    std::vector<Move> move_iter;
-    while (list.getNext(m)) {
-        move_iter.push_back(m);
-    }
 
+    int bestEval = -maxEvaluation();
+    int eval;
     
-
-    #pragma omp parallel for schedule(dynamic) shared(bestEval) private(m) firstprivate(currentdepth)
-    for (int i = 0; i < move_iter.size(); ++i) {
-        Move move_m = move_iter[i];
-        playMove(move_m); 
+    //shared() -> all threads can access bestEval and update it
+    //private vs firstprivate: firstprivate -> wanna start with a specific value of currentdepth while private(m) is uninitialized for each thread
+    #pragma omp parallel schedule(dynamic) shared(bestEval) private(m) firstprivate(currentdepth)
+    while(list.getNext(m)) {
+        //Move move_m = move_iter[i];
+        playMove(m); 
         eval = minimax(currentdepth + 1, false);
         takeBack();
 
         #pragma omp atomic compare
         if (eval > bestEval) {
             bestEval = eval;
-        }
-
-        #pragma omp critical
-        {
-            foundBestMove(currentdepth,move_m,bestEval);
+            #pragma omp critical
+            {
+                foundBestMove(currentdepth,m,bestEval);
+            }
         }
         
         //safely update bestEval over the threads
@@ -108,7 +99,7 @@ int MinMaxAlgorithm::minimax(int currentdepth, bool isMaximizing)
         //     if(eval > bestEval){
         //         bestEval = eval;
         //         //#pragma omp atomic{}
-        //         foundBestMove(currentdepth,move_m,bestEval);
+        //         foundBestMove(currentdepth,m,bestEval);
         //     }
         // }
     }
@@ -119,5 +110,5 @@ int MinMaxAlgorithm::minimax(int currentdepth, bool isMaximizing)
     
 }
 
-// register ourselve as a search strategy
+// register ourselves as a search strategy
 MinMaxAlgorithm minmaxAlgorithm;
