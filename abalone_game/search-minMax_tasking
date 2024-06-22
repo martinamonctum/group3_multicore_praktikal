@@ -17,7 +17,7 @@
 #define max(i,j) ((i>j)?i:j)
 #define min(i,j) ((i<j)?i:j)
 
-int _maxDepth;
+
 
 /**
  * To create your own search strategy:
@@ -69,27 +69,22 @@ int MinMaxAlgorithm::minimax(int currentdepth, bool isMaximizing)
     {
         return -evaluate();
     }
-    int eval;
-    int bestEval = -999999;
     
     Move m;
     MoveList list;
     generateMoves(list);
-    
-    //while(list.getNext(m)){
-    std::vector<Move> move_iter;
-    while (list.getNext(m)) {
-        move_iter.push_back(m);
-    }
+
+    int bestEval = -maxEvaluation();
+    int eval;
 
     #pragma omp parallel
     {
         #pragma omp single nowait //avoid the barrier at end of single directive
         {
-            #pragma omp taskloop shared(bestEval) firstprivate(currentdepth, move_iter) //dynamic should be here
-            for (int i = 0; i < move_iter.size(); ++i) {
-                Move move_m = move_iter[i];
-                playMove(move_m);
+            #pragma omp taskloop shared(bestEval) firstprivate(currentdepth) //dynamic should be here
+            while (list.getNext(m)) {
+             
+                playMove(m);
                 eval = minimax(currentdepth + 1, false);
                 takeBack();
 
@@ -97,20 +92,17 @@ int MinMaxAlgorithm::minimax(int currentdepth, bool isMaximizing)
                 {
                     if (eval > bestEval) {
                         bestEval = eval;
-                        foundBestMove(currentdepth,move_m,bestEval);
+                        foundBestMove(currentdepth,m,bestEval);
                     }
                 }
             }
         }
-    }
-
-
-    
+    }    
         
     finishedNode(currentdepth,0);
     return bestEval;
     
 }
 
-// register ourselve as a search strategy
+// register ourselves as a search strategy
 MinMaxAlgorithm minmaxAlgorithm;
