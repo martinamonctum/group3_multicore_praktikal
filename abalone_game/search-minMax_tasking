@@ -10,14 +10,11 @@
 #include "search.h"
 #include "board.h"
 #include "eval.h"
-#include <vector>
 #include <omp.h>
 
 
 #define max(i,j) ((i>j)?i:j)
 #define min(i,j) ((i<j)?i:j)
-
-
 
 /**
  * To create your own search strategy:
