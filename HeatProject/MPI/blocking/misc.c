@@ -11,7 +11,6 @@
 #include <stdio.h>
 #include <math.h>
 #include <float.h>
-#include <omp.h>
 
 #include "heat.h"
 
@@ -228,6 +227,7 @@ int coarsen( double *uold, unsigned oldx, unsigned oldy ,
     float temp;
     float stepx = (float) oldx/(float)newx;
     float stepy = (float)oldy/(float)newy;
+
 
     if (oldx<newx){
 	 stopx=oldx;

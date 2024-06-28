@@ -1,1 +1,0 @@
-# Jacobi Implementation in MPI

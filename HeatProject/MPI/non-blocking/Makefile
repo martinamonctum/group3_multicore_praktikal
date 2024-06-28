@@ -1,5 +1,5 @@
-CC =  mpicc
-CFLAGS = -O3 -g
+CC =  mpiicc
+CFLAGS = -O3 -xhost -fno-alias
 
 
 all: heat 

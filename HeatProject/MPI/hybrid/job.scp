@@ -11,6 +11,9 @@
 #SBATCH --ntasks-per-node=1
 #SBATCH --cpus-per-task=48
 
+module load slurm_setup
+module load intel-mpi
+
 export OMP_NUM_THREADS=48
 
-srun ./heat test.dat heat.ppm 2 2
+mpiexec ./heat test.dat heat.ppm 2 2

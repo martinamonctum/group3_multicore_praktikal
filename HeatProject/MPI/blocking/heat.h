@@ -10,7 +10,6 @@
 #include <stdio.h>
 #include <mpi.h>
 
-
 // configuration
 
 typedef struct
@@ -60,7 +59,7 @@ void relax_gauss( double *u,
 double residual_jacobi( double *u,
 			unsigned sizex, unsigned sizey );
 double relax_jacobi( double **u, double **utmp,
-		   unsigned sizex, unsigned sizey ); 
+		   unsigned sizex, unsigned sizey); 
 
 
 #endif // JACOBI_H_INCLUDED

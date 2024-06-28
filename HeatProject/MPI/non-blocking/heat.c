@@ -21,7 +21,7 @@ int main(int argc, char *argv[]) {
 	MPI_Status status;
 	MPI_Request req;
 
-	MPI_Request reqs[4*2];
+	MPI_Request reqs[9];
 
 	MPI_Comm comm_cart;
 	int dims[2];
@@ -75,6 +75,8 @@ int main(int argc, char *argv[]) {
 	double residual;
 	double global_residual;
 
+	int csv_flag = 0;
+
 	// set the visualization resolution
 	param.visres = 100;
 
@@ -110,7 +112,6 @@ int main(int argc, char *argv[]) {
 		return 1;
 	}
 
-	print_params(&param);
 	time = (double *) calloc(sizeof(double), (int) (param.max_res - param.initial_res + param.res_step_size) / param.res_step_size);
 
 	
@@ -128,6 +129,8 @@ int main(int argc, char *argv[]) {
 		fprintf(stderr, "\nError: This is the MPI version! You need to give the Cartesian Grid dimensions!\n\n");
 		return 1;
 	}
+
+	if (argc >=6 && argv[5][0] == 'c' && argv[5][1] == 's' && argv[5][2] == 'v') csv_flag = 1;
 
 	periods[0] = 0;
 	periods[1] = 0;
@@ -150,9 +153,8 @@ int main(int argc, char *argv[]) {
 	if (right_pos[1] < dims[1]) MPI_Cart_rank(comm_cart, right_pos, &right_rank); else right_rank = MPI_PROC_NULL;
 	if (upper_pos[0] >= 0) MPI_Cart_rank(comm_cart, upper_pos, &upper_rank); else upper_rank = MPI_PROC_NULL;
 	if (lower_pos[0] < dims[0]) MPI_Cart_rank(comm_cart, lower_pos, &lower_rank); else lower_rank = MPI_PROC_NULL;
-
-	printf("I am %d! And live at (%d,%d)\n", rank, coords[0], coords[1]);
 	
+	if (rank == 0 && !csv_flag) print_params(&param);
 
 	for (param.act_res = param.initial_res; param.act_res <= param.max_res; param.act_res = param.act_res + param.res_step_size) {
 		if (param.act_res!=param.initial_res) finalize(&param);
@@ -211,12 +213,7 @@ int main(int argc, char *argv[]) {
 		for (iter = 0; iter < param.maxiter; iter++) {
 			global_residual = 0;
 			residual = relax_jacobi(&(param.u), &(param.uhelp), xdim, ydim);
-			//MPI_Allreduce(&residual, &global_residual, 1, MPI_DOUBLE, MPI_SUM, comm_cart);
-			MPI_Reduce(&residual, &global_residual, 1, MPI_DOUBLE, MPI_SUM, 0, comm_cart);
-			if(rank==0){
-				printf("residual iter %d: %f\n", iter, global_residual);
-			}
-			if (rank == 0 && global_residual<0.00000005)break;
+			
 			for(m = 1; m < xdim-1; m++){
 				// send not border but newly computed data.
 			    lower_border_send[m-1] = param.u[(ydim-2)*xdim+m];
@@ -234,19 +231,11 @@ int main(int argc, char *argv[]) {
 			MPI_Isend(lower_border_send, xdim-2, MPI_DOUBLE, lower_rank, 3,
 					comm_cart, &reqs[1]);
 
-			/*MPI_Sendrecv(lower_border_send, xdim-2, MPI_DOUBLE, lower_rank, 1,
-						lower_border_rec, xdim-2, MPI_DOUBLE, lower_rank, 1,
-						comm_cart, MPI_STATUS_IGNORE);*/
-
 			MPI_Irecv(upper_border_rec, xdim-2, MPI_DOUBLE, upper_rank, 3,
 					comm_cart, &reqs[2]);
 
 			MPI_Isend(upper_border_send, xdim-2, MPI_DOUBLE, upper_rank, 1,
 					comm_cart, &reqs[3]);
-
-			/*MPI_Sendrecv(upper_border_send, xdim-2, MPI_DOUBLE, upper_rank, 1,
-						upper_border_rec, xdim-2, MPI_DOUBLE, upper_rank, 1,
-						comm_cart, MPI_STATUS_IGNORE);*/
 
 			MPI_Irecv(left_border_rec, ydim-2, MPI_DOUBLE, left_rank, 2,
 					comm_cart, &reqs[4]);
@@ -254,21 +243,18 @@ int main(int argc, char *argv[]) {
 			MPI_Isend(left_border_send, ydim-2, MPI_DOUBLE, left_rank, 0,
 					comm_cart, &reqs[5]);
 
-			/*MPI_Sendrecv(left_border_send, ydim-2, MPI_DOUBLE, left_rank, 1,
-						left_border_rec, ydim-2, MPI_DOUBLE, left_rank, 1,
-						comm_cart, MPI_STATUS_IGNORE);*/
-
 			MPI_Irecv(right_border_rec, ydim-2, MPI_DOUBLE, right_rank, 0,
 					comm_cart, &reqs[6]);
 
 			MPI_Isend(right_border_send, ydim-2, MPI_DOUBLE, right_rank, 2,
 					comm_cart, &reqs[7]);
+			
 
-			/*MPI_Sendrecv(right_border_send, ydim-2, MPI_DOUBLE, right_rank, 1,
-						right_border_rec, ydim-2, MPI_DOUBLE, right_rank, 1,
-						comm_cart, MPI_STATUS_IGNORE);*/
+			MPI_Iallreduce(&residual, &global_residual, 1, MPI_DOUBLE, MPI_SUM, comm_cart, &reqs[8]);
 
-			MPI_Waitall(8, reqs, MPI_STATUSES_IGNORE);
+			MPI_Waitall(9, reqs, MPI_STATUSES_IGNORE);
+
+			if (global_residual<0.00000005)break;
 
 			for(m = 1; m < xdim-1; m++){
 				if (lower_rank != MPI_PROC_NULL) param.u[(ydim-1)*xdim+m] = lower_border_rec[m-1];
@@ -284,16 +270,37 @@ int main(int argc, char *argv[]) {
 		time[exp_number] = MPI_Wtime() - time[exp_number];
 
 		if (rank == 0){
-			printf("\n\nResolution: %u\n", param.act_res);
-			printf("===================\n");
-			printf("Execution time: %f\n", time[exp_number]);
-			printf("Residual: %f\n\n", global_residual);
+			if (!csv_flag){
+				printf("\n\nResolution: %u\n", param.act_res);
+				printf("===================\n");
+				printf("Execution time: %f\n", time[exp_number]);
+				printf("Residual: %f\n\n", global_residual);
 
-			printf("megaflops:  %.1lf\n", (double) param.maxiter * (np - 2) * (np - 2) * 7 / time[exp_number] / 1000000);
-			printf("  flop instructions (M):  %.3lf\n", (double) param.maxiter * (np - 2) * (np - 2) * 7 / 1000000);
-		}
+				printf("megaflops:  %.1lf\n", (double) param.maxiter * (np - 2) * (np - 2) * 7 / time[exp_number] / 1000000);
+				printf("  flop instructions (M):  %.3lf\n", (double) param.maxiter * (np - 2) * (np - 2) * 7 / 1000000);
+			} else {
+				printf("%d,%d,%f\n",size,param.act_res,time[exp_number]);
+			}
+		} 
 
 		exp_number++;
+
+		free(lower_border_send);
+		free(upper_border_send);
+		free(left_border_send);
+		free(right_border_send);
+		free(lower_border_rec);
+		free(upper_border_rec);
+		free(left_border_rec);
+		free(right_border_rec);
+		lower_border_send=0;
+		upper_border_send=0;
+		left_border_send=0;
+		right_border_send=0;
+		lower_border_rec=0;
+		upper_border_rec=0;
+		left_border_rec=0;
+		right_border_rec=0;
 	}
 
     param.uvis  = (double*)calloc( sizeof(double),
@@ -308,6 +315,9 @@ int main(int argc, char *argv[]) {
 				      (param.visres+2) *
 				      (param.visres+2) );
 
+	MPI_Request *img_reqs = (MPI_Request*) malloc(sizeof(MPI_Request)*
+						(param.visres+2) *
+						(param.visres+2));
 	if (rank == 0){
 
 		for (i = 0; i < param.visres+2; i++){
@@ -316,40 +326,40 @@ int main(int argc, char *argv[]) {
 				vis_partner_pos[1] = j / xshift_vis;
 				if (vis_partner_pos[0] > dims[0]-1) vis_partner_pos[0] = dims[0]-1;
 				if (vis_partner_pos[1] > dims[1]-1) vis_partner_pos[1] = dims[1]-1;
-				// printf("(%d,%d)\n", vis_partner_pos[0], vis_partner_pos[1]);
 				MPI_Cart_rank(comm_cart, vis_partner_pos, &vis_partner_rank);
-				if (vis_partner_rank == 0){
-					local_ypos_vis = i - vis_partner_pos[0] * yshift_vis;
-					local_xpos_vis = j - vis_partner_pos[1] * xshift_vis;
-					uvis_global[i*(param.visres+2)+j] = param.uvis[local_ypos_vis*xdim_vis+local_xpos_vis];
-				} else {
-					MPI_Irecv(&uvis_global[i*(param.visres+2)+j], 1, MPI_DOUBLE, vis_partner_rank, i*(param.visres+2)+j, comm_cart, &req);
-				}
-			}
-		}
-	} else {
-		for (i = 0; i < param.visres+2; i++){
-			for(j = 0; j < param.visres+2; j++){
-				vis_partner_pos[0] = i / yshift_vis;
-				vis_partner_pos[1] = j / xshift_vis;
-				if (vis_partner_pos[0] > dims[0]-1) vis_partner_pos[0] = dims[0]-1;
-				if (vis_partner_pos[1] > dims[1]-1) vis_partner_pos[1] = dims[1]-1;
-				MPI_Cart_rank(comm_cart, vis_partner_pos, &vis_partner_rank);
-				if (rank == vis_partner_rank){
-					local_ypos_vis = i - vis_partner_pos[0] * yshift_vis;
-					local_xpos_vis = j - vis_partner_pos[1] * xshift_vis;
-					MPI_Isend(&param.uvis[local_ypos_vis*xdim_vis+local_xpos_vis], 1, MPI_DOUBLE, 0, i*(param.visres+2)+j, comm_cart, &req);
-				}
+				MPI_Irecv(&uvis_global[i*(param.visres+2)+j], 1, MPI_DOUBLE, vis_partner_rank, (i)*(param.visres+2)+(j), comm_cart, &img_reqs[i*(param.visres+2)+j]);
 			}
 		}
 	}
 
-	MPI_Barrier(comm_cart);
+	for (i = 0; i < param.visres+2; i++){
+		for(j = 0; j < param.visres+2; j++){
+			vis_partner_pos[0] = i / yshift_vis;
+			vis_partner_pos[1] = j / xshift_vis;
+			if (vis_partner_pos[0] > dims[0]-1) vis_partner_pos[0] = dims[0]-1;
+			if (vis_partner_pos[1] > dims[1]-1) vis_partner_pos[1] = dims[1]-1;
+			MPI_Cart_rank(comm_cart, vis_partner_pos, &vis_partner_rank);
+			if (rank == vis_partner_rank){
+				local_ypos_vis = i - vis_partner_pos[0] * yshift_vis;
+				local_xpos_vis = j - vis_partner_pos[1] * xshift_vis;
+				MPI_Isend(&param.uvis[local_ypos_vis*xdim_vis+local_xpos_vis], 1, MPI_DOUBLE, 0, i*(param.visres+2)+j, comm_cart, &req);
+			}
+		}
+	}
+
+	if (rank==0) MPI_Waitall((param.visres+2)*(param.visres+2), img_reqs, MPI_STATUSES_IGNORE);
 
 	if (rank == 0) write_image(resfile, uvis_global, param.visres+2, param.visres+2);
 
-	err = MPI_Finalize();
+	free(uvis_global);
+	uvis_global=0;
 
+	free(param.uvis);
+	param.uvis=0;
+
+	finalize(&param);
+
+	err = MPI_Finalize();
 
 	return 0;
 }

@@ -1,0 +1,32 @@
+#!/bin/sh
+#SBATCH -o job.out
+#SBATCH -e job.out
+#SBATCH -J heat
+#SBATCH --time=00:10:00
+#SBATCH --account=h039v
+#SBATCH --partition=test
+
+#SBATCH --nodes=4
+#SBATCH --ntasks=192
+#SBATCH --ntasks-per-node=48
+
+module load slurm_setup
+module load intel-mpi
+
+mpiexec -n 4 ./heat test.dat heat.ppm 1 4 csv
+mpiexec -n 8 ./heat test.dat heat.ppm 1 8 csv
+mpiexec -n 12 ./heat test.dat heat.ppm 1 12 csv
+mpiexec -n 24 ./heat test.dat heat.ppm 1 24 csv
+mpiexec -n 48 ./heat test.dat heat.ppm 1 48 csv
+mpiexec -n 60 ./heat test.dat heat.ppm 1 60 csv
+mpiexec -n 72 ./heat test.dat heat.ppm 1 72 csv
+mpiexec -n 84 ./heat test.dat heat.ppm 1 84 csv
+mpiexec -n 96 ./heat test.dat heat.ppm 1 96 csv
+mpiexec -n 108 ./heat test.dat heat.ppm 1 108 csv
+mpiexec -n 120 ./heat test.dat heat.ppm 1 120 csv
+mpiexec -n 132 ./heat test.dat heat.ppm 1 132 csv
+mpiexec -n 144 ./heat test.dat heat.ppm 1 144 csv
+mpiexec -n 156 ./heat test.dat heat.ppm 1 156 csv
+mpiexec -n 168 ./heat test.dat heat.ppm 1 168 csv
+mpiexec -n 180 ./heat test.dat heat.ppm 1 180 csv
+mpiexec -n 192 ./heat test.dat heat.ppm 1 192 csv

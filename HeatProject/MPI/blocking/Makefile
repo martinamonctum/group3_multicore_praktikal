@@ -1,11 +1,11 @@
 CC =  mpicc
-CFLAGS = -O3 -g
+CFLAGS = -O3
 
 
 all: heat 
 
 heat : heat.o input.o misc.o timing.o relax_jacobi.o
-	$(CC) $(CFLAGS) -o heat $+ -lm  
+	$(CC) $(CFLAGS) -o heat $+ -lm
 
 %.o : %.c %.h
 	$(CC) $(CFLAGS) -c -o $@ $<
