@@ -53,11 +53,14 @@ class MinMaxStrategy: public SearchStrategy
 void MinMaxStrategy::searchBestMove()
 {
 
-    _maxDepth = 3;
+    _maxDepth = 2;
     int eval;
+    auto start = std::chrono::steady_clock::now();
     eval = minimax(0);
+    auto end = std::chrono::steady_clock::now();
+    total_time += end - start;
     printf("best evaluation = %d\n" , eval);
-    printf("Time: %f", totalEvaluations/total_time.count());
+    printf("Time: %f\n", totalEvaluations/total_time.count());
 }
 
 
@@ -74,7 +77,7 @@ int MinMaxStrategy::minimax(int depth)
     bestEval = -maxEvaluation();
     int eval;
 
-    auto start = std::chrono::steady_clock::now();
+    //auto start = std::chrono::steady_clock::now();
 
     while(list.getNext(m)) {
         playMove(m);
@@ -88,8 +91,8 @@ int MinMaxStrategy::minimax(int depth)
     }
     //printf("Self %d: best=%d\n",depth,bestEval);
     finishedNode(depth,0);
-    auto end = std::chrono::steady_clock::now();
-    total_time += end - start;
+    //auto end = std::chrono::steady_clock::now();
+    //total_time += end - start;
     return bestEval;
 }
 
