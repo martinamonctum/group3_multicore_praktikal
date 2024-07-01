@@ -6,6 +6,8 @@
  * (c) 2006, Josef Weidendorfer
  */
 
+#include <chrono>
+#include <iostream>
 #include "cstdio"
 #include "search.h"
 #include "board.h"
@@ -42,22 +44,27 @@ class MinMaxStrategy: public SearchStrategy
      */
     void searchBestMove();
     int minimax(int depth);
+
+    int totalEvaluations = 0;
+    std::chrono::duration<double> total_time = std::chrono::duration<double>(0);
 };
 
 
 void MinMaxStrategy::searchBestMove()
 {
 
-    _maxDepth = 1;
+    _maxDepth = 3;
     int eval;
     eval = minimax(0);
     printf("best evaluation = %d\n" , eval);
+    printf("Time: %f", totalEvaluations/total_time.count());
 }
 
 
 int MinMaxStrategy::minimax(int depth)
 {
     if (depth == _maxDepth) {
+        totalEvaluations++;
         return -evaluate();
     }
     Move m;
@@ -66,18 +73,23 @@ int MinMaxStrategy::minimax(int depth)
     int bestEval;
     bestEval = -maxEvaluation();
     int eval;
+
+    auto start = std::chrono::steady_clock::now();
+
     while(list.getNext(m)) {
         playMove(m);
         eval = -minimax(depth + 1);
         takeBack();
-        printf("Self %d: %s=%d\n",depth,m.name(),eval);
+        //printf("Self %d: %s=%d\n",depth,m.name(),eval);
         if(eval > bestEval){
             bestEval = eval;
             foundBestMove(depth,m,bestEval);
         }
     }
-    printf("Self %d: best=%d\n",depth,bestEval);
+    //printf("Self %d: best=%d\n",depth,bestEval);
     finishedNode(depth,0);
+    auto end = std::chrono::steady_clock::now();
+    total_time += end - start;
     return bestEval;
 }
 
