@@ -13,6 +13,8 @@
 #include "board.h"
 #include "eval.h"
 
+#define max(x,y) (x>y?x:y)
+
 /**
  * To create your own search strategy:
  * - copy this file into another one,
@@ -28,14 +30,14 @@
  * - call finishedNode() when finishing evaluation of a tree node
  * - Use _maxDepth for strength level (maximal level searched in tree)
  */
-class MinMaxStrategy: public SearchStrategy
+class AlphaBetaStrategy: public SearchStrategy
 {
  public:
     // Defines the name of the strategy
-    MinMaxStrategy(): SearchStrategy("MinMax") {}
+    AlphaBetaStrategy(): SearchStrategy("AlphaBeta") {}
 
     // Factory method: just return a new instance of this class
-    SearchStrategy* clone() { return new MinMaxStrategy(); }
+    SearchStrategy* clone() { return new AlphaBetaStrategy(); }
 
  private:
 
@@ -43,58 +45,58 @@ class MinMaxStrategy: public SearchStrategy
      * Implementation of the strategy.
      */
     void searchBestMove();
-    int minimax(int depth);
+    int alphaBeta(int depth, int alpha, int beta);
 
     int totalEvaluations = 0;
     std::chrono::duration<double> total_time = std::chrono::duration<double>(0);
 };
 
 
-void MinMaxStrategy::searchBestMove()
+void AlphaBetaStrategy::searchBestMove()
 {
-
     _maxDepth = 2;
     int eval;
     auto start = std::chrono::steady_clock::now();
-    eval = minimax(0);
+    eval = alphaBeta(0, minEvaluation(), maxEvaluation());
     auto end = std::chrono::steady_clock::now();
     total_time += end - start;
-    printf("best evaluation = %d\n" , eval);
-    printf("Time: %f\n", totalEvaluations/total_time.count());
+    printf("best evaluation = %d\n", eval);
+    printf("Time: %f\n", totalEvaluations / total_time.count());
 }
 
 
-int MinMaxStrategy::minimax(int depth)
+int AlphaBetaStrategy::alphaBeta(int depth, int alpha, int beta)
 {
     if (depth == _maxDepth) {
         totalEvaluations++;
         return -evaluate();
     }
+
     Move m;
     MoveList list;
     generateMoves(list);
-    int bestEval;
-    bestEval = minEvaluation();
+    int bestEval = minEvaluation();
     int eval;
 
-    //auto start = std::chrono::steady_clock::now();
-
-    while(list.getNext(m)) {
+    while (list.getNext(m)) {
         playMove(m);
-        eval = -minimax(depth + 1);
+        eval = -alphaBeta(depth + 1, -beta, -alpha);
         takeBack();
-        //printf("Self %d: %s=%d\n",depth,m.name(),eval);
-        if(eval > bestEval){
+        
+        if (eval > bestEval) {
             bestEval = eval;
-            foundBestMove(depth,m,bestEval);
+            foundBestMove(depth, m, bestEval);
+        }
+        
+        alpha = max(alpha, eval);
+        if (alpha >= beta) {
+            break;  // Beta cut-off
         }
     }
-    //printf("Self %d: best=%d\n",depth,bestEval);
-    finishedNode(depth,0);
-    //auto end = std::chrono::steady_clock::now();
-    //total_time += end - start;
+
+    finishedNode(depth, 0);
     return bestEval;
 }
 
 // register ourselve as a search strategy
-MinMaxStrategy minMaxStrategy;
+AlphaBetaStrategy alphaBetaStrategy;

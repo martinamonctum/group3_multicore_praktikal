@@ -23,7 +23,7 @@ LDFLAGS=
 
 
 LIB_OBJS = move.o board.o network.o search.o eval.o
-SEARCH_OBJS = $(LIB_OBJS) search-abid.o search-onelevel.o search-minMax.o
+SEARCH_OBJS = $(LIB_OBJS) search-abid.o search-onelevel.o search-minMax.o search-alphaBeta.o
 
 all: player start referee
 
@@ -53,3 +53,4 @@ referee.o: referee.cpp board.cpp move.cpp
 search-onelevel.o: search.h board.h eval.h
 search-abid.o: search.h board.h
 search-minMax.o: search.h board.h eval.h
+search-alphaBeta.o: search.h board.h eval.h
