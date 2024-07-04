@@ -12,6 +12,7 @@
 #include "search.h"
 #include "board.h"
 #include "eval.h"
+#include <omp.h>
 
 /**
  * To create your own search strategy:
@@ -56,11 +57,15 @@ void MinMaxStrategy::searchBestMove()
     _maxDepth = 2;
     int eval;
     auto start = std::chrono::steady_clock::now();
-    eval = minimax(0);
+    #pragma omp parallel
+        #pragma omp single
+            eval = minimax(0);
+    #pragma omp taskwait
     auto end = std::chrono::steady_clock::now();
     total_time += end - start;
     printf("best evaluation = %d\n" , eval);
-    printf("Time: %f\n", totalEvaluations/total_time.count());
+    printf("Evals/sec: %f\n", totalEvaluations/total_time.count());
+    printf("Time: %f\n", total_time.count());
 }
 
 
@@ -77,22 +82,18 @@ int MinMaxStrategy::minimax(int depth)
     bestEval = -maxEvaluation();
     int eval;
 
-    //auto start = std::chrono::steady_clock::now();
-
     while(list.getNext(m)) {
         playMove(m);
+        #pragma omp task firstprivate(depth) untied
         eval = -minimax(depth + 1);
+        #pragma omp taskwait
         takeBack();
-        //printf("Self %d: %s=%d\n",depth,m.name(),eval);
         if(eval > bestEval){
             bestEval = eval;
             foundBestMove(depth,m,bestEval);
         }
     }
-    //printf("Self %d: best=%d\n",depth,bestEval);
     finishedNode(depth,0);
-    //auto end = std::chrono::steady_clock::now();
-    //total_time += end - start;
     return bestEval;
 }
 
