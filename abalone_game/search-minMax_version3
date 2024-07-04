@@ -1,4 +1,4 @@
-/**
+/** 
  * Very simple example strategy:
  * Search all possible positions reachable via one move,
  * and return the move leading to the best position
