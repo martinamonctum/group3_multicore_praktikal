@@ -1,0 +1,19 @@
+#!/bin/sh
+#SBATCH -o job.out
+#SBATCH -e job.out
+#SBATCH -J heat
+#SBATCH --time=00:05:00
+#SBATCH --account=h039v
+#SBATCH --partition=test
+
+#SBATCH --nodes=1
+
+module load slurm_setup
+
+#export OMP_NUM_THREADS=48
+
+#./player -p 3000 -s 2  O & ./player -p 4000 -s 1  X & ./referee -p 3000 -p 4000
+./player -s 2 -1 O & ./player -s 0 -1 X & ./start
+#./player -s 2 -1 O & ./player -s 0 -1 X & ./start position-midgame1
+#./player -s 2 -1 O & ./player -s 0 -1 X & ./start position-midgame2
+#./player -s 2 -1 O & ./player -s 0 -1 X & ./start position-endgame
