@@ -44,7 +44,7 @@ class MinMaxStrategy: public SearchStrategy
      * Implementation of the strategy.
      */
     void searchBestMove();
-    int minimax(int depth);
+    int minimax(int depth, Board& board);
 
     int totalEvaluations = 0;
     std::chrono::duration<double> total_time = std::chrono::duration<double>(0);
@@ -54,13 +54,10 @@ class MinMaxStrategy: public SearchStrategy
 void MinMaxStrategy::searchBestMove()
 {
 
-    _maxDepth = 2;
+    _maxDepth = 1;
     int eval;
     auto start = std::chrono::steady_clock::now();
-    #pragma omp parallel
-        #pragma omp single
-            eval = minimax(0);
-    #pragma omp taskwait
+    eval = minimax(0, *_board);
     auto end = std::chrono::steady_clock::now();
     total_time += end - start;
     printf("best evaluation = %d\n" , eval);
@@ -69,32 +66,71 @@ void MinMaxStrategy::searchBestMove()
 }
 
 
-int MinMaxStrategy::minimax(int depth)
+int MinMaxStrategy::minimax(int depth, Board& board)
 {
+
+    if (depth == 0){
+
+        Move m;
+        MoveList list;
+        generateMoves(list, board);
+        int bestEval=-maxEvaluation();
+        int eval;
+
+        #pragma omp parallel
+        {
+            #pragma omp single
+            {
+                #pragma omp taskgroup task_reduction(max:bestEval)
+                {
+                while(list.getNext(m)) {
+                    #pragma omp task firstprivate(m,board,eval) in_reduction(max:bestEval)
+                    {
+                        playMove(m, board);
+                        /*#pragma omp critical
+                        {
+                            //board.print();
+                        }*/
+                        eval = -minimax(depth + 1, board);
+                        #pragma omp critical
+                        {        
+                            printf("eval = %d\n", eval);
+                        }
+                        if (eval > bestEval){
+                            bestEval = eval;
+                            //bestMoveL = m;
+                            //printf("%d id: bestEval: %d\n", omp_get_thread_num(), bestEval);
+                        }
+                        takeBack(board);
+                    }
+                }
+                }
+            }
+            #pragma omp critical
+            {
+                printf("%d id: bestEval: %d\n", omp_get_thread_num(), bestEval);
+            }
+        }
+        finishedNode(depth,0);
+        return 0;
+    }
+
     if (depth == _maxDepth) {
         totalEvaluations++;
-        return -evaluate();
+        return -evaluate(board);
     }
+
     Move m;
     MoveList list;
-    generateMoves(list);
-    int bestEval;
-    bestEval = -maxEvaluation();
-    int eval;
+    generateMoves(list, board);
 
     while(list.getNext(m)) {
-        playMove(m);
-        #pragma omp task firstprivate(depth) untied
-        eval = -minimax(depth + 1);
-        #pragma omp taskwait
-        takeBack();
-        if(eval > bestEval){
-            bestEval = eval;
-            foundBestMove(depth,m,bestEval);
-        }
+        playMove(m, board);
+        -minimax(depth + 1, board);
+        takeBack(board);
     }
     finishedNode(depth,0);
-    return bestEval;
+    return 0;
 }
 
 // register ourselve as a search strategy
