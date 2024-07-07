@@ -95,10 +95,10 @@ int MinMaxStrategy::minimax(int depth, Board& board)
         {
             #pragma omp single
             {
-                #pragma omp taskgroup task_reduction(max:bestEval)
+                #pragma omp taskgroup task_reduction(max_smove:bestSMove)
                 {
                 while(list.getNext(m)) {
-                    #pragma omp task firstprivate(m,board,eval) in_reduction(max:bestEval)
+                    #pragma omp task firstprivate(m,board,eval) in_reduction(max_smove:bestSMove)
                     {
                         scored_move smoveL;
                         smoveL.move = m;
@@ -115,7 +115,6 @@ int MinMaxStrategy::minimax(int depth, Board& board)
                         if (smoveL.score > bestSMove.score){
                             bestSMove.score = smoveL.score;
                             bestSMove.move = smoveL.move;
-                            //bestMoveL = m;
                             //printf("%d id: bestEval: %d\n", omp_get_thread_num(), bestEval);
                         }
                         takeBack(board);
@@ -137,6 +136,7 @@ int MinMaxStrategy::minimax(int depth, Board& board)
     }
 
     if (depth == _maxDepth) {
+        #pragma omp atomic
         totalEvaluations++;
         return -evaluate(board);
     }
